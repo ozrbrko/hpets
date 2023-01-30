@@ -48,13 +48,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   SizedBox(height: 60,),
 
-                  hPetsTextFormField("Name", nameInput, "Name is required", TextInputType.text, false),
-                  SizedBox(height: 20,),
-                  hPetsTextFormField("Surname", surnameInput, "Surname is required", TextInputType.text, false),
-                  SizedBox(height: 20,),
-                  hPetsTextFormField("Email", mailInput, "Email is required", TextInputType.text, false),
-                  SizedBox(height: 20,),
-                  hPetsTextFormField("Password", passwordInput, "Password is required", TextInputType.text, false),
+                  hPetsTextFormField("Name", nameInput, "Name is required !", TextInputType.text, false),
+                  SizedBox(height: 12,),
+                  hPetsTextFormField("Surname", surnameInput, "Surname is required !", TextInputType.text, false),
+                  SizedBox(height: 12,),
+                  hPetsTextFormField("Email", mailInput, "Email is required !", TextInputType.text, false),
+                  SizedBox(height: 12,),
+                  hPetsTextFormField("Password", passwordInput, "Password is required !", TextInputType.text, false),
 
                   SizedBox(height: 40),
 
@@ -87,13 +87,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       style: TextStyle(
                           color: appThemeClr,
                           fontFamily: themeFontMedium,
-                          fontSize: 15)),
+                          fontSize: 16)),
                   TextSpan(
                       text: "Login!",
                       style: TextStyle(
                           color: Colors.red,
                           fontFamily: themeFontMedium,
-                          fontSize: 14),
+                          fontSize: 16),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
 

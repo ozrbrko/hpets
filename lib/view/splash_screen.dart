@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hpets/core/responsive/frame_size.dart';
 import '../core/constants/colors.dart';
 import '../core/constants/fonts.dart';
 import '../core/constants/images.dart';
@@ -33,24 +34,30 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          children: [
-            SizedBox(height: 180),
-            Image.asset(Images.logo_hpets),
-            Text(
-              "hPETS",
-              style: TextStyle(
-                fontFamily: themeFontMedium,
-                fontSize: 40,
-                color: blackThemeClr,
-                decoration: TextDecoration.none,
-              ),
-            )
-          ],
+    FrameSize.init(context: context);
+
+    return Scaffold(
+      appBar: null,
+
+      body: Container(
+        height: FrameSize.screenHeight,
+        width: FrameSize.screenWidth,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            children: [
+              SizedBox(height: 180),
+              Image.asset(Images.logo_hpets),
+              Text(
+                "hPETS",
+                style: TextStyle(
+                  fontFamily: themeFontMedium,
+                  fontSize: 32,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

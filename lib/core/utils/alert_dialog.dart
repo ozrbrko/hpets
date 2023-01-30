@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import '../../main.dart';
 import '../../view/login.dart';
 import '../constants/colors.dart';
 
@@ -71,34 +72,34 @@ class AlertDialogFunctions {
               child: Padding(
                 padding: const EdgeInsets.all(25.0),
                 child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Have you forgotten your password?",
-                        style:
-                            TextStyle(fontFamily: themeFontBold, fontSize: 19),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Don't worry, write the email with which you are registered and we will send you the steps you must follow to change your password.",
-                        style: TextStyle(
-                            fontSize: 14, fontFamily: themeFontRegular),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      hPetsTextFormField("Email", mailInput, "required",
-                          TextInputType.text, false),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Form(
-                        key: _formKey,
-                        child: Column(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Have you forgotten your password?",
+                          style:
+                              TextStyle(fontFamily: themeFontBold, fontSize: 19),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Don't worry, write the email with which you are registered and we will send you the steps you must follow to change your password.",
+                          style: TextStyle(
+                              fontSize: 14, fontFamily: themeFontRegular),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        hPetsTextFormField("Email", mailInput, "required",
+                            TextInputType.text, false),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SizedBox(
@@ -110,21 +111,22 @@ class AlertDialogFunctions {
                                     40,
                                     themeFontSemiBold,
                                     () => {
-                                            if (_formKey.currentState!
-                                                .validate())
-                                              {
-                                                print("Validated"),
-                                              }
-                                            else
-                                              {
-                                                print("Not Validated"),
-                                              }
+                                      logger.i("Send Email Tıklandı.")
+                                            // if (_formKey.currentState!
+                                            //     .validate())
+                                            //   {
+                                            //     print("Validated"),
+                                            //   }
+                                            // else
+                                            //   {
+                                            //     print("Not Validated"),
+                                            //   }
 
                                         })),
                           ],
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

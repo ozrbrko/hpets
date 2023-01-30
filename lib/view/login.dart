@@ -41,22 +41,24 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         SizedBox(height: 80),
                         Center(
-                          child: Image.asset(Images.logo_hpets),
+                          child: SizedBox(
+                              width: 130,
+                              child: Image.asset(Images.logo_hpets)),
                         ),
                         Text(
-                          "hPETS",
+                        "Welcome to hPETS!",
                           style: TextStyle(
-                              fontSize: 32, fontFamily: themeFontMedium),
+                              fontSize: 28, fontFamily: themeFontMedium),
                         ),
                         SizedBox(height: 40),
                         // Text("Email",style: TextStyle(fontFamily: themeFontMedium),),
                         hPetsTextFormField("Email", loginInput,
-                            "Email is required", TextInputType.text,false),
+                            "Email is required !", TextInputType.text,false),
                         SizedBox(
-                          height: 20,
+                          height: 12,
                         ),
                         hPetsTextFormField("Password", passwordInput,
-                            "Password is required", TextInputType.text,true),
+                            "Password is required !", TextInputType.text,true),
                         SizedBox(height: 40),
 
                         SizedBox(
@@ -89,13 +91,17 @@ class _LoginPageState extends State<LoginPage> {
 
                               },
 
-                              child: Text(
+                              child: Container(
+                                height: 30,
+                                color: Colors.white,
+                                child: Text(
 
-                                "Forgot Password?",
-                                style: TextStyle(
-                                    color: appThemeClr,
-                                    fontFamily: themeFontMedium,
-                                    fontSize: 15),
+                                  "Forgot Password ?",
+                                  style: TextStyle(
+                                      color: appThemeClr,
+                                      fontFamily: themeFontMedium,
+                                      fontSize: 15),
+                                ),
                               ),
                             ),
                           ),
@@ -109,17 +115,17 @@ class _LoginPageState extends State<LoginPage> {
                     child: RichText(
                       text: TextSpan(children: <TextSpan>[
                         TextSpan(
-                            text: "Don't have an account?  ",
+                            text: "Don't have an account ?  ",
                             style: TextStyle(
                                 color: appThemeClr,
                                 fontFamily: themeFontMedium,
-                                fontSize: 15)),
+                                fontSize: 16)),
                         TextSpan(
                             text: "Register!",
                             style: TextStyle(
                                 color: Colors.red,
                                 fontFamily: themeFontMedium,
-                                fontSize: 14),
+                                fontSize: 16),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () async {
 
