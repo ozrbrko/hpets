@@ -1,31 +1,33 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
 
 List<File> imageList = [];
 List<String> imageListPath = [];
 
-TextFormField hPetsTextFormField(
-    String hinttext,
-    TextEditingController txtcontroller,
-    String required,
-    TextInputType textType,
-    bool obscure
-    ) {
-  return TextFormField(
+TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontroller, String required, TextInputType textType, bool obscure, String forValidation) {
+
+  if(forValidation == "mail"){
+
+    return TextFormField(
       controller: txtcontroller,
       onSaved: (deger) => txtcontroller.text = deger!,
       keyboardType: textType,
 
       // key: key1,
+
       validator: MultiValidator([
         RequiredValidator(errorText: required),
+        EmailValidator(
+            errorText: 'Please write a valid email address !'),
+
       ]),
       decoration: InputDecoration(
 
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+          const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
           border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(Radius.circular(40.0))),
@@ -33,10 +35,72 @@ TextFormField hPetsTextFormField(
 
           hintText: hinttext,
           hintStyle: TextStyle(
-              fontFamily: themeFontLight, color: Colors.grey, fontSize: 14.0)),
+              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
 
-  obscureText: obscure,
-  );
+      obscureText: obscure,
+    );
+  } else if (forValidation == "password") {
+
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+        MinLengthValidator(8, errorText: 'The password must consist of at least 8 elements !')
+
+      ]),
+      decoration: InputDecoration(
+
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+
+      obscureText: obscure,
+    );
+
+
+  } else {
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+
+
+      ]),
+      decoration: InputDecoration(
+
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+
+      obscureText: obscure,
+    );
+
+  }
+
 }
 
 ElevatedButton hPetsElevatedButton(String text, Color btnColor,
@@ -54,7 +118,7 @@ ElevatedButton hPetsElevatedButton(String text, Color btnColor,
     child: Text(
       text,
       style:
-          TextStyle(fontFamily: fontFamily, fontSize: 18.0, color: Colors.white),
+          TextStyle(fontFamily: fontFamily, fontSize: 18.0, color: AppColors.whiteThemeClr),
     ),
   );
 }

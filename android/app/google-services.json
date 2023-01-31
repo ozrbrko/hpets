@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "466983483764",
+    "firebase_url": "https://hpets-50873-default-rtdb.firebaseio.com",
+    "project_id": "hpets-50873",
+    "storage_bucket": "hpets-50873.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466983483764:android:f8e94edc2a177701f0d421",
+        "android_client_info": {
+          "package_name": "com.example.hpets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466983483764-iakmsvop2pv24qpan9hhkqoo091ghpe2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGLtErAhcTYXGSdRpQJGVv2h9oXRaeVrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466983483764-iakmsvop2pv24qpan9hhkqoo091ghpe2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

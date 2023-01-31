@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: FrameSize.screenHeight,
         width: FrameSize.screenWidth,
-        color: Colors.white,
+        color: AppColors.whiteThemeClr,
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(

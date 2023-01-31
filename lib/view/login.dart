@@ -5,6 +5,7 @@ import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/constants/images.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/core/services/auth_service.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 
 import '../main.dart';
@@ -17,9 +18,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController loginInput = TextEditingController();
-  TextEditingController passwordInput = TextEditingController();
+  TextEditingController loginInputController = TextEditingController();
+  TextEditingController passwordInputController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
         body: SingleChildScrollView(
           child: Container(
             height: FrameSize.screenHeight,
-            color: Colors.white,
+            color: AppColors.whiteThemeClr,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -46,19 +49,29 @@ class _LoginPageState extends State<LoginPage> {
                               child: Image.asset(Images.logo_hpets)),
                         ),
                         Text(
-                        "Welcome to hPETS!",
+                          "Welcome to hPETS!",
                           style: TextStyle(
                               fontSize: 28, fontFamily: themeFontMedium),
                         ),
                         SizedBox(height: 40),
                         // Text("Email",style: TextStyle(fontFamily: themeFontMedium),),
-                        hPetsTextFormField("Email", loginInput,
-                            "Email is required !", TextInputType.text,false),
+                        hPetsTextFormField(
+                            "Email",
+                            loginInputController,
+                            "Email is required !",
+                            TextInputType.text,
+                            false,
+                            "mail"),
                         SizedBox(
                           height: 12,
                         ),
-                        hPetsTextFormField("Password", passwordInput,
-                            "Password is required !", TextInputType.text,true),
+                        hPetsTextFormField(
+                            "Password",
+                            passwordInputController,
+                            "Password is required !",
+                            TextInputType.text,
+                            true,
+                            "password"),
                         SizedBox(height: 40),
 
                         SizedBox(
@@ -66,13 +79,22 @@ class _LoginPageState extends State<LoginPage> {
                             height: FrameSize.screenHeight / 14,
                             child: hPetsElevatedButton(
                                 "Login",
-                                appThemeClr,
+                                AppColors.appThemeClr,
                                 40.0,
                                 themeFontSemiBold,
                                 () => {
                                       if (_formKey.currentState!.validate())
                                         {
                                           print("Validated"),
+                                          _authService.logIn(loginInputController.text, passwordInputController.text, context).then((value) {
+
+                                            logger.e("döndü ${value}");
+
+                                              return Navigator.pushNamed(context, '/userhome');
+
+                                          }).catchError((error) => {
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ))
+                                          }),
                                         }
                                       else
                                         {
@@ -85,20 +107,17 @@ class _LoginPageState extends State<LoginPage> {
                           child: Align(
                             alignment: Alignment.topRight,
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 AlertDialogFunctions.forgotPassword(context);
                                 logger.e("Forgot Password tıklandı.");
-
                               },
-
                               child: Container(
                                 height: 30,
-                                color: Colors.white,
+                                color: AppColors.whiteThemeClr,
                                 child: Text(
-
                                   "Forgot Password ?",
                                   style: TextStyle(
-                                      color: appThemeClr,
+                                      color: AppColors.appThemeClr,
                                       fontFamily: themeFontMedium,
                                       fontSize: 15),
                                 ),
@@ -109,7 +128,6 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(1.0),
                     child: RichText(
@@ -117,27 +135,24 @@ class _LoginPageState extends State<LoginPage> {
                         TextSpan(
                             text: "Don't have an account ?  ",
                             style: TextStyle(
-                                color: appThemeClr,
+                                color: AppColors.appThemeClr,
                                 fontFamily: themeFontMedium,
                                 fontSize: 16)),
                         TextSpan(
                             text: "Register!",
                             style: TextStyle(
-                                color: Colors.red,
+                                color: AppColors.redThemeClr,
                                 fontFamily: themeFontMedium,
                                 fontSize: 16),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () async {
-
                                 Navigator.pushNamed(context, '/register');
 
-                                 logger.i("Register tıklandı.");
-
+                                logger.i("Register tıklandı.");
                               }),
                       ]),
                     ),
                   ),
-
                 ],
               ),
             ),

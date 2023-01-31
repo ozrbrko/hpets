@@ -15,6 +15,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   form_field_validator: ^1.1.0
   logger: ^1.1.0
+  firebase_core: ^2.4.1
+  firebase_database: ^10.0.9
+  firebase_auth: ^4.2.2
+  cloud_firestore: ^4.3.1
+  connectivity: ^3.0.6
 
 dev_dependencies:
   flutter_test:
