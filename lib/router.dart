@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:hpets/view/add_new_pet.dart';
 import 'package:hpets/view/register.dart';
 import 'package:hpets/view/splash_screen.dart';
 import 'package:hpets/view/login.dart';
@@ -10,4 +10,5 @@ var routes = <String, WidgetBuilder>{
   '/splash' : (context) => const SplashScreen(),
   '/register' : (context) => const RegisterPage(),
   '/userhome' : (context) => const UserHomePage(),
+  '/addnewpet' : (context) => const AddNewPet(),
 };

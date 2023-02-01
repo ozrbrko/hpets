@@ -7,6 +7,7 @@ import 'package:hpets/core/constants/images.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/services/auth_service.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
+import 'package:hpets/core/utils/config.dart';
 
 import '../main.dart';
 
@@ -89,6 +90,11 @@ class _LoginPageState extends State<LoginPage> {
                                           _authService.logIn(loginInputController.text, passwordInputController.text, context).then((value) {
 
                                             logger.e("döndü ${value}");
+                                            Config.token = value!.uid;
+                                            Config.secureStorage.savePreferences(value!.uid);
+                                            logger.i("token ${Config.token}");
+
+
 
                                               return Navigator.pushNamed(context, '/userhome');
 

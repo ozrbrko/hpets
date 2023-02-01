@@ -40,6 +40,8 @@ class AuthService {
 
     var user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
 
+    user.user!.updateDisplayName("${name} ${surname}");
+
     // addUser(email, password, name, surname);
 
 
@@ -53,6 +55,8 @@ class AuthService {
 
 
     });
+
+
 
     return user.user;
   }

@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import '../core/constants/colors.dart';
 import '../core/constants/fonts.dart';
 import '../core/constants/images.dart';
+import '../core/utils/config.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  final _storage = const FlutterSecureStorage();
+
 
   startTime() async {
     var _duration = new Duration(seconds: 2);
@@ -21,7 +25,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() async {
-    Navigator.of(context).pushReplacementNamed('/login');
+
+
+    String? token = await _storage.read(key: "remem_token");
+
+    if (token != null) {
+      Config.token= token!;
+      Navigator.of(context).pushReplacementNamed('/userhome');
+
+    }else {
+      Navigator.of(context).pushReplacementNamed('/login');
+
+    }
   }
 
   @override

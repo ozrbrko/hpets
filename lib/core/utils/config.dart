@@ -1,9 +1,16 @@
+import 'dart:convert';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:hpets/core/utils/secure_storage.dart';
 
 class Config {
 
   static bool _loading = false;
+  static final SecureStorage secureStorage = SecureStorage();
+  static String token = '';
+  static String displayName = '';
+
 
   static Future <Widget> loading() async{
     return Center(
@@ -15,6 +22,28 @@ class Config {
         width: 26.0,
       ),
     );
+  }
+
+
+  static List<DropdownMenuItem<String>> _getOptions() {
+  return <String>['Option 1', 'Option 2', 'Option 3']
+      .map((String value) {
+  return new DropdownMenuItem<String>(
+  value: value,
+  child: new Text(value),
+  );
+  })
+      .toList();
+  }
+
+
+  static String utf8FormatText(String text) {
+    return utf8.decode(text.codeUnits).toString();
+  }
+
+  static String toUtf8(String text) {
+    var encodedText = utf8.encode(text);
+    return utf8.decode(encodedText);
   }
 
   static Future<bool> check() async {
