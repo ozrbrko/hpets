@@ -25,18 +25,6 @@ class Config {
   }
 
 
-  static List<DropdownMenuItem<String>> _getOptions() {
-  return <String>['Option 1', 'Option 2', 'Option 3']
-      .map((String value) {
-  return new DropdownMenuItem<String>(
-  value: value,
-  child: new Text(value),
-  );
-  })
-      .toList();
-  }
-
-
   static String utf8FormatText(String text) {
     return utf8.decode(text.codeUnits).toString();
   }

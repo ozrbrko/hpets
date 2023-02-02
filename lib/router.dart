@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:hpets/view/add_new_pet.dart';
+import 'package:hpets/view/bottom_navigation_bar.dart';
 import 'package:hpets/view/register.dart';
 import 'package:hpets/view/splash_screen.dart';
 import 'package:hpets/view/login.dart';
@@ -11,4 +13,5 @@ var routes = <String, WidgetBuilder>{
   '/register' : (context) => const RegisterPage(),
   '/userhome' : (context) => const UserHomePage(),
   '/addnewpet' : (context) => const AddNewPet(),
+  '/bottomnav' : (context) => const BottomNavigation(),
 };

@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (token != null) {
       Config.token= token!;
-      Navigator.of(context).pushReplacementNamed('/userhome');
+      Navigator.of(context).pushReplacementNamed('/bottomnav');
 
     }else {
       Navigator.of(context).pushReplacementNamed('/login');

@@ -1,11 +1,14 @@
 import 'dart:io';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import '../../../main.dart';
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
 
 List<File> imageList = [];
 List<String> imageListPath = [];
+String? selectedValue;
 
 TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontroller, String required, TextInputType textType, bool obscure, String forValidation) {
 
@@ -27,7 +30,7 @@ TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontr
       decoration: InputDecoration(
 
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
           border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(Radius.circular(40.0))),
@@ -35,7 +38,7 @@ TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontr
 
           hintText: hinttext,
           hintStyle: TextStyle(
-              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 16.0)),
 
       obscureText: obscure,
     );
@@ -56,7 +59,7 @@ TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontr
       decoration: InputDecoration(
 
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
           border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(Radius.circular(40.0))),
@@ -64,7 +67,7 @@ TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontr
 
           hintText: hinttext,
           hintStyle: TextStyle(
-              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 16.0)),
 
       obscureText: obscure,
     );
@@ -86,7 +89,7 @@ TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontr
       decoration: InputDecoration(
 
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
           border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(Radius.circular(40.0))),
@@ -94,7 +97,7 @@ TextFormField hPetsTextFormField(String hinttext, TextEditingController txtcontr
 
           hintText: hinttext,
           hintStyle: TextStyle(
-              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 16.0)),
 
       obscureText: obscure,
     );
@@ -122,3 +125,66 @@ ElevatedButton hPetsElevatedButton(String text, Color btnColor,
     ),
   );
 }
+
+
+
+
+
+
+DropdownButtonFormField2 hPetsDropdownFormField(String hinttext, List dropdownList) {
+
+
+    return DropdownButtonFormField2(
+
+      decoration: InputDecoration(
+
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+          hintText: "Select Type",
+
+
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+      isExpanded: true,
+      hint:  Text(
+        hinttext,
+        style: TextStyle(fontSize: 16),
+      ),
+
+      dropdownDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+      ),
+
+      items: dropdownList
+          .map((item) =>
+          DropdownMenuItem<String>(
+            value: item,
+            child: Text(
+              item,
+              style:  TextStyle(
+                fontSize: 16, color: AppColors.blackThemeClr,
+              ),
+            ),
+          ))
+          .toList(),
+      validator: (value) {
+        if (value == null) {
+          return 'Please select pet.';
+        }
+      },
+      onChanged: (value) {
+        logger.i(value);
+      },
+      onSaved: (value) {
+        selectedValue = value.toString();
+        logger.i(value);
+      },
+    );
+
+
+}
+

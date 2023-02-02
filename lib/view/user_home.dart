@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/constants/images.dart';
 import 'package:hpets/core/extension/string_extension.dart';
@@ -34,7 +33,7 @@ class _UserHomePageState extends State<UserHomePage> {
         backgroundColor: AppColors.appThemeClr,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(15),
+            bottom: Radius.circular(50),
           ),
         ),
       ),
@@ -47,7 +46,11 @@ class _UserHomePageState extends State<UserHomePage> {
             children: [
               Container(
                 height: FrameSize.screenHeight/5,
-                color: Color(0xffB1D1FF).withOpacity(0.1),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Color(0xffB1D1FF).withOpacity(0.1),
+
+                ),
                 child: Row(
                   children: [
                     Padding(
@@ -55,7 +58,7 @@ class _UserHomePageState extends State<UserHomePage> {
                       child: Image.asset(Images.logo_hpets),
                     ),
                     Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 45,),
                         Text(Config.toUtf8("${_auth.currentUser!.displayName}".basHarfleriBuyut(),),style: TextStyle(fontFamily: themeFontBold,fontSize: 16),),
@@ -71,7 +74,7 @@ class _UserHomePageState extends State<UserHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Evcil Hayvanlar",style: TextStyle(fontFamily: themeFontSemiBold,fontSize: 18),),
+                  Text("My Pets",style: TextStyle(fontFamily: themeFontSemiBold,fontSize: 22),),
                   GestureDetector(
                       onTap: (){
                         Navigator.pushNamed(context, '/addnewpet');
@@ -79,6 +82,8 @@ class _UserHomePageState extends State<UserHomePage> {
                       child: Icon(Icons.add_box,color: AppColors.appThemeClr,size: 40,)),
                 ],
               ),
+
+              Divider(),
             ],
           ),
         ),

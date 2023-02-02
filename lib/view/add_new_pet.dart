@@ -1,7 +1,10 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
+import 'package:hpets/core/constants/utils.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/config.dart';
+import 'package:hpets/main.dart';
 
 import '../core/constants/colors.dart';
 import '../core/constants/fonts.dart';
@@ -30,6 +33,7 @@ class _AddNewPetState extends State<AddNewPet> {
   TextEditingController  petColorInputController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  String? selectedValue;
 
 
   @override
@@ -48,7 +52,7 @@ class _AddNewPetState extends State<AddNewPet> {
         backgroundColor: AppColors.appThemeClr,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(15),
+            bottom: Radius.circular(50),
           ),
         ),
       ),
@@ -74,12 +78,12 @@ class _AddNewPetState extends State<AddNewPet> {
                   hPetsTextFormField("Name", petNameInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
-                  DropdownButtonFormField<String>(
+                  DropdownButtonFormField2(
 
                     decoration: InputDecoration(
 
                         contentPadding:
-                        const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+                        const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(40.0))),
@@ -89,40 +93,48 @@ class _AddNewPetState extends State<AddNewPet> {
 
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
-                    value: "Dog",
-                    items: _getOptionsType(),
+                    isExpanded: true,
+                    hint: const Text(
+                      'Select Your Pet',
+                      style: TextStyle(fontSize: 16),
+                    ),
+
+                    dropdownDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+
+                    items: petItems
+                        .map((item) =>
+                        DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style:  TextStyle(
+                              fontSize: 16, color: AppColors.blackThemeClr,
+                            ),
+                          ),
+                        ))
+                        .toList(),
+                    validator: (value) {
+                      if (value == null) {
+                        return 'Please select pet.';
+                      }
+                    },
                     onChanged: (value) {
-                      print(value);
-                      // handle value change
+                      logger.i(value);
+                    },
+                    onSaved: (value) {
+                      selectedValue = value.toString();
+                      logger.i(value);
                     },
                   ),
-
-
 
                   // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
+
                   SizedBox(height: 12,),
-                  DropdownButtonFormField<String>(
 
-                    decoration: InputDecoration(
+                  hPetsDropdownFormField("Select Gender", genderItems),
 
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "Select Type",
-
-
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
-                    value: "He",
-                    items: _getOptionsGender(),
-                    onChanged: (value) {
-                      print(value);
-                      // handle value change
-                    },
-                  ),
                   // hPetsTextFormField("Gender", petGenderInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
                   hPetsTextFormField("Race", petRaceInputController, "required", TextInputType.text, false, "false"),
@@ -133,16 +145,14 @@ class _AddNewPetState extends State<AddNewPet> {
                     decoration: InputDecoration(
 
                         contentPadding:
-                        const EdgeInsets.symmetric(vertical: 19, horizontal: 19),
+                        const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(40.0))),
                         filled: true,
                         hintText: "Birthdate",
-
-
                         hintStyle: TextStyle(
-                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 16.0)),
                     onTap: () async{
                       DateTime date = DateTime(1900);
                       FocusScope.of(context).requestFocus(new FocusNode());
@@ -152,8 +162,10 @@ class _AddNewPetState extends State<AddNewPet> {
                           initialDate:DateTime.now(),
                           firstDate:DateTime(1900),
                           lastDate: DateTime(2100)))!;
+                      String customFormat = "dd/MM/yyyy HH:mm:ss";
+                      String dateSlug ="${date.year.toString()}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}";
 
-                      petBirthdateInputController.text = date.toIso8601String();},),
+                      petBirthdateInputController.text = dateSlug;},),
                   // hPetsTextFormField("Birthdate", petBirthdateInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
                   hPetsTextFormField("Color", petColorInputController, "required", TextInputType.text, false, "false"),
@@ -162,7 +174,9 @@ class _AddNewPetState extends State<AddNewPet> {
                   SizedBox(
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
-                      child: hPetsElevatedButton("Kaydet", AppColors.appThemeClr, 40, themeFontBold, () => null))
+                      child: hPetsElevatedButton("Kaydet", AppColors.appThemeClr, 40, themeFontBold, () {
+                        logger.i("Kaydet Butonu Tıklandı.");
+                      }))
 
                 ],
               ),
@@ -174,25 +188,18 @@ class _AddNewPetState extends State<AddNewPet> {
   }
 }
 
+final List<String> genderItems = [
+  'He',
+  'She',
+];
 
- List<DropdownMenuItem<String>> _getOptionsType() {
-return <String>['Dog', 'Cat', 'Bird', 'Fish', 'Turtle']
-    .map((String value) {
-return new DropdownMenuItem<String>(
-value: value,
-child: new Text(value),
-);
-})
-    .toList();
-}
+final List<String> petItems = [
+  'Dog',
+  'Cat',
+  'Bird',
+  'Fish',
+  'Turtle',
+];
 
-List<DropdownMenuItem<String>> _getOptionsGender() {
-  return <String>['He', 'She']
-      .map((String value) {
-    return new DropdownMenuItem<String>(
-      value: value,
-      child: new Text(value),
-    );
-  })
-      .toList();
-}
+
+
