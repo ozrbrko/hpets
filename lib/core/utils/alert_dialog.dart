@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
@@ -13,7 +14,7 @@ final _formKey = GlobalKey<FormState>();
 
 class AlertDialogFunctions {
   static Object exitApp(BuildContext? context) {
-    // const storage = FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
 
 
     return showDialog(
@@ -84,14 +85,14 @@ class AlertDialogFunctions {
                             Navigator.of(context).pop(false);
                           },
                           child:  Padding(
-                            padding: EdgeInsets.only(top: 12.0, bottom: 16.0),
+                            padding: EdgeInsets.only(top: 12.0, bottom: 19.0),
                             child: Text(
                               "Hayır",
                               style: TextStyle(
-                                color: AppColors.greyThemeClr,
+                                color: AppColors.whiteThemeClr,
                                 fontFamily: themeFontLight,
                               ),
-                              textAlign: TextAlign.start,
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),
@@ -111,20 +112,20 @@ class AlertDialogFunctions {
                           onPressed: () async {
 
 
-                            // await storage.delete(key: "remem_token");
+                            await storage.delete(key: "remem_token");
                             Navigator.of(context).pushReplacementNamed('/login');
                             // exit(0);
 
                           },
                           child:  Padding(
-                            padding: EdgeInsets.only(top: 12.0, bottom: 16.0),
+                            padding: EdgeInsets.only(top: 12.0, bottom: 19.0),
                             child: Text(
                               "Evet",
                               style: TextStyle(
                                 color: AppColors.whiteThemeClr,
                                 fontFamily: themeFontLight,
                               ),
-                              textAlign: TextAlign.end,
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),

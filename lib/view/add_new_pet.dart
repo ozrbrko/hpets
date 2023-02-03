@@ -52,7 +52,7 @@ class _AddNewPetState extends State<AddNewPet> {
         backgroundColor: AppColors.appThemeClr,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(50),
+            bottom: Radius.circular(25),
           ),
         ),
       ),

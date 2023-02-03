@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/constants/images.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
-
 import '../core/constants/colors.dart';
 import '../core/utils/config.dart';
 
@@ -23,20 +23,7 @@ class _UserHomePageState extends State<UserHomePage> {
     FrameSize.init(context: context);
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text(
-          "hPETS",
-          style: TextStyle(color: AppColors.whiteThemeClr),
-        ),
-        backgroundColor: AppColors.appThemeClr,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(50),
-          ),
-        ),
-      ),
+      appBar: hpetsAppBar(context),
       body: Container(
         color: AppColors.whiteThemeClr,
         width: FrameSize.screenWidth,

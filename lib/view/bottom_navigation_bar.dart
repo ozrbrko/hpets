@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hpets/core/constants/colors.dart';
+import 'package:hpets/view/appointment.dart';
 import 'package:hpets/view/guide.dart';
 import 'package:hpets/view/user_home.dart';
+import 'package:hpets/view/vaccine.dart';
 import 'package:line_icons/line_icons.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -24,19 +26,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
     UserHomePage(),
-
-    Text(
-      'Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    AppointmentPage(),
+    VaccinePage(),
+    GuidePage(),
   ];
 
   @override
@@ -63,7 +55,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               boxShadow: [
                 BoxShadow(
                   blurRadius: 20,
-                  color: Colors.black.withOpacity(.1),
+                  color: Colors.black.withOpacity(0.20),
                 )
               ],
             ),
@@ -90,7 +82,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     ),
                     GButton(
                       icon: Icons.date_range_outlined,
-                      text: 'Date',
+                      text: 'Appointment',
                     ),
                     GButton(
                       icon: Icons.local_hospital_outlined,
