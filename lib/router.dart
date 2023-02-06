@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:hpets/view/add_new_pet.dart';
+import 'package:hpets/view/asked_questions.dart';
 import 'package:hpets/view/bottom_navigation_bar.dart';
 import 'package:hpets/view/profile.dart';
 import 'package:hpets/view/register.dart';
@@ -16,4 +16,5 @@ var routes = <String, WidgetBuilder>{
   '/addnewpet' : (context) => const AddNewPet(),
   '/bottomnav' : (context) => const BottomNavigation(),
   '/profile'  : (context) => const ProfilePage(),
+  '/askedquestions' : (context) => const AskedQuestionsPage(),
 };

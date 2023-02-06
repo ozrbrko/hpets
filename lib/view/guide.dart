@@ -16,7 +16,7 @@ class _GuidePageState extends State<GuidePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: hpetsAppBar(context),
+      appBar: hpetsAppBar(context,false,"hPETS",true),
       body: Container(
         color: AppColors.whiteThemeClr,
         width: FrameSize.screenWidth,

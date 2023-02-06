@@ -1,9 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
-import 'package:hpets/core/constants/utils.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
-import 'package:hpets/core/utils/config.dart';
 import 'package:hpets/main.dart';
 
 import '../core/constants/colors.dart';
@@ -42,20 +40,7 @@ class _AddNewPetState extends State<AddNewPet> {
     FrameSize.init(context: context);
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        centerTitle: true,
-        title: Text(
-          "New Pet",
-          style: TextStyle(color: AppColors.whiteThemeClr),
-        ),
-        backgroundColor: AppColors.appThemeClr,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(25),
-          ),
-        ),
-      ),
+      appBar: hpetsAppBar(context, true, "New Pet",false),
       body: Container(
         height: FrameSize.screenHeight,
         child: Padding(
@@ -75,7 +60,7 @@ class _AddNewPetState extends State<AddNewPet> {
                   SizedBox(height: 15,),
 
 
-                  hPetsTextFormField("Name", petNameInputController, "required", TextInputType.text, false, "false"),
+                  hPetsTextFormField("Name", petNameInputController, "Name is required !", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
                   DropdownButtonFormField2(
@@ -117,7 +102,7 @@ class _AddNewPetState extends State<AddNewPet> {
                         .toList(),
                     validator: (value) {
                       if (value == null) {
-                        return 'Please select pet.';
+                        return '     Please select pet !';
                       }
                     },
                     onChanged: (value) {
@@ -137,7 +122,7 @@ class _AddNewPetState extends State<AddNewPet> {
 
                   // hPetsTextFormField("Gender", petGenderInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
-                  hPetsTextFormField("Race", petRaceInputController, "required", TextInputType.text, false, "false"),
+                  hPetsTextFormField("Race", petRaceInputController, "Race is required !", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
                   TextFormField(
@@ -168,13 +153,30 @@ class _AddNewPetState extends State<AddNewPet> {
                       petBirthdateInputController.text = dateSlug;},),
                   // hPetsTextFormField("Birthdate", petBirthdateInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
-                  hPetsTextFormField("Color", petColorInputController, "required", TextInputType.text, false, "false"),
+                  hPetsTextFormField("Color", petColorInputController, "Color is required !", TextInputType.text, false, "false"),
                   SizedBox(height: 40),
 
                   SizedBox(
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
-                      child: hPetsElevatedButton("Kaydet", AppColors.appThemeClr, 40, themeFontBold, () {
+                      child: hPetsElevatedButton("Save", AppColors.appThemeClr, 40, themeFontBold, () {
+
+                        if (_formKey.currentState!.validate())
+                        {
+                          print("Validated");
+
+
+                        // return Navigator.pushNamed(context, '/userhome');
+
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ));
+                        }
+                        else
+                        {
+                        print("Not Validated");
+                        }
+
+
+
                         logger.i("Kaydet Butonu Tıklandı.");
                       }))
 

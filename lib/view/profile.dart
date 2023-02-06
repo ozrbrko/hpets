@@ -24,26 +24,16 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: true,
-          centerTitle: true,
-          title: Text(
-            "Profile",
-            style: TextStyle(color: AppColors.whiteThemeClr),
-          ),
-          backgroundColor: AppColors.appThemeClr,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(25),
+        appBar: hpetsAppBar(context, true,"Profile",false),
+        body: SingleChildScrollView(
+          child: Container(
+            width: FrameSize.screenWidth,
+            height: FrameSize.screenHeight,
+            color: AppColors.whiteThemeClr,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Tabs(),
             ),
-          ),
-        ),
-        body: Container(
-          width: FrameSize.screenWidth,
-          color: AppColors.whiteThemeClr,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Tabs(),
           ),
         ));
   }
@@ -91,66 +81,83 @@ class _ProfilePageState extends State<ProfilePage> {
         SizedBox(
           height: 70,
         ),
-        Container(
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                  flex: 1, child: Icon(Icons.key, color: AppColors.appThemeClr)),
-              Expanded(flex: 3,
-                  child: Text("Change Password", style: TextStyle(
-                      fontSize: 16, fontFamily: themeFontRegular),)),
-              Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
-            ],
+        InkWell(
+          onTap: (){
+            AlertDialogFunctions.changePassword(context);
+          },
+          child: Container(
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                    flex: 1, child: Icon(Icons.key, color: AppColors.appThemeClr)),
+                Expanded(flex: 3,
+                    child: Text("Change Password", style: TextStyle(
+                        fontSize: 16, fontFamily: themeFontRegular),)),
+                Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
+              ],
+            ),
           ),
         ),
         Divider(),
         SizedBox(
-          height: 30,
+          height: 35,
         ),
 
 
-        Container(
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(flex: 1,
-                  child: Icon(Icons.question_mark, color: AppColors.appThemeClr)),
-              Expanded(flex: 3,
-                  child: Text("Frequently asked questions", style: TextStyle(
-                      fontSize: 16, fontFamily: themeFontRegular),)),
-              Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
-            ],
-          ),
-        ),
+        InkWell(
+          onTap: (){
+            Navigator.pushNamed(context, '/askedquestions');
 
-        Divider(),
-        SizedBox(
-          height: 30,
-        ),
-
-
-        Container(
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(flex: 1,
-                  child: Icon(Icons.question_answer_outlined,
-                      color: AppColors.appThemeClr)),
-              Expanded(flex: 3,
-                  child: Text("Opinions and suggestions", style: TextStyle(
-                      fontSize: 16, fontFamily: themeFontRegular),)),
-              Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
-            ],
+          },
+          child: Container(
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(flex: 1,
+                    child: Icon(Icons.question_mark, color: AppColors.appThemeClr)),
+                Expanded(flex: 3,
+                    child: Text("Frequently asked questions", style: TextStyle(
+                        fontSize: 16, fontFamily: themeFontRegular),)),
+                Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
+              ],
+            ),
           ),
         ),
 
         Divider(),
         SizedBox(
-          height: 30,
+          height: 35,
+        ),
+
+
+        InkWell(
+
+          onTap: (){
+            AlertDialogFunctions.opinionSuggestion(context);
+          },
+          child: Container(
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(flex: 1,
+                    child: Icon(Icons.question_answer_outlined,
+                        color: AppColors.appThemeClr)),
+                Expanded(flex: 3,
+                    child: Text("Opinions and suggestions", style: TextStyle(
+                        fontSize: 16, fontFamily: themeFontRegular),)),
+                Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
+              ],
+            ),
+          ),
+        ),
+
+        Divider(),
+        SizedBox(
+          height: 35,
         ),
 
 

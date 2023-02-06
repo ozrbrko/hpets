@@ -22,7 +22,7 @@ class _VaccinePageState extends State<VaccinePage> {
 
     return Scaffold(
 
-        appBar: hpetsAppBar(context),
+        appBar: hpetsAppBar(context,false,"hPETS",true),
 
         body: Container(
 

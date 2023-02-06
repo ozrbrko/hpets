@@ -74,7 +74,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                   duration: Duration(milliseconds: 400),
                   tabBackgroundColor: AppColors.appThemeClr,
-                  color: Colors.black,
+                  color: AppColors.appThemeClr,
                   tabs: [
                     GButton(
                       icon: Icons.home_outlined,
@@ -85,7 +85,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       text: 'Appointment',
                     ),
                     GButton(
-                      icon: Icons.local_hospital_outlined,
+                      icon: Icons.vaccines,
                       text: 'Vaccine',
                     ),
                     GButton(

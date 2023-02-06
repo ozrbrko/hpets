@@ -25,6 +25,8 @@ dependencies:
   water_drop_nav_bar: ^2.2.0+5
   google_nav_bar: ^5.0.6
   line_icons: ^2.0.1
+  accordion: ^2.5.1
+  rounded_expansion_tile: ^0.0.13
 
 dev_dependencies:
   flutter_test:

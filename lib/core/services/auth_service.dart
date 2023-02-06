@@ -61,4 +61,30 @@ class AuthService {
     return user.user;
   }
 
+  //
+  // Future<User?> changePassword(String email, String password, String name, String surname) async{
+  //
+  //   var user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  //
+  //   user.user!.updateDisplayName("${name} ${surname}");
+  //
+  //   // addUser(email, password, name, surname);
+  //
+  //
+  //   await _firestore.collection("User")
+  //       .doc(user.user!.uid)
+  //       .set({
+  //     'email' : email,
+  //     'password' : password,
+  //     'name' : name,
+  //     'surname' : surname,
+  //
+  //
+  //   });
+  //
+  //
+  //
+  //   return user.user;
+  // }
+
 }

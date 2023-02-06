@@ -1,144 +1,132 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
-import '../../main.dart';
-import '../../view/login.dart';
 import '../constants/colors.dart';
+import 'config.dart';
 
 TextEditingController mailInputController = TextEditingController();
+TextEditingController suggestionInputController = TextEditingController();
+
+TextEditingController currentPasswordInputController = TextEditingController();
+TextEditingController newPasswordInputController = TextEditingController();
+TextEditingController restartNewPasswordInputController = TextEditingController();
+
+
 final _formKey = GlobalKey<FormState>();
 
 class AlertDialogFunctions {
-  static Object exitApp(BuildContext? context) {
+  static Object exitApp(BuildContext context) {
     const storage = FlutterSecureStorage();
 
 
+    mailInputController.clear();
     return showDialog(
-      context: context!,
-      builder: (BuildContext context) {
-        return AlertDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Flexible(
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Exit App",
+                                style:
+                                TextStyle(fontFamily: themeFontBold, fontSize: 19),
+                              ),
 
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
-          contentPadding: const EdgeInsets.only(
-            top: 10.0,
-          ),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width - 50,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    Text(
-                      "",
-                      style: TextStyle(fontSize: 24.0),
+                              InkWell(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(Icons.close)),
+                            ],
+                          ),
+
+                          Divider(endIndent: 0,indent: 0,),
+                          // const Divider(
+                          //   height: 15,
+                          //   thickness: 0.5,
+                          //   indent: 0,
+                          //   endIndent: 0,
+                          //   color: appThemeClr,
+                          // ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Are you sure you want to exit?",
+                            style: TextStyle(
+                                fontSize: 14, fontFamily: themeFontRegular),
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: SizedBox(
+                                    height: FrameSize.screenHeight / 14,
+                                    child: hPetsElevatedButton(
+                                        "No",
+                                        AppColors.appThemeClr,
+                                        40,
+                                        themeFontSemiBold,
+                                            () => {
+
+                                         Navigator.pop(context),
+
+                                        })),
+                              ),
+
+                              SizedBox(width: 10,),
+                              Expanded(
+                                flex: 1,
+                                child: SizedBox(
+                                    height: FrameSize.screenHeight / 14,
+                                    child: hPetsElevatedButton(
+                                        "Yes",
+                                        AppColors.redThemeClr,
+                                        40,
+                                        themeFontSemiBold,
+                                            () async => {
+
+                                            await storage.delete(key: "remem_token"),
+                                        Navigator.of(context).pushReplacementNamed('/login'),
+
+
+
+                                })),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5.0,
-                ),
-                 Divider(
-                  color: AppColors.greyThemeClr,
-                  height: 4.0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0, bottom: 16.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Text(
-                            "Uygulamadan çıkmak istiyor musunuz?",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontFamily: themeFontLight, color: AppColors.greyThemeClr),
-                          )),
-                    ],
                   ),
                 ),
-                SizedBox(
-                  // width: context.dynamicWidth(0.1),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(AppColors.appThemeClr),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(32.0),
-                              ),
-                            ),
-                            ),
-                          ),
-
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child:  Padding(
-                            padding: EdgeInsets.only(top: 12.0, bottom: 19.0),
-                            child: Text(
-                              "Hayır",
-                              style: TextStyle(
-                                color: AppColors.whiteThemeClr,
-                                fontFamily: themeFontLight,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
-
-                          style: ButtonStyle(
-                              backgroundColor:  MaterialStateProperty.all(AppColors.redThemeClr),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(32.0),
-                                ),
-                              ),)
-                          ),
-
-                          onPressed: () async {
-
-
-                            await storage.delete(key: "remem_token");
-                            Navigator.of(context).pushReplacementNamed('/login');
-                            // exit(0);
-
-                          },
-                          child:  Padding(
-                            padding: EdgeInsets.only(top: 12.0, bottom: 19.0),
-                            child: Text(
-                              "Evet",
-                              style: TextStyle(
-                                color: AppColors.whiteThemeClr,
-                                fontFamily: themeFontLight,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        );
-      },
-    ) ??
+          );
+        });
         false;
   }
 
@@ -206,7 +194,7 @@ class AlertDialogFunctions {
                                       () => {
 
                                         mailInputController.text!="" ?
-                                        resetPassword(context) : ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Please enter the Email !"), )),
+                                        Config.resetPassword(context,mailInputController) : ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Please enter the Email !"), )),
 
 
 
@@ -235,6 +223,106 @@ class AlertDialogFunctions {
   }
 
 
+  static Future changePassword (BuildContext context) {
+
+    mailInputController.clear();
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Flexible(
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Change Password",
+                                style:
+                                TextStyle(fontFamily: themeFontBold, fontSize: 19),
+                              ),
+
+                              InkWell(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(Icons.close)),
+                            ],
+                          ),
+
+                          Divider(endIndent: 0,indent: 0,),
+                          // const Divider(
+                          //   height: 15,
+                          //   thickness: 0.5,
+                          //   indent: 0,
+                          //   endIndent: 0,
+                          //   color: appThemeClr,
+                          // ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "You can change your password by incoming mail.",
+                            style: TextStyle(
+                                fontSize: 14, fontFamily: themeFontRegular),
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          hPetsTextFormField("Email", mailInputController, "Email is required !",
+                              TextInputType.text, false, "mail"),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                  width: FrameSize.screenWidth,
+                                  height: FrameSize.screenHeight / 14,
+                                  child: hPetsElevatedButton(
+                                      "Send Email",
+                                      AppColors.appThemeClr,
+                                      40,
+                                      themeFontSemiBold,
+                                          () => {
+
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+                                            Config.resetPassword(context,mailInputController)
+
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+
+                                          }
+
+                                      })),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
 
 
 
@@ -304,25 +392,97 @@ class AlertDialogFunctions {
   }
 
 
+
+  static Future opinionSuggestion (BuildContext context) {
+
+    suggestionInputController.clear();
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Flexible(
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Opinion and Suggestions",
+                                style:
+                                TextStyle(fontFamily: themeFontBold, fontSize: 19),
+                              ),
+
+                              InkWell(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(Icons.close)),
+                            ],
+                          ),
+
+                          Divider(endIndent: 0,indent: 0,),
+
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Let us know your comments and suggestions !",
+                            style: TextStyle(
+                                fontSize: 14, fontFamily: themeFontRegular),
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          hPetsTextFormField("", suggestionInputController, "",
+                              TextInputType.text, false, "else"),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                  width: FrameSize.screenWidth,
+                                  height: FrameSize.screenHeight / 14,
+                                  child: hPetsElevatedButton(
+                                      "Send",
+                                      AppColors.appThemeClr,
+                                      40,
+                                      themeFontSemiBold,
+                                          () => {
+
+                                        Navigator.pop(context),
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" It was sent with success. Thank you !"), )),
+
+
+                          })),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+
+
 }
 
-Future resetPassword(BuildContext context) async{
-  try {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: mailInputController.text.trim());
-    logger.i("Mail Gönderildi}");
-    Navigator.pop(context);
-    // mailInputController.clear();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Check your email address please !"), ));
 
-    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail veya şifre hatalı!"), ))
-  } on FirebaseAuthException catch (e) {
-    print(e);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" This email is not registered in the system !"), ));
-
-    logger.i("Mail Gönderilemedi");
-
-  };
-
-}
 
 

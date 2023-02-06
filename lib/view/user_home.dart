@@ -23,7 +23,7 @@ class _UserHomePageState extends State<UserHomePage> {
     FrameSize.init(context: context);
 
     return Scaffold(
-      appBar: hpetsAppBar(context),
+      appBar: hpetsAppBar(context,false,"hPETS",true),
       body: Container(
         color: AppColors.whiteThemeClr,
         width: FrameSize.screenWidth,

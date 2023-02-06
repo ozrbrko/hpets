@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/utils/secure_storage.dart';
+
+import '../../main.dart';
 
 class Config {
 
@@ -44,6 +47,28 @@ class Config {
       return true;
     }
     return false;
+  }
+  TextEditingController mailInputController = TextEditingController();
+  static Future resetPassword(BuildContext context,TextEditingController textEditingController) async{
+    try {
+
+
+
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: textEditingController.text.trim());
+      logger.i("Mail Gönderildi}");
+      Navigator.pop(context);
+      // mailInputController.clear();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Check your email address please !"), ));
+
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail veya şifre hatalı!"), ))
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" This email is not registered in the system !"), ));
+
+      logger.i("Mail Gönderilemedi");
+
+    };
+
   }
 
 

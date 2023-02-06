@@ -21,7 +21,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
 
     return Scaffold(
 
-        appBar: hpetsAppBar(context),
+        appBar: hpetsAppBar(context,false,"hPETS",true),
 
         body: Container(
 

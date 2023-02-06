@@ -159,7 +159,7 @@ DropdownButtonFormField2 hPetsDropdownFormField(
         .toList(),
     validator: (value) {
       if (value == null) {
-        return 'Please select pet.';
+        return '     Please select pet !';
       }
     },
     onChanged: (value) {
@@ -649,19 +649,30 @@ Container guideDetailContainer(int index) {
 }
 
 
-AppBar hpetsAppBar (BuildContext context){
+AppBar hpetsAppBar (BuildContext context, bool backButton, String appText, bool profileIcon){
   return AppBar(
-    automaticallyImplyLeading: false,
+    automaticallyImplyLeading: backButton,
     centerTitle: true,
     title: Text(
-      "hPETS",
+      appText,
       style: TextStyle(color: AppColors.whiteThemeClr),
     ),
-    actions: [
-      IconButton(onPressed: (){
 
-        Navigator.pushNamed(context, '/profile');
-      }, icon: Icon(Icons.person)),
+
+    actions: [
+
+
+      profileIcon
+      ? InkWell(
+          onTap: (){
+            Navigator.pushNamed(context, '/profile');
+          },
+          child: Container(
+              width: FrameSize.screenWidth/6,
+              child: Icon(Icons.person)))
+      : Container(width: 0, height: 0),
+
+
       SizedBox(width: 15,)
     ],
     backgroundColor: AppColors.appThemeClr,
