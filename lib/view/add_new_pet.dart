@@ -152,8 +152,8 @@ class _AddNewPetState extends State<AddNewPet> {
 
                       petBirthdateInputController.text = dateSlug;},),
                   // hPetsTextFormField("Birthdate", petBirthdateInputController, "required", TextInputType.text, false, "false"),
-                  SizedBox(height: 12,),
-                  hPetsTextFormField("Color", petColorInputController, "Color is required !", TextInputType.text, false, "false"),
+                  // SizedBox(height: 12,),
+                  // hPetsTextFormField("Color", petColorInputController, "Color is required !", TextInputType.text, false, "false"),
                   SizedBox(height: 40),
 
                   SizedBox(

@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
-                                                return Navigator.pushNamed(context, '/userhome');
+                                              Navigator.of(context).pushReplacementNamed('/bottomnav');
 
                                             }).catchError((error) => {
                                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ))

@@ -127,7 +127,6 @@ class AlertDialogFunctions {
             ),
           );
         });
-        false;
   }
 
   static Future forgotPassword(BuildContext context) {
@@ -157,13 +156,7 @@ class AlertDialogFunctions {
                           ),
 
                           Divider(endIndent: 0,indent: 0,),
-                          // const Divider(
-                          //   height: 15,
-                          //   thickness: 0.5,
-                          //   indent: 0,
-                          //   endIndent: 0,
-                          //   color: appThemeClr,
-                          // ),
+
                           SizedBox(
                             height: 15,
                           ),
@@ -175,7 +168,7 @@ class AlertDialogFunctions {
                           SizedBox(
                             height: 35,
                           ),
-                          hPetsTextFormField("Email", mailInputController, "required",
+                          hPetsTextFormField("Email", mailInputController, "Email is required !",
                               TextInputType.text, false, "mail"),
                           SizedBox(
                             height: 25,
@@ -193,20 +186,17 @@ class AlertDialogFunctions {
                                       themeFontSemiBold,
                                       () => {
 
-                                        mailInputController.text!="" ?
-                                        Config.resetPassword(context,mailInputController) : ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Please enter the Email !"), )),
+                                              if (_formKey.currentState!
+                                                  .validate())
+                                                {
+                                                  print("Validated"),
+                                                  Config.resetPassword(context,mailInputController)
 
-
-
-                                              // if (_formKey.currentState!
-                                              //     .validate())
-                                              //   {
-                                              //     print("Validated"),
-                                              //   }
-                                              // else
-                                              //   {
-                                              //     print("Not Validated"),
-                                              //   }
+                                                }
+                                              else
+                                                {
+                                                  print("Not Validated"),
+                                                }
 
                                           })),
                             ],
