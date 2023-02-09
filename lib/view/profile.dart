@@ -5,6 +5,7 @@ import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 
+import '../core/components/widgets/cards.dart';
 import '../core/constants/colors.dart';
 import '../core/constants/fonts.dart';
 import '../core/constants/images.dart';
@@ -43,41 +44,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget Tabs() {
     return Column(
       children: [
-        Container(
-          height: FrameSize.screenHeight / 5,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: Color(0xffB1D1FF).withOpacity(0.1),
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Image.asset(Images.logo_hpets),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 45,
-                  ),
-                  Text(
-                    Config.toUtf8(
-                      "${_auth.currentUser!.displayName}"
-                          .basHarfleriBuyut(),
-                    ),
-                    style: TextStyle(
-                        fontFamily: themeFontBold, fontSize: 16),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(_auth.currentUser!.email!),
-                ],
-              )
-            ],
-          ),
-        ),
+        cardContainerDefault(FrameSize.screenHeight/5),
+
         SizedBox(
           height: 70,
         ),

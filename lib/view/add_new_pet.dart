@@ -1,7 +1,12 @@
+import 'dart:collection';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/core/utils/config.dart';
 import 'package:hpets/main.dart';
 
 import '../core/constants/colors.dart';
@@ -16,6 +21,18 @@ class AddNewPet extends StatefulWidget {
 
 class _AddNewPetState extends State<AddNewPet> {
 
+  // var refPets = FirebaseDatabase.instance.ref().child("pets_table");
+  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
+
+  // final databaseReference = FirebaseDatabase.instance.reference().child("pets_table");
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var user =  FirebaseAuth.instance.currentUser;
+  final String? uid = Config.token;
+
+
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+
   DateTime? selectedDate;
   @override
   initState() {
@@ -27,7 +44,7 @@ class _AddNewPetState extends State<AddNewPet> {
   TextEditingController  petTypeInputController = TextEditingController();
   TextEditingController  petGenderInputController = TextEditingController();
   TextEditingController  petRaceInputController = TextEditingController();
-  TextEditingController  petBirthdateInputController = TextEditingController();
+  TextEditingController  petAgeInputController = TextEditingController();
   TextEditingController  petColorInputController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -107,10 +124,15 @@ class _AddNewPetState extends State<AddNewPet> {
                     },
                     onChanged: (value) {
                       logger.i(value);
+                      petTypeInputController.text = value!;
+
+
                     },
                     onSaved: (value) {
                       selectedValue = value.toString();
                       logger.i(value);
+                      petTypeInputController.text = value!;
+
                     },
                   ),
 
@@ -118,39 +140,70 @@ class _AddNewPetState extends State<AddNewPet> {
 
                   SizedBox(height: 12,),
 
-                  hPetsDropdownFormField("Select Gender", genderItems),
+                  DropdownButtonFormField2(
+
+                    decoration: InputDecoration(
+
+                        contentPadding:
+                        const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        filled: true,
+                        hintText: "Select Gender",
+
+
+                        hintStyle: TextStyle(
+                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+                    isExpanded: true,
+                    hint: const Text(
+                      'Select Gender',
+                      style: TextStyle(fontSize: 16),
+                    ),
+
+                    dropdownDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+
+                    items: genderItems
+                        .map((item) =>
+                        DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style:  TextStyle(
+                              fontSize: 16, color: AppColors.blackThemeClr,
+                            ),
+                          ),
+                        ))
+                        .toList(),
+                    validator: (value) {
+                      if (value == null) {
+                        return '     Please select gender !';
+                      }
+                    },
+                    onChanged: (value) {
+                      logger.i(value);
+                      petGenderInputController.text = value!;
+
+
+                    },
+                    onSaved: (value) {
+                      selectedValue = value.toString();
+                      logger.i(value);
+                      petGenderInputController.text = value!;
+
+                    },
+                  ),
 
                   // hPetsTextFormField("Gender", petGenderInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
                   hPetsTextFormField("Race", petRaceInputController, "Race is required !", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
-                  TextFormField(
-                    controller: petBirthdateInputController,
-                    decoration: InputDecoration(
+                  hPetsTextFormField("Age", petAgeInputController, "Age is required !", TextInputType.text, false, "false"),
 
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "Birthdate",
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 16.0)),
-                    onTap: () async{
-                      DateTime date = DateTime(1900);
-                      FocusScope.of(context).requestFocus(new FocusNode());
 
-                      date = (await showDatePicker(
-                          context: context,
-                          initialDate:DateTime.now(),
-                          firstDate:DateTime(1900),
-                          lastDate: DateTime(2100)))!;
-                      String customFormat = "dd/MM/yyyy HH:mm:ss";
-                      String dateSlug ="${date.year.toString()}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}";
-
-                      petBirthdateInputController.text = dateSlug;},),
                   // hPetsTextFormField("Birthdate", petBirthdateInputController, "required", TextInputType.text, false, "false"),
                   // SizedBox(height: 12,),
                   // hPetsTextFormField("Color", petColorInputController, "Color is required !", TextInputType.text, false, "false"),
@@ -164,11 +217,17 @@ class _AddNewPetState extends State<AddNewPet> {
                         if (_formKey.currentState!.validate())
                         {
                           print("Validated");
+                          var petAge = petAgeInputController.text;
+                          var petName = petNameInputController.text;
+                          var petGender = petGenderInputController.text;
+                          var petRace = petRaceInputController.text;
+                          var petType = petTypeInputController.text;
 
+                          addPet(petName, "key", petAge, petRace, petGender, petType,Config.token);
 
-                        // return Navigator.pushNamed(context, '/userhome');
+                        return Navigator.pushNamed(context, '/bottomnav');
 
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ));
+                        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ));
                         }
                         else
                         {
@@ -188,6 +247,28 @@ class _AddNewPetState extends State<AddNewPet> {
       ),
     );
   }
+
+  Future<void> addPet(String pet_name, String pet_id, String pet_age, String pet_race, String pet_gender, String pet_type,String user_id) async {
+    // await FirebaseFirestore.instance
+    //     .collection('Pets')
+    //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
+
+
+    var info = HashMap<String,dynamic>();
+    info["pet_name"] = pet_name;
+    info["pet_id"] = pet_id;
+    info["pet_age"] = pet_age;
+    info["pet_race"] = pet_race;
+    info["pet_gender"] = pet_gender;
+    info["pet_type"] = pet_type;
+    info["user_id"] = user_id;
+    logger.i(user_id);
+    logger.e(_auth.currentUser!.uid);
+    refPets.push().set(info);
+
+  }
+
+
 }
 
 final List<String> genderItems = [
@@ -201,6 +282,7 @@ final List<String> petItems = [
   'Bird',
   'Fish',
   'Turtle',
+  'Horse'
 ];
 
 

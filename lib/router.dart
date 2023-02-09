@@ -17,4 +17,6 @@ var routes = <String, WidgetBuilder>{
   '/bottomnav' : (context) => const BottomNavigation(),
   '/profile'  : (context) => const ProfilePage(),
   '/askedquestions' : (context) => const AskedQuestionsPage(),
+  // '/petdetail' : (context) => PetDetailPage(),
+
 };

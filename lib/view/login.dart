@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
@@ -94,6 +95,11 @@ class _LoginPageState extends State<LoginPage> {
                                               Config.token = value!.uid;
                                               Config.secureStorage.savePreferences(value!.uid);
                                               logger.i("token ${Config.token}");
+                                              // if(value!.uid!=null){
+                                              //   FirebaseDatabase.instance.ref().child("users").child(value.uid).set(
+                                              //       {"name": value.displayName,
+                                              //        "email": value.email});
+                                              // }
 
 
 

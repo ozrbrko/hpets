@@ -13,6 +13,7 @@ class Config {
   static final SecureStorage secureStorage = SecureStorage();
   static String token = '';
   static String displayName = '';
+  static String key ="";
 
 
   static Future <Widget> loading() async{

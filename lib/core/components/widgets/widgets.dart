@@ -123,7 +123,7 @@ ElevatedButton hPetsElevatedButton(String text, Color btnColor,
 }
 
 DropdownButtonFormField2 hPetsDropdownFormField(
-    String hinttext, List dropdownList) {
+    String hinttext, List dropdownList, TextEditingController petGenderInputController) {
   return DropdownButtonFormField2(
     decoration: InputDecoration(
         contentPadding:
@@ -164,6 +164,7 @@ DropdownButtonFormField2 hPetsDropdownFormField(
     },
     onChanged: (value) {
       logger.i(value);
+      petGenderInputController.text;
     },
     onSaved: (value) {
       selectedValue = value.toString();
@@ -655,7 +656,7 @@ AppBar hpetsAppBar (BuildContext context, bool backButton, String appText, bool 
     centerTitle: true,
     title: Text(
       appText,
-      style: TextStyle(color: AppColors.whiteThemeClr),
+      style: TextStyle(color: AppColors.whiteThemeClr,letterSpacing: 1),
     ),
 
 
