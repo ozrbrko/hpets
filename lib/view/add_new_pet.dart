@@ -223,7 +223,7 @@ class _AddNewPetState extends State<AddNewPet> {
                           var petRace = petRaceInputController.text;
                           var petType = petTypeInputController.text;
 
-                          addPet(petName, "key", petAge, petRace, petGender, petType,Config.token);
+                          addPet(petName,Config.generateRandomId().toString(), petAge, petRace, petGender, petType,Config.token);
 
                         return Navigator.pushNamed(context, '/bottomnav');
 

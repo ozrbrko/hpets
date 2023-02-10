@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +15,10 @@ class Config {
   static String token = '';
   static String displayName = '';
   static String key ="";
-
+  static String notTitle= "";
+  static String notContent= "";
+  static String formattedTime= "";
+  static String formattedDate= "";
 
   static Future <Widget> loading() async{
     return Center(
@@ -28,6 +32,11 @@ class Config {
     );
   }
 
+
+  static String generateRandomId() {
+    final random = Random.secure();
+    return random.nextInt(100000000).toString();
+  }
 
   static String utf8FormatText(String text) {
     return utf8.decode(text.codeUnits).toString();

@@ -27,6 +27,8 @@ dependencies:
   line_icons: ^2.0.1
   accordion: ^2.5.1
   rounded_expansion_tile: ^0.0.13
+  permission_handler: ^10.2.0
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

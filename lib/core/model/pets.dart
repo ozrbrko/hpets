@@ -12,7 +12,7 @@ class Pets {
 
   factory Pets.fromJson(String key, Map<dynamic,dynamic> json){
 
-    return Pets(json["pet_name"] as String, key,  json["pet_age"] as String,  json["pet_race"] as String , json["pet_gender"] as String, json["pet_type"] as String,json["user_id"] );
+    return Pets(json["pet_name"] as String, json["pet_id"] as String,  json["pet_age"] as String,  json["pet_race"] as String , json["pet_gender"] as String, json["pet_type"] as String,json["user_id"] );
 
   }
 }

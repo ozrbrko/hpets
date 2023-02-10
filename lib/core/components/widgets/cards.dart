@@ -54,30 +54,67 @@ cardContainerDefault(double height){
 }
 
 
-Container cardContainerDetail(double height, double width){
-  return Container(
+Container cardContainerDetail(double height, double width, String pet_type, String pet_gender, String pet_age, String pet_name){
 
-    height: height/5,
+  return Container(
+    height: height/4,
     width: width,
 
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(5),
+
+      border: Border(
+        top: BorderSide(
+          width: 5.0,
+          color: AppColors.appThemeClr,
+        ),
+      ),
       color: Color(0xffB1D1FF).withOpacity(0.1),
+
     ),
+
     child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-              height: height/8,
-              child: Image.asset("assets/images/guide_image_1.png")),
-          SizedBox(height: 10,),
-          Text("Tony",style: TextStyle(
-              color: AppColors.appThemeClr, fontFamily: themeFontBold,fontSize: 18),)
+          Column(
+
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 16,),
+              Text("Type",style: TextStyle(fontFamily: themeFontRegular),),
+              Text("${pet_type}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
+              SizedBox(height: 7,),
+              Text("Gender",style: TextStyle(fontFamily: themeFontRegular),),
+              Text("${pet_gender}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
+              SizedBox(height: 7,),
+
+              Text("Age",style: TextStyle(fontFamily: themeFontRegular),),
+              Text("${pet_age}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),)
+            ],
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: FrameSize.screenHeight/8,
+                  child: Image.asset(pet_type=="Dog"? "assets/images/guide_image_1.png" : pet_type=="Cat"? "assets/images/guide_image_0.png" : pet_type=="Fish"? "assets/images/guide_image_2.png" :pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet_type=="Bird"? "assets/images/guide_image_4.png": pet_type=="Turtle"? "assets/images/guide_image_5.png": pet_type=="Hamster"? "assets/images/guide_image_6.png": pet_type=="Horse"? "assets/images/guide_image_7.png": ""),),
+
+                SizedBox(height: 7,),
+
+                Text("${pet_name}")
+              ],
+            ),
+          )
         ],
       ),
-    )
+    ),
+
   );
+
 }
 
 

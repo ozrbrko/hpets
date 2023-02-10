@@ -4,6 +4,7 @@ import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/view/notes/notes_page.dart';
 
 import '../core/components/widgets/cards.dart';
 
@@ -144,20 +145,26 @@ class _PetDetailPageState extends State<PetDetailPage> {
 
 
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
+                    InkWell(
+
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> NotesPage(pet: widget.pet,)));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.appThemeClr,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(85),bottomRight: Radius.circular(85),bottomLeft: Radius.circular(85)),
                           color: AppColors.appThemeClr,
-                          width: 2.0,
+
                         ),
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(85),bottomRight: Radius.circular(85),bottomLeft: Radius.circular(85)),
-                        color: AppColors.appThemeClr,
+
+                        child: Center(child: Text("Notes",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
+                        ))),
 
                       ),
-
-                      child: Center(child: Text("Notes",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
-                      ))),
-
                     ),
                     Container(
                       decoration: BoxDecoration(
