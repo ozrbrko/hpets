@@ -4,6 +4,7 @@ import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/view/diseases_page.dart';
 import 'package:hpets/view/notes/notes_page.dart';
 import 'package:hpets/view/pet_vaccines_page.dart';
 
@@ -128,7 +129,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                             width: 2.0,
                           ),
 
-                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(85),topRight: Radius.circular(85),topLeft: Radius.circular(85)),
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(45),topRight: Radius.circular(45),topLeft: Radius.circular(45),bottomRight: Radius.circular(0)),
                           color: AppColors.appThemeClr,
 
                         ),
@@ -136,20 +137,26 @@ class _PetDetailPageState extends State<PetDetailPage> {
                         child: Center(child: Text("Vaccines",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr),),),
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => DiseasesPage(pet: widget.pet,)));
+
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.appThemeClr,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(45),topLeft: Radius.circular(45),topRight: Radius.circular(45)),
                           color: AppColors.appThemeClr,
-                          width: 2.0,
+
                         ),
-                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(85),topLeft: Radius.circular(85),topRight: Radius.circular(85)),
-                        color: AppColors.appThemeClr,
+                        child: Center(child: Text("Diseases",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
+                        ))),
+
 
                       ),
-                      child: Center(child: Text("Diseases",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
-                      ))),
-
-
                     ),
                     InkWell(
 
@@ -162,7 +169,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                             color: AppColors.appThemeClr,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(85),bottomRight: Radius.circular(85),bottomLeft: Radius.circular(85)),
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(45),bottomRight: Radius.circular(45),bottomLeft: Radius.circular(45)),
                           color: AppColors.appThemeClr,
 
                         ),
@@ -178,7 +185,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                           color: AppColors.appThemeClr,
                           width: 2.0,
                         ),
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(85),bottomRight: Radius.circular(85),bottomLeft: Radius.circular(85)),
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(45),bottomRight: Radius.circular(45),bottomLeft: Radius.circular(45)),
                         color: AppColors.appThemeClr,
 
                       ),

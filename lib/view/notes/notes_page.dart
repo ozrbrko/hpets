@@ -139,7 +139,7 @@ class _NotesPageState extends State<NotesPage> {
                                     // note.pet_id==widget.pet!.pet_id!?
 
                                 Container(
-                                          height: 64,
+                                          height: 74,
                                           width: FrameSize.screenWidth,
                                           child: Padding(
                                             padding: const EdgeInsets.all(15.0),
@@ -153,7 +153,7 @@ class _NotesPageState extends State<NotesPage> {
                                                 Center(
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                    MainAxisAlignment.center,
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       Text(
@@ -161,6 +161,8 @@ class _NotesPageState extends State<NotesPage> {
                                                         style: TextStyle(
                                                             color: AppColors.appThemeClr),
                                                       ),
+                                                      SizedBox(height: 5,),
+
                                                       Text(
                                                         note.note_content!,
                                                         style: TextStyle(

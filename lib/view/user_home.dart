@@ -163,7 +163,10 @@ class _UserHomePageState extends State<UserHomePage> {
                                                     Icons.info_outline_rounded,
                                                     color: AppColors.appThemeClr,
                                                   ),
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
+
+                                                  },
                                                 ),
                                               ],
                                             ),

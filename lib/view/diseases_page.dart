@@ -1,8 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
-import 'package:hpets/core/model/vaccines.dart';
-import 'package:hpets/view/add_new_vaccine.dart';
+import 'package:hpets/core/model/diseases.dart';
 
 import '../core/components/widgets/cards.dart';
 import '../core/constants/colors.dart';
@@ -12,37 +11,46 @@ import '../core/responsive/frame_size.dart';
 import '../core/utils/alert_dialog.dart';
 import '../core/utils/config.dart';
 import '../main.dart';
-import 'notes/add_new_note.dart';
+import 'add_new_disease.dart';
 
-class VaccinesPage extends StatefulWidget {
+class DiseasesPage extends StatefulWidget {
+
   Pets? pet;
+  DiseasesPage({this.pet});
 
-  VaccinesPage({this.pet});
   @override
-  State<VaccinesPage> createState() => _VaccinesPageState();
+  State<DiseasesPage> createState() => _DiseasesPageState();
 }
 
-class _VaccinesPageState extends State<VaccinesPage> {
+class _DiseasesPageState extends State<DiseasesPage> {
 
+  @override
+  void initState() {
+    //TODO: implement initState
+    super.initState();
+  }
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child("vaccines").child(Config.token);
+  var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child("diseases").child(Config.token);
+
+
 
   @override
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
 
     return Scaffold(
+
         appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
         body: Container(
 
           height: FrameSize.screenHeight,
           width: FrameSize.screenWidth,
-
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
               child: Column(
+
                 children: [
                   SizedBox(
                     height: 15,
@@ -64,13 +72,13 @@ class _VaccinesPageState extends State<VaccinesPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${widget.pet!.pet_name!}'s Vaccines",
+                        "${widget.pet!.pet_name!}'s Diseases",
                         style: TextStyle(
                             fontFamily: themeFontSemiBold, fontSize: 22),
                       ),
                       GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewVaccine(pet: widget.pet,)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewDisease(pet: widget.pet)));
                           },
                           child: Icon(
                             Icons.add_box,
@@ -86,17 +94,17 @@ class _VaccinesPageState extends State<VaccinesPage> {
                     child: Container(
                       height: FrameSize.screenHeight/1.75,
                       child: StreamBuilder<DatabaseEvent>(
-                        stream: vaccinesPets.onValue,
+                        stream: diseasePets.onValue,
                         builder: (context, event) {
                           if (event.hasData) {
-                            var vaccineList = <Vaccines>[];
+                            var diseaseList = <Diseases>[];
 
                             var cameValue = event.data!.snapshot.value as dynamic;
 
                             if (cameValue != null) {
                               cameValue.forEach((key, nesne) {
-                                var cameNote = Vaccines.fromJson(key, nesne);
-                                vaccineList.add(cameNote);
+                                var cameNote = Diseases.fromJson(key, nesne);
+                                diseaseList.add(cameNote);
                                 // Config.key = key;
                               });
                             }
@@ -105,24 +113,24 @@ class _VaccinesPageState extends State<VaccinesPage> {
                               child: ListView.builder(
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
-                                itemCount: vaccineList.length,
+                                itemCount: diseaseList.length,
                                 itemBuilder: (context, indeks) {
-                                  var vaccine = vaccineList[indeks];
+                                  var disease = diseaseList[indeks];
 
 
                                   return
-                                    vaccine.pet_id==widget.pet!.pet_id!?
+                                    disease.pet_id==widget.pet!.pet_id!?
 
                                     GestureDetector(
                                       onTap: () {
 
-                                        logger.i("{${vaccineList[indeks].vaccine_name.toString()} tıklandı");
-                                        logger.e(vaccine.pet_id);
+                                        logger.i("{${diseaseList[indeks].disease_content.toString()} tıklandı");
+                                        logger.e(disease.pet_id);
                                         logger.e(widget.pet!.pet_id!);
-                                        logger.e(vaccine.vaccine_id);
+                                        logger.e(disease.disease_id);
 
 
-                                        AlertDialogFunctions.infoVaccineDetail(context,vaccine.vaccine_name, vaccine.vaccine_date, vaccine.vaccine_time, vaccine.veterinary, vaccine.vaccine_id);                          // Navigator.pushNamed(context, "/petdetail");
+                                        AlertDialogFunctions.infoDiseaseDetail(context,disease.disease_title, disease.disease_date, disease.disease_time, disease.disease_content, disease.disease_id);                          // Navigator.pushNamed(context, "/petdetail");
                                         // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
                                       },
                                       child: Column(
@@ -137,7 +145,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                               // note.pet_id==widget.pet!.pet_id!?
 
                                               Container(
-                                                height: 90,
+                                                height: 100,
                                                 width: FrameSize.screenWidth,
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(15.0),
@@ -155,23 +163,26 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
                                                             Text(
-                                                              "Vaccine Name: ${vaccine.vaccine_name!}",
+                                                              "Disease Name: ${disease.disease_title}",
                                                               style: TextStyle(
                                                                   color: AppColors.appThemeClr),
                                                             ),
                                                             SizedBox(height: 5,),
                                                             Text(
-                                                              "Date: ${vaccine.vaccine_date!} / ${vaccine.vaccine_time!}",
+                                                              "Content: ${disease.disease_content}",
                                                               style: TextStyle(
                                                                   color: AppColors.appThemeClr),
                                                             ),
                                                             SizedBox(height: 5,),
 
                                                             Text(
-                                                              "Veterinary: ${vaccine.veterinary!}",
+                                                              "Date: ${disease.disease_date!} / ${disease.disease_time!}",
                                                               style: TextStyle(
                                                                   color: AppColors.appThemeClr),
                                                             ),
+                                                            SizedBox(height: 5,),
+
+
                                                           ],
                                                         ),
                                                       ),
@@ -204,9 +215,11 @@ class _VaccinesPageState extends State<VaccinesPage> {
                   ),
 
                 ],
+
               ),
             ),
           ),
+
 
         ));
   }
