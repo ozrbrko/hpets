@@ -5,6 +5,7 @@ import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/view/notes/notes_page.dart';
+import 'package:hpets/view/pet_vaccines_page.dart';
 
 import '../core/components/widgets/cards.dart';
 
@@ -116,19 +117,24 @@ class _PetDetailPageState extends State<PetDetailPage> {
                   crossAxisSpacing: 10.0,
 
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => VaccinesPage(pet: widget.pet,)));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.appThemeClr,
+                            width: 2.0,
+                          ),
+
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(85),topRight: Radius.circular(85),topLeft: Radius.circular(85)),
                           color: AppColors.appThemeClr,
-                          width: 2.0,
+
                         ),
 
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(85),topRight: Radius.circular(85),topLeft: Radius.circular(85)),
-                        color: AppColors.appThemeClr,
-
+                        child: Center(child: Text("Vaccines",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr),),),
                       ),
-
-                      child: Center(child: Text("Vaccines",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr),),),
                     ),
                     Container(
                       decoration: BoxDecoration(

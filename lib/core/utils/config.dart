@@ -3,12 +3,14 @@ import 'dart:math';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/utils/secure_storage.dart';
 
 import '../../main.dart';
 
 class Config {
+
 
   static bool _loading = false;
   static final SecureStorage secureStorage = SecureStorage();
@@ -41,6 +43,10 @@ class Config {
   static String utf8FormatText(String text) {
     return utf8.decode(text.codeUnits).toString();
   }
+
+
+
+
 
   static String toUtf8(String text) {
     var encodedText = utf8.encode(text);

@@ -6,7 +6,7 @@ import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/view/appointment.dart';
 import 'package:hpets/view/guide.dart';
 import 'package:hpets/view/user_home.dart';
-import 'package:hpets/view/vaccine.dart';
+import 'package:hpets/view/all_vaccines_bottom.dart';
 import 'package:line_icons/line_icons.dart';
 
 class BottomNavigation extends StatefulWidget {

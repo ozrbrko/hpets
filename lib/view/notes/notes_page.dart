@@ -4,6 +4,7 @@ import 'package:hpets/core/components/widgets/cards.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/core/utils/alert_dialog.dart';
 import 'package:hpets/view/notes/add_new_note.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
@@ -117,6 +118,10 @@ class _NotesPageState extends State<NotesPage> {
                                     logger.i("{${noteList[indeks].note_time.toString()} tıklandı");
                                     logger.e(note.pet_id);
                                     logger.e(widget.pet!.pet_id!);
+                                    logger.e(note.note_id);
+
+
+                                    AlertDialogFunctions.infoNoteDetail(context,note.note_title,note.note_content,indeks,note.note_id);
 
 
                                     // Navigator.pushNamed(context, "/petdetail");
@@ -199,4 +204,10 @@ class _NotesPageState extends State<NotesPage> {
       ),
     );
   }
+
+
+  Future<void> deleteNote(String pet_id,int indeks) async {
+    notePets.child(pet_id).remove();
+  }
+
 }

@@ -85,6 +85,8 @@ class _UserHomePageState extends State<UserHomePage> {
                   ],
                 ),
                 Divider(),
+
+                
                 SingleChildScrollView(
 
                   child: Container(
@@ -142,6 +144,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.center,
                                                     children: [
+
                                                       Text(
                                                         pet.pet_name!,
                                                         style: TextStyle(

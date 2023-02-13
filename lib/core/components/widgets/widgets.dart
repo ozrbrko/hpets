@@ -684,3 +684,34 @@ AppBar hpetsAppBar (BuildContext context, bool backButton, String appText, bool 
     ),
   );
 }
+
+
+
+TextFormField ContentTextFormField (TextEditingController txtcntrller, String required){
+  return TextFormField(
+
+    controller: txtcntrller,
+    validator: MultiValidator([
+      RequiredValidator(errorText: required),
+    ]),
+
+    decoration: InputDecoration(
+
+        contentPadding:
+        const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+        border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.all(Radius.circular(40.0))),
+        filled: true,
+        hintText: "Content",
+
+        hintStyle: TextStyle(
+            fontFamily: themeFontLight,
+            color: AppColors.greyThemeClr,
+
+
+            fontSize: 16.0)),
+    maxLines: 6,
+    maxLength: 170,
+  );
+}

@@ -89,30 +89,8 @@ class _AddNewNoteState extends State<AddNewNote> {
 
                     SizedBox(height: 10,),
 
-                    TextFormField(
+                    ContentTextFormField(noteContentInputController,"Content is required !"),
 
-                      controller: noteContentInputController,
-
-
-                      decoration: InputDecoration(
-
-                          contentPadding:
-                          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.all(Radius.circular(40.0))),
-                          filled: true,
-                          hintText: "Content",
-
-                          hintStyle: TextStyle(
-                              fontFamily: themeFontLight,
-                              color: AppColors.greyThemeClr,
-
-
-                              fontSize: 16.0)),
-                      maxLines: 6,
-                      maxLength: 170,
-                    ),
                     SizedBox(
                       height: 25,
                     ),
@@ -142,7 +120,7 @@ class _AddNewNoteState extends State<AddNewNote> {
                                       logger.e(Config.formattedTime),
 
                                       Navigator.pop(context),
-                                      addNote(Config.notTitle, Config.notContent, Config.formattedTime, Config.formattedDate, "note_id", widget.pet!.pet_id!)
+                                      addNote(Config.notTitle, Config.notContent, Config.formattedTime, Config.formattedDate, widget.pet!.pet_id!)
 
 
 
@@ -165,7 +143,7 @@ class _AddNewNoteState extends State<AddNewNote> {
     );
   }
 
-  Future<void> addNote(String note_title, String note_content, String note_time, String note_date, String note_id, String pet_id) async {
+  Future<void> addNote(String note_title, String note_content, String note_time, String note_date, String pet_id) async {
     // await FirebaseFirestore.instance
     //     .collection('Pets')
     //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
@@ -176,7 +154,7 @@ class _AddNewNoteState extends State<AddNewNote> {
     info["note_content"] = note_content;
     info["note_time"] = note_time;
     info["note_date"] = note_date.basHarfleriBuyut();
-    info["note_id"] = note_id;
+    info["note_id"] = "";
     info["pet_id"] = pet_id;
     logger.e(_auth.currentUser!.uid);
     notePets.push().set(info);
