@@ -262,6 +262,8 @@ class _AddNewPetState extends State<AddNewPet> {
     info["pet_gender"] = pet_gender;
     info["pet_type"] = pet_type;
     info["user_id"] = user_id;
+    info["pet_key"] = "";
+
     logger.i(user_id);
     logger.e(_auth.currentUser!.uid);
     refPets.push().set(info);

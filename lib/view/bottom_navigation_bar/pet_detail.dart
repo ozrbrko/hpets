@@ -1,16 +1,19 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/main.dart';
 import 'package:hpets/view/diseases/diseases_page.dart';
 import 'package:hpets/view/notes/notes_page.dart';
 import 'package:hpets/view/vaccines/pet_vaccines_page.dart';
 
 import '../../core/components/widgets/cards.dart';
+import '../../core/utils/config.dart';
 import '../nutritions/nutritions_page.dart';
-
+var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
 class PetDetailPage extends StatefulWidget {
 
   Pets? pet;
@@ -140,6 +143,11 @@ class _PetDetailPageState extends State<PetDetailPage> {
                     ),
                     InkWell(
                       onTap: (){
+
+                        // logger.i(widget.pet!.pet_key);
+                        // refPets.child(widget.pet!.pet_key!).remove();
+
+
                         Navigator.push(context, MaterialPageRoute(builder: (context) => DiseasesPage(pet: widget.pet,)));
 
                       },
