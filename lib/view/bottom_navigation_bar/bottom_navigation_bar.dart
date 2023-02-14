@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hpets/core/constants/colors.dart';
-import 'package:hpets/view/bottom_navigation_bar/appointment.dart';
+import 'package:hpets/view/bottom_navigation_bar/appointments_page.dart';
 import 'package:hpets/view/bottom_navigation_bar/guide.dart';
 import 'package:hpets/view/bottom_navigation_bar/user_home.dart';
 import 'package:hpets/view/bottom_navigation_bar/all_vaccines_bottom.dart';

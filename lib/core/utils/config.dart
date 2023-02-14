@@ -1,13 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/utils/secure_storage.dart';
-
 import '../../main.dart';
+import '../model/pets.dart';
 
 class Config {
 
@@ -21,6 +19,8 @@ class Config {
   static String notContent= "";
   static String formattedTime= "";
   static String formattedDate= "";
+  static var petListConfig = [];
+  // logger.i(Config.petListConfig[1].pet_name
 
   static Future <Widget> loading() async{
     return Center(

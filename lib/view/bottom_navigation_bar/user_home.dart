@@ -103,7 +103,6 @@ class _UserHomePageState extends State<UserHomePage> {
                             cameValue.forEach((key, nesne) {
                               var camePet = Pets.fromJson(key, nesne);
                               petList.add(camePet);
-                              // Config.key = key;
                             });
                           }
                           return Padding(
@@ -113,7 +112,13 @@ class _UserHomePageState extends State<UserHomePage> {
                               shrinkWrap: true,
                               itemCount: petList.length,
                               itemBuilder: (context, indeks) {
+
                                 var pet = petList[indeks];
+                                if (!Config.petListConfig.contains(pet.pet_name)) {
+                                  Config.petListConfig.add(pet.pet_name);
+                                }
+                                // Config.petListConfig = petList;
+
                                 return GestureDetector(
                                   onTap: () {
 

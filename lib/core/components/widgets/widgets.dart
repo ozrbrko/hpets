@@ -687,7 +687,7 @@ AppBar hpetsAppBar (BuildContext context, bool backButton, String appText, bool 
 
 
 
-TextFormField ContentTextFormField (TextEditingController txtcntrller, String required){
+TextFormField ContentTextFormField (TextEditingController txtcntrller, String required, String textHint){
   return TextFormField(
 
     controller: txtcntrller,
@@ -703,7 +703,7 @@ TextFormField ContentTextFormField (TextEditingController txtcntrller, String re
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(Radius.circular(40.0))),
         filled: true,
-        hintText: "Content",
+        hintText: textHint,
 
         hintStyle: TextStyle(
             fontFamily: themeFontLight,

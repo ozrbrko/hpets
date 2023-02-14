@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,13 @@ TextEditingController foodTimeInputController = TextEditingController();
 
 TextEditingController noteTitleInputController = TextEditingController();
 TextEditingController noteContentInputController = TextEditingController();
+
+TextEditingController veterinaryInfoAppInputController = TextEditingController();
+TextEditingController petNameInputController = TextEditingController();
+TextEditingController appointmentDateInputController = TextEditingController();
+TextEditingController appointmentTimeInputController = TextEditingController();
+TextEditingController appointmentAddressInputController = TextEditingController();
+
 var refPets =
 FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
 var notePets = FirebaseDatabase.instance
@@ -50,6 +58,8 @@ var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child("va
 var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child("diseases").child(Config.token);
 var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(
     "nutritions").child(Config.token);
+var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child(
+    "appointments").child(Config.token);
 final _formKey = GlobalKey<FormState>();
 
 class AlertDialogFunctions {
@@ -545,7 +555,7 @@ class AlertDialogFunctions {
                           height: 11,
                         ),
                         ContentTextFormField(noteContentInputController,
-                            "Content is required !"),
+                            "Content is required !","Content"),
                         SizedBox(
                           height: 25,
                         ),
@@ -1032,6 +1042,268 @@ class AlertDialogFunctions {
         });
   }
 
+  static Future infoAppointmentDetail(BuildContext context, String? veterinaryInfo,
+      String? petName, String? appointmentDate, String? appointmentTime,
+      String? veterinary_address,String? appointment_id) {
+
+    veterinaryInfoAppInputController.text = veterinaryInfo!;
+    petNameInputController.text = petName!;
+    appointmentDateInputController.text = appointmentDate!;
+    appointmentTimeInputController.text = appointmentTime!;
+    appointmentAddressInputController.text = veterinary_address!;
+
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Appointment Detail",
+                              style: TextStyle(
+                                  fontFamily: themeFontBold, fontSize: 19),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(Icons.close)),
+                          ],
+                        ),
+                        Divider(),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        DropdownButtonFormField2(
+
+
+                          decoration: InputDecoration(
+
+                              contentPadding:
+                              const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                              filled: true,
+                              hintText: "Select Type",
+
+
+                              hintStyle: TextStyle(
+                                  fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+                          isExpanded: true,
+                          hint: const Text(
+                            'Select Your Pet',
+                            style: TextStyle(fontSize: 16),
+                          ),
+
+                          dropdownDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+
+                          items: Config.petListConfig
+                              .map((item) =>
+                              DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style:  TextStyle(
+                                    fontSize: 16, color: AppColors.blackThemeClr,
+                                  ),
+                                ),
+                              ))
+                              .toList(),
+                          // validator: (value) {
+                          //   if (value == null) {
+                          //     return '     Please select pet !';
+                          //   }
+                          // },
+                          onChanged: (value) {
+                            // logger.i(value);
+                            petNameInputController.text = value!;
+
+
+                          },
+                          onSaved: (value) {
+                            selectedValue = value.toString();
+                            // logger.i(value);
+                            petNameInputController.text = value!;
+
+                          },
+                        ),
+
+                        SizedBox(height: 12,),
+
+                        TextFormField(
+                          controller: appointmentDateInputController,
+                          decoration: InputDecoration(
+
+                              contentPadding:
+                              const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(40.0))),
+                              filled: true,
+                              hintText: "Appointment Date",
+                              hintStyle: TextStyle(
+                                  fontFamily: themeFontLight,
+                                  color: AppColors.greyThemeClr,
+                                  fontSize: 16.0)),
+                          onTap: () async {
+                            DateTime date = DateTime(1900);
+                            FocusScope.of(context).requestFocus(new FocusNode());
+
+                            date = (await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime(2100)))!;
+                            String dateSlug = "${date.year.toString()}-${date.month
+                                .toString().padLeft(2, '0')}-${date.day.toString()
+                                .padLeft(2, '0')}";
+
+                            appointmentDateInputController.text = dateSlug;
+                          },),
+                        SizedBox(height: 12,),
+
+                        TextFormField(
+                          controller: appointmentTimeInputController,
+
+                          decoration: InputDecoration(
+
+                              contentPadding:
+                              const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(40.0))),
+                              filled: true,
+                              hintText: "Appointment Time",
+                              hintStyle: TextStyle(
+                                  fontFamily: themeFontLight,
+                                  color: AppColors.greyThemeClr,
+                                  fontSize: 16.0)),
+                          onTap: () {
+                            FocusScope.of(context).requestFocus(new FocusNode());
+                            showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            ).then((value) {
+
+                                appointmentTimeInputController.text = value!.format(context);
+
+                            });
+                          },
+                          // controller: TextEditingController(text: selectedTime.format(context)),
+                        ),
+
+
+                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
+
+                        SizedBox(height: 12,),
+
+                        hPetsTextFormField("Veterinary Info", veterinaryInfoAppInputController,
+                            "Veterinary Info is required !", TextInputType.text, false,
+                            "false"),
+
+                        SizedBox(height: 12,),
+
+                        ContentTextFormField(appointmentAddressInputController,"Veterinary Address is required !","Veterinary Address"),
+
+
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                height: FrameSize.screenHeight / 14,
+                                child: hPetsElevatedButton(
+                                    "Delete",
+                                    AppColors.redThemeClr,
+                                    40,
+                                    themeFontSemiBold,
+                                        () =>
+                                    {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          appointmentPets.child(appointment_id!)
+                                              .remove(),
+                                          Navigator.pop(context),
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    }),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: FrameSize.screenHeight / 14,
+                                  child: hPetsElevatedButton(
+                                      "Update",
+                                      AppColors.appThemeClr,
+                                      40,
+                                      themeFontSemiBold,
+                                          () =>
+                                      {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+
+
+                              veterinaryInfo = veterinaryInfoAppInputController.text,
+                                  petName = petNameInputController.text,
+                                  appointmentDate = appointmentDateInputController.text,
+                                  appointmentTime = appointmentTimeInputController.text,
+                                  veterinary_address = appointmentAddressInputController.text,
+
+
+                                            updateAppointment(veterinaryInfo, petName, appointmentDate, appointmentTime, veterinary_address, appointment_id),
+                                            Navigator.pop(context),
+
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
   static Future infoNutritionDetail(BuildContext context, String? food_name,
       String? food_date, String? food_time, String? amount_of_food,
       String? food_id) {
@@ -1262,6 +1534,21 @@ class AlertDialogFunctions {
   logger.i(disease_id);
     diseasePets.child(disease_id).update(info);
   }
+
+
+  static Future<void> updateAppointment(String? veterinaryInfo,
+      String? petName, String? appointmentDate, String? appointmentTime,
+      String? veterinary_address,String? appointment_id) async {
+    var info = HashMap<String, dynamic>();
+    info["veterinary_info"] = veterinaryInfo!.basHarfleriBuyut();
+    info["pet_name"] = petName;
+    info["appointment_date"] = appointmentDate;
+    info["appointment_time"] = appointmentTime;
+    info["veterinary_address"] = veterinary_address;
+
+    appointmentPets.child(appointment_id!).update(info);
+  }
+
 
   static Future<void> updateNutrition(String foodName, String amonutFood, String foodTime,
       String foodDate, String food_id) async {

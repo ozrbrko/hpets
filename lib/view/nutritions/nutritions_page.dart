@@ -120,6 +120,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                           logger.e(nutrition.pet_id);
                                           logger.e(widget.pet!.pet_id!);
                                           logger.e(nutrition.food_id);
+
                           // Navigator.pushNamed(context, "/petdetail");
                                           // Navigator.
                                           AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");

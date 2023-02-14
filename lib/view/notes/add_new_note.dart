@@ -89,7 +89,7 @@ class _AddNewNoteState extends State<AddNewNote> {
 
                     SizedBox(height: 10,),
 
-                    ContentTextFormField(noteContentInputController,"Content is required !"),
+                    ContentTextFormField(noteContentInputController,"Content is required !","Content"),
 
                     SizedBox(
                       height: 25,
