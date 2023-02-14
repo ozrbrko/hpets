@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hpets/core/constants/colors.dart';
-import 'package:hpets/view/appointment.dart';
-import 'package:hpets/view/guide.dart';
-import 'package:hpets/view/user_home.dart';
-import 'package:hpets/view/all_vaccines_bottom.dart';
+import 'package:hpets/view/bottom_navigation_bar/appointment.dart';
+import 'package:hpets/view/bottom_navigation_bar/guide.dart';
+import 'package:hpets/view/bottom_navigation_bar/user_home.dart';
+import 'package:hpets/view/bottom_navigation_bar/all_vaccines_bottom.dart';
 import 'package:line_icons/line_icons.dart';
 
 class BottomNavigation extends StatefulWidget {

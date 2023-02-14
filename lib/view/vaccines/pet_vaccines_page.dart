@@ -2,17 +2,17 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/vaccines.dart';
-import 'package:hpets/view/add_new_vaccine.dart';
+import 'package:hpets/view/vaccines/add_new_vaccine.dart';
 
-import '../core/components/widgets/cards.dart';
-import '../core/constants/colors.dart';
-import '../core/constants/fonts.dart';
-import '../core/model/pets.dart';
-import '../core/responsive/frame_size.dart';
-import '../core/utils/alert_dialog.dart';
-import '../core/utils/config.dart';
-import '../main.dart';
-import 'notes/add_new_note.dart';
+import '../../core/components/widgets/cards.dart';
+import '../../core/constants/colors.dart';
+import '../../core/constants/fonts.dart';
+import '../../core/model/pets.dart';
+import '../../core/responsive/frame_size.dart';
+import '../../core/utils/alert_dialog.dart';
+import '../../core/utils/config.dart';
+import '../../main.dart';
+import '../notes/add_new_note.dart';
 
 class VaccinesPage extends StatefulWidget {
   Pets? pet;

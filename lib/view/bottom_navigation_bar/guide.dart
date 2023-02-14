@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hpets/core/constants/fonts.dart';
-import 'package:hpets/view/guide_detail.dart';
-import '../core/components/widgets/widgets.dart';
-import '../core/constants/colors.dart';
-import '../core/responsive/frame_size.dart';
+import 'package:hpets/view/bottom_navigation_bar/guide_detail.dart';
+import '../../core/components/widgets/widgets.dart';
+import '../../core/constants/colors.dart';
+import '../../core/responsive/frame_size.dart';
 
 class GuidePage extends StatefulWidget {
   const GuidePage({Key? key}) : super(key: key);

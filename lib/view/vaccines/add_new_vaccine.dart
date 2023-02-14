@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 
-import '../core/constants/colors.dart';
-import '../core/constants/fonts.dart';
-import '../core/model/pets.dart';
-import '../core/responsive/frame_size.dart';
-import '../core/utils/config.dart';
+import '../../core/constants/colors.dart';
+import '../../core/constants/fonts.dart';
+import '../../core/model/pets.dart';
+import '../../core/responsive/frame_size.dart';
+import '../../core/utils/config.dart';
 
 class AddNewVaccine extends StatefulWidget {
   Pets? pet;
@@ -174,10 +174,6 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
 
 
     Future<void> addVaccine(String note_title, String note_content, String note_time, String note_date, String pet_id, String pet_name) async {
-    // await FirebaseFirestore.instance
-    //     .collection('Pets')
-    //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
-
 
     var info = HashMap<String,dynamic>();
     info["vaccine_name"] = note_title.basHarfleriBuyut();
@@ -188,9 +184,6 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
     info["pet_id"] = pet_id;
     info["pet_name"] = pet_name;
 
-
     vaccinesPets.push().set(info);
-
-
   }
 }

@@ -9,8 +9,8 @@ import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/config.dart';
 import 'package:hpets/main.dart';
 
-import '../core/constants/colors.dart';
-import '../core/constants/fonts.dart';
+import '../../core/constants/colors.dart';
+import '../../core/constants/fonts.dart';
 
 class AddNewPet extends StatefulWidget {
   const AddNewPet({Key? key}) : super(key: key);

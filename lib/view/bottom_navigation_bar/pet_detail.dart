@@ -4,11 +4,12 @@ import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
-import 'package:hpets/view/diseases_page.dart';
+import 'package:hpets/view/diseases/diseases_page.dart';
 import 'package:hpets/view/notes/notes_page.dart';
-import 'package:hpets/view/pet_vaccines_page.dart';
+import 'package:hpets/view/vaccines/pet_vaccines_page.dart';
 
-import '../core/components/widgets/cards.dart';
+import '../../core/components/widgets/cards.dart';
+import '../nutritions/nutritions_page.dart';
 
 class PetDetailPage extends StatefulWidget {
 
@@ -179,21 +180,26 @@ class _PetDetailPageState extends State<PetDetailPage> {
 
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> NutritionsPage(pet: widget.pet,)));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.appThemeClr,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.only(topRight: Radius.circular(45),bottomRight: Radius.circular(45),bottomLeft: Radius.circular(45)),
                           color: AppColors.appThemeClr,
-                          width: 2.0,
+
                         ),
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(45),bottomRight: Radius.circular(45),bottomLeft: Radius.circular(45)),
-                        color: AppColors.appThemeClr,
+
+                        child: Center(child: Text("Nutrition",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21, color: AppColors.whiteThemeClr,
+                        ))),
+
 
                       ),
-
-                      child: Center(child: Text("Nutrition",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21, color: AppColors.whiteThemeClr,
-                      ))),
-
-
                     ),
                   ],
                 ),

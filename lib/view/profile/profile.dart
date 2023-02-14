@@ -5,11 +5,11 @@ import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 
-import '../core/components/widgets/cards.dart';
-import '../core/constants/colors.dart';
-import '../core/constants/fonts.dart';
-import '../core/constants/images.dart';
-import '../core/utils/config.dart';
+import '../../core/components/widgets/cards.dart';
+import '../../core/constants/colors.dart';
+import '../../core/constants/fonts.dart';
+import '../../core/constants/images.dart';
+import '../../core/utils/config.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);

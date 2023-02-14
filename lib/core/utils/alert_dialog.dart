@@ -30,6 +30,12 @@ TextEditingController  diseaseContentInputController = TextEditingController();
 TextEditingController  diseaseDateInputController = TextEditingController();
 TextEditingController  diseaseTimeInputController = TextEditingController();
 
+
+TextEditingController foodNameInputController = TextEditingController();
+TextEditingController amountFoodInputController = TextEditingController();
+TextEditingController foodDateInputController = TextEditingController();
+TextEditingController foodTimeInputController = TextEditingController();
+
 TextEditingController noteTitleInputController = TextEditingController();
 TextEditingController noteContentInputController = TextEditingController();
 var refPets =
@@ -42,7 +48,8 @@ var notePets = FirebaseDatabase.instance
 
 var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child("vaccines").child(Config.token);
 var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child("diseases").child(Config.token);
-
+var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(
+    "nutritions").child(Config.token);
 final _formKey = GlobalKey<FormState>();
 
 class AlertDialogFunctions {
@@ -1025,6 +1032,209 @@ class AlertDialogFunctions {
         });
   }
 
+  static Future infoNutritionDetail(BuildContext context, String? food_name,
+      String? food_date, String? food_time, String? amount_of_food,
+      String? food_id) {
+    foodNameInputController.text = food_name!;
+    amountFoodInputController.text = amount_of_food!;
+    foodDateInputController.text = food_date!;
+    foodTimeInputController.text = food_time!;
+
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Nutrition Detail",
+                              style: TextStyle(
+                                  fontFamily: themeFontBold, fontSize: 19),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(Icons.close)),
+                          ],
+                        ),
+                        Divider(),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        hPetsTextFormField(
+                            "Nutrition Name", foodNameInputController,
+                            "Nutrition Name is required !", TextInputType.text,
+                            false, "false"),
+                        SizedBox(height: 12,),
+
+                        hPetsTextFormField(
+                            "Amount of Food", amountFoodInputController,
+                            "Amount of Food is required !", TextInputType.text,
+                            false, "false"),
+
+                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
+
+                        SizedBox(height: 12,),
+
+
+                        TextFormField(
+                          controller: foodDateInputController,
+                          decoration: InputDecoration(
+
+                              contentPadding:
+                              const EdgeInsets.symmetric(
+                                  vertical: 17, horizontal: 32),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(40.0))),
+                              filled: true,
+                              hintText: "Food Date",
+                              hintStyle: TextStyle(
+                                  fontFamily: themeFontLight,
+                                  color: AppColors.greyThemeClr,
+                                  fontSize: 16.0)),
+                          onTap: () async {
+                            DateTime date = DateTime(1900);
+                            FocusScope.of(context).requestFocus(
+                                new FocusNode());
+
+                            date = (await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime(2100)))!;
+                            String dateSlug = "${date.year.toString()}-${date
+                                .month.toString().padLeft(2, '0')}-${date.day
+                                .toString().padLeft(2, '0')}";
+
+                            foodDateInputController.text = dateSlug;
+                          },),
+                        SizedBox(height: 12,),
+
+                        TextFormField(
+                          controller: foodTimeInputController,
+
+                          decoration: InputDecoration(
+
+                              contentPadding:
+                              const EdgeInsets.symmetric(
+                                  vertical: 17, horizontal: 32),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(40.0))),
+                              filled: true,
+                              hintText: "Food Time",
+                              hintStyle: TextStyle(
+                                  fontFamily: themeFontLight,
+                                  color: AppColors.greyThemeClr,
+                                  fontSize: 16.0)),
+                          onTap: () {
+                            FocusScope.of(context).requestFocus(
+                                new FocusNode());
+                            showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            ).then((value) {
+                              foodTimeInputController.text =
+                                  value!.format(context);
+                            });
+                          },
+                          // controller: TextEditingController(text: selectedTime.format(context)),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                height: FrameSize.screenHeight / 14,
+                                child: hPetsElevatedButton(
+                                    "Delete",
+                                    AppColors.redThemeClr,
+                                    40,
+                                    themeFontSemiBold,
+                                        () =>
+                                    {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          nutritionPets.child(food_id!)
+                                              .remove(),
+                                          Navigator.pop(context),
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    }),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: FrameSize.screenHeight / 14,
+                                  child: hPetsElevatedButton(
+                                      "Update",
+                                      AppColors.appThemeClr,
+                                      40,
+                                      themeFontSemiBold,
+                                          () =>
+                                      {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+
+                                  food_name = foodNameInputController.text,
+                                  food_date = foodDateInputController.text,
+                                  food_time = foodTimeInputController.text,
+                                  amount_of_food = amountFoodInputController.text,
+
+
+                                            updateNutrition(food_name!, amount_of_food!, food_time!, food_date!, food_id!),
+                                            Navigator.pop(context),
+
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
 
   static Future<void> updateNote(String note_title, String note_content,
       String note_id) async {
@@ -1051,6 +1261,18 @@ class AlertDialogFunctions {
   logger.i(disease_date);
   logger.i(disease_id);
     diseasePets.child(disease_id).update(info);
+  }
+
+  static Future<void> updateNutrition(String foodName, String amonutFood, String foodTime,
+      String foodDate, String food_id) async {
+    var info = HashMap<String, dynamic>();
+    info["food_name"] = foodName.basHarfleriBuyut();
+    info["amount_of_food"] = amonutFood;
+    info["food_date"] = foodDate;
+    info["food_time"] = foodTime.basHarfleriBuyut();
+
+
+    nutritionPets.child(food_id).update(info);
   }
 
   static Future<void> updateVaccine(String vaccine_name, String veterinary_info,

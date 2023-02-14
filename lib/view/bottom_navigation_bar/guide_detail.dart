@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 
-import '../core/components/widgets/widgets.dart';
+import '../../core/components/widgets/widgets.dart';
 
 class GuideDetailPage extends StatelessWidget {
   late final int index;

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/diseases.dart';
 
-import '../core/components/widgets/cards.dart';
-import '../core/constants/colors.dart';
-import '../core/constants/fonts.dart';
-import '../core/model/pets.dart';
-import '../core/responsive/frame_size.dart';
-import '../core/utils/alert_dialog.dart';
-import '../core/utils/config.dart';
-import '../main.dart';
+import '../../core/components/widgets/cards.dart';
+import '../../core/constants/colors.dart';
+import '../../core/constants/fonts.dart';
+import '../../core/model/pets.dart';
+import '../../core/responsive/frame_size.dart';
+import '../../core/utils/alert_dialog.dart';
+import '../../core/utils/config.dart';
+import '../../main.dart';
 import 'add_new_disease.dart';
 
 class DiseasesPage extends StatefulWidget {
@@ -103,8 +103,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
 
                             if (cameValue != null) {
                               cameValue.forEach((key, nesne) {
-                                var cameNote = Diseases.fromJson(key, nesne);
-                                diseaseList.add(cameNote);
+                                var cameDisease = Diseases.fromJson(key, nesne);
+                                diseaseList.add(cameDisease);
                                 // Config.key = key;
                               });
                             }

@@ -2,11 +2,11 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:hpets/core/constants/colors.dart';
 
-import '../core/components/widgets/widgets.dart';
-import '../core/constants/fonts.dart';
-import '../core/model/vaccines.dart';
-import '../core/responsive/frame_size.dart';
-import '../core/utils/alert_dialog.dart';
+import '../../core/components/widgets/widgets.dart';
+import '../../core/constants/fonts.dart';
+import '../../core/model/vaccines.dart';
+import '../../core/responsive/frame_size.dart';
+import '../../core/utils/alert_dialog.dart';
 
 class VaccinePage extends StatefulWidget {
   const VaccinePage({Key? key}) : super(key: key);

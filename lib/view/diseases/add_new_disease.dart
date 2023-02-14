@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 
-import '../core/constants/colors.dart';
-import '../core/constants/fonts.dart';
-import '../core/model/pets.dart';
-import '../core/responsive/frame_size.dart';
-import '../core/utils/config.dart';
+import '../../core/constants/colors.dart';
+import '../../core/constants/fonts.dart';
+import '../../core/model/pets.dart';
+import '../../core/responsive/frame_size.dart';
+import '../../core/utils/config.dart';
 
 class AddNewDisease extends StatefulWidget {
   Pets? pet;

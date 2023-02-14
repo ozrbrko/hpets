@@ -9,10 +9,10 @@ import 'package:hpets/core/constants/images.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/main.dart';
-import 'package:hpets/view/pet_detail.dart';
-import '../core/constants/colors.dart';
-import '../core/model/pets.dart';
-import '../core/utils/config.dart';
+import 'package:hpets/view/bottom_navigation_bar/pet_detail.dart';
+import '../../core/constants/colors.dart';
+import '../../core/model/pets.dart';
+import '../../core/utils/config.dart';
 
 class UserHomePage extends StatefulWidget {
   const UserHomePage({Key? key}) : super(key: key);
