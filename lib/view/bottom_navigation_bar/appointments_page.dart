@@ -4,6 +4,7 @@ import 'package:hpets/core/model/appointments.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 import 'package:hpets/view/bottom_navigation_bar/add_new_appointment.dart';
 
+import '../../core/components/build_circular_indicator.dart';
 import '../../core/components/widgets/widgets.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
@@ -39,6 +40,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
 
           color: AppColors.whiteThemeClr,
           width: FrameSize.screenWidth,
+          height: FrameSize.screenHeight,
 
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -68,7 +70,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                   SingleChildScrollView(
                     child: Container(
 
-                      height: FrameSize.screenHeight/1.75,
+                      height: FrameSize.screenHeight/1.4,
                       child: StreamBuilder<DatabaseEvent>(
 
                         stream: appointmentPets.onValue,
@@ -86,138 +88,155 @@ class _AppointmentPageState extends State<AppointmentPage> {
                               });
                             }
 
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 58.0),
-                              child: ListView.builder(
+                            if(appointmentList.length!=0){
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 58.0),
+                                child: ListView.builder(
 
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  itemCount: appointmentList.length,
-                                  itemBuilder: (context,indeks) {
-                                    var appointment = appointmentList[indeks];
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: appointmentList.length,
+                                    itemBuilder: (context,indeks) {
+                                      var appointment = appointmentList[indeks];
 
-                                    return
-                                    GestureDetector(
-                                      onTap: (){
+                                      return
+                                        GestureDetector(
+                                          onTap: (){
 
-                                        // logger.i("{${nutritionList[indeks].food_name.toString()} tıklandı");
-                                        // logger.e(nutrition.pet_id);
-                                        // logger.e(widget.pet!.pet_id!);
-                                        // logger.e(nutrition.food_id);
+                                            // logger.i("{${nutritionList[indeks].food_name.toString()} tıklandı");
+                                            // logger.e(nutrition.pet_id);
+                                            // logger.e(widget.pet!.pet_id!);
+                                            // logger.e(nutrition.food_id);
 
-                                        // Navigator.pushNamed(context, "/petdetail");
-                                        // Navigator.
+                                            // Navigator.pushNamed(context, "/petdetail");
+                                            // Navigator.
 
-                                        AlertDialogFunctions.infoAppointmentDetail(context, appointment.veterinary_info, appointment.pet_name, appointment.appointment_date, appointment.appointment_time, appointment.veterinary_address, appointment.appointment_id);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Card(
-                                              color: Color(0xffE6E6E6),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                              ),
-                                              child:
+                                            AlertDialogFunctions.infoAppointmentDetail(context, appointment.veterinary_info, appointment.pet_name, appointment.appointment_date, appointment.appointment_time, appointment.veterinary_address, appointment.appointment_id);
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Card(
+                                                  color: Color(0xffE6E6E6),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(10.0),
+                                                  ),
+                                                  child:
 
-                                              // note.pet_id==widget.pet!.pet_id!?
+                                                  // note.pet_id==widget.pet!.pet_id!?
 
-                                              Container(
-                                                height: 110,
-                                                width: FrameSize.screenWidth,
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(15.0),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
-                                                      // IconButton(
-                                                      //   icon: Icon(
-                                                      //     Icons.info_outline_rounded,
-                                                      //     color: AppColors.appThemeClr,
-                                                      //   ),
-                                                      //   onPressed: () {},
-                                                      // ),
-
-                                                      Column(
+                                                  Container(
+                                                    width: FrameSize.screenWidth,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(15.0),
+                                                      child: Row(
                                                         mainAxisAlignment:
-                                                        MainAxisAlignment.center,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        MainAxisAlignment.spaceBetween,
                                                         children: [
-                                                          Text(
-                                                            "Pet Name: ${appointment.pet_name}",
-                                                            style: TextStyle(
-                                                                color: AppColors.appThemeClr),
+                                                          // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+                                                          // IconButton(
+                                                          //   icon: Icon(
+                                                          //     Icons.info_outline_rounded,
+                                                          //     color: AppColors.appThemeClr,
+                                                          //   ),
+                                                          //   onPressed: () {},
+                                                          // ),
+
+                                                          Container(
+                                                            width: FrameSize.screenWidth/1.7,
+                                                            // color: Colors.red,
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                              MainAxisAlignment.center,
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              children: [
+                                                                Text(
+                                                                  "Pet Name: ${appointment.pet_name}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr),
+                                                                ),
+                                                                SizedBox(height: 5,),
+                                                                Text(
+                                                                  "Veterinary: ${appointment.veterinary_info}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr),
+                                                                  overflow: TextOverflow.ellipsis,
+
+                                                                ),
+
+                                                                SizedBox(height: 5,),
+
+                                                                Text(
+                                                                  "Veterinary Address: ${appointment.veterinary_address}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr),
+                                                                  overflow: TextOverflow.ellipsis,
+                                                                  maxLines: 1,
+                                                                ),
+
+                                                                SizedBox(height: 5,),
+
+
+                                                                Text(
+                                                                  "Date: ${appointment.appointment_date!} / ${appointment.appointment_time!}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr),
+                                                                ),
+
+
+
+
+                                                              ],
+                                                            ),
                                                           ),
-                                                          SizedBox(height: 5,),
-                                                          Text(
-                                                            "Veterinary: ${appointment.veterinary_info}",
-                                                            style: TextStyle(
-                                                                color: AppColors.appThemeClr),
+
+                                                          // Column(
+                                                          //   mainAxisAlignment:
+                                                          //   MainAxisAlignment.center,
+                                                          //   children: [
+                                                          //     Text("${nutrition.food_date}", style: TextStyle(
+                                                          //         color: AppColors.appThemeClr),),
+                                                          //     SizedBox(height: 5,),
+                                                          //
+                                                          //     Text("${nutrition.food_time}", style: TextStyle(
+                                                          //         color: AppColors.appThemeClr),),
+                                                          //
+                                                          //   ],
+                                                          // ),
+
+                                                          IconButton(
+                                                            icon: Icon(
+                                                              Icons.info_outline_rounded,
+                                                              color: AppColors.appThemeClr,
+                                                            ),
+                                                            onPressed: () {
+                                                              AlertDialogFunctions.infoAppointmentDetail(context, appointment.veterinary_info, appointment.pet_name, appointment.appointment_date, appointment.appointment_time, appointment.veterinary_address, appointment.appointment_id);
+
+                                                            },
                                                           ),
-
-                                                          SizedBox(height: 5,),
-
-                                                          Text(
-                                                            "Veterinary Address: ${appointment.veterinary_address}",
-                                                            style: TextStyle(
-                                                                color: AppColors.appThemeClr),
-                                                          ),
-
-                                                          SizedBox(height: 5,),
-
-
-                                                          Text(
-                                                            "Date: ${appointment.appointment_date!} / ${appointment.appointment_time!}",
-                                                            style: TextStyle(
-                                                                color: AppColors.appThemeClr),
-                                                          ),
-
-
-
-
                                                         ],
                                                       ),
-
-                                                      // Column(
-                                                      //   mainAxisAlignment:
-                                                      //   MainAxisAlignment.center,
-                                                      //   children: [
-                                                      //     Text("${nutrition.food_date}", style: TextStyle(
-                                                      //         color: AppColors.appThemeClr),),
-                                                      //     SizedBox(height: 5,),
-                                                      //
-                                                      //     Text("${nutrition.food_time}", style: TextStyle(
-                                                      //         color: AppColors.appThemeClr),),
-                                                      //
-                                                      //   ],
-                                                      // ),
-
-                                                      IconButton(
-                                                        icon: Icon(
-                                                          Icons.info_outline_rounded,
-                                                          color: AppColors.appThemeClr,
-                                                        ),
-                                                        onPressed: () {},
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            // :Container()
+                                                    ),
+                                                  )
+                                                // :Container()
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    );
-                                  }
+                                        );
+                                    }
 
 
 
-                              ),
-                            );
+                                ),
+                              );
+
+                            }else{
+                              return  Center(child: Text("There is no recorded data in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+
+                            }
+
 
                           } else {
-                            return Center();
+                            return BuildCircularIndicatorWidget();
                           }
                         },
 

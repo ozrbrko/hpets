@@ -27,7 +27,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const List<Widget> _widgetOptions = <Widget>[
     UserHomePage(),
     AppointmentPage(),
-    VaccinePage(),
+    // VaccinePage(),
     GuidePage(),
   ];
 
@@ -84,10 +84,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       icon: Icons.date_range_outlined,
                       text: 'Appointment',
                     ),
-                    GButton(
-                      icon: Icons.vaccines,
-                      text: 'Vaccine',
-                    ),
+                    // GButton(
+                    //   icon: Icons.vaccines,
+                    //   text: 'Vaccine',
+                    // ),
                     GButton(
                       icon: Icons.info_outline_rounded,
                       text: 'Guide',

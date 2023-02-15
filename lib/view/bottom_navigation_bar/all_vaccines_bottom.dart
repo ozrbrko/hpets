@@ -7,6 +7,9 @@ import '../../core/constants/fonts.dart';
 import '../../core/model/vaccines.dart';
 import '../../core/responsive/frame_size.dart';
 import '../../core/utils/alert_dialog.dart';
+import '../../core/utils/config.dart';
+// var allVaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child("all_vaccines").child(Config.token);
+var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("vaccines");
 
 class VaccinePage extends StatefulWidget {
   const VaccinePage({Key? key}) : super(key: key);
@@ -157,7 +160,9 @@ class _VaccinePageState extends State<VaccinePage> {
                                                         Icons.info_outline_rounded,
                                                         color: AppColors.appThemeClr,
                                                       ),
-                                                      onPressed: () {},
+                                                      onPressed: () {
+                                                        AlertDialogFunctions.infoVaccineDetail(context,vaccine.vaccine_name, vaccine.vaccine_date, vaccine.vaccine_time, vaccine.veterinary, vaccine.vaccine_id);                          // Navigator.pushNamed(context, "/petdetail");
+                                                      },
                                                     ),
                                                   ],
                                                 ),

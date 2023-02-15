@@ -5,6 +5,7 @@ import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/core/utils/alert_dialog.dart';
 import 'package:hpets/main.dart';
 import 'package:hpets/view/diseases/diseases_page.dart';
 import 'package:hpets/view/notes/notes_page.dart';
@@ -32,6 +33,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    Config.petKey = widget.pet!.pet_key!;
   }
 
   @override
@@ -48,13 +50,13 @@ class _PetDetailPageState extends State<PetDetailPage> {
           child: Column(
             children: [
               // cardContainerDetail(FrameSize.screenHeight,FrameSize.screenWidth),
-              SizedBox(height: 15,),
+              SizedBox(height: 0,),
 
               ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
 
                 child: Container(
-                  height: FrameSize.screenHeight/4,
+                  height: FrameSize.screenHeight/3.2,
                   width: FrameSize.screenWidth,
 
                   decoration: BoxDecoration(
@@ -87,7 +89,15 @@ class _PetDetailPageState extends State<PetDetailPage> {
                             SizedBox(height: 7,),
 
                             Text("Age",style: TextStyle(fontFamily: themeFontRegular),),
-                            Text("${widget.pet!.pet_age}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),)
+                            Text("${widget.pet!.pet_age}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
+                            SizedBox(height: 7,),
+
+                            TextButton(onPressed: (){
+                              // logger.i(widget.pet!.pet_key);
+                              // refPets.child(widget.pet!.pet_key!).remove();
+                              // Navigator.pushNamed(context, '/bottomnav');
+                              AlertDialogFunctions.deletePet(context);
+                            }, child: Text("Delete Pet",style: TextStyle(fontFamily: themeFontBold,fontSize: 15,color: Color(0xffEA4452)),))
                           ],
                         ),
 

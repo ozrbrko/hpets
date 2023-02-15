@@ -23,7 +23,9 @@ class AddNewVaccine extends StatefulWidget {
 class _AddNewVaccineState extends State<AddNewVaccine> {
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child("vaccines").child(Config.token);
+  var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("vaccines");
+  // var allVaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child("all_vaccines").child(Config.token);
+
   TextEditingController  vaccineNameInputController = TextEditingController();
   TextEditingController  veterinaryInfoInputController = TextEditingController();
   TextEditingController  vaccineDateInputController = TextEditingController();
@@ -185,5 +187,6 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
     info["pet_name"] = pet_name;
 
     vaccinesPets.push().set(info);
+    // allVaccinesPets.push().set(info);
   }
 }

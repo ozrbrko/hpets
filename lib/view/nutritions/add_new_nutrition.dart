@@ -26,8 +26,10 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(
       Config.token);
-  var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-      "nutritions").child(Config.token);
+  var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("nutritions");
+
+
+
   TextEditingController foodNameInputController = TextEditingController();
   TextEditingController amountFoodInputController = TextEditingController();
   TextEditingController foodDateInputController = TextEditingController();

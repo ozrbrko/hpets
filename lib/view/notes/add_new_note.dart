@@ -32,7 +32,7 @@ class AddNewNote extends StatefulWidget {
 class _AddNewNoteState extends State<AddNewNote> {
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var notePets = FirebaseDatabase.instance.ref().child("pets_table").child("notes").child(Config.token);
+  var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("notes");
 
   // var refPets = FirebaseDatabase.instance.ref().child("pets_table");
 

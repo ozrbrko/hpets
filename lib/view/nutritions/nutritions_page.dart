@@ -5,6 +5,7 @@ import 'package:hpets/core/model/nutritions.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/view/nutritions/add_new_nutrition.dart';
 
+import '../../core/components/build_circular_indicator.dart';
 import '../../core/components/widgets/cards.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
@@ -24,8 +25,8 @@ class _NutritionsPageState extends State<NutritionsPage> {
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(
       Config.token);
-  var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-      "nutritions").child(Config.token);
+  var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("nutritions");
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,17 +103,18 @@ class _NutritionsPageState extends State<NutritionsPage> {
                               });
                             }
 
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 58.0),
-                              child: ListView.builder(
+                            if(nutritionList.length!=0){
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 58.0),
+                                child: ListView.builder(
 
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemCount: nutritionList.length,
-                                itemBuilder: (context,indeks) {
-                                  var nutrition = nutritionList[indeks];
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: nutritionList.length,
+                                    itemBuilder: (context,indeks) {
+                                      var nutrition = nutritionList[indeks];
 
-                                  return nutrition.pet_id == widget.pet!.pet_id!?
+                                      return nutrition.pet_id == widget.pet!.pet_id!?
                                       GestureDetector(
                                         onTap: (){
 
@@ -121,7 +123,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                           logger.e(widget.pet!.pet_id!);
                                           logger.e(nutrition.food_id);
 
-                          // Navigator.pushNamed(context, "/petdetail");
+                                          // Navigator.pushNamed(context, "/petdetail");
                                           // Navigator.
                                           AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
 
@@ -155,34 +157,42 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                         //   onPressed: () {},
                                                         // ),
 
-                                                        Column(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment.center,
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                          children: [
-                                                            Text(
-                                                              "Food Name: ${nutrition.food_name}",
-                                                              style: TextStyle(
-                                                                  color: AppColors.appThemeClr),
-                                                            ),
-                                                            SizedBox(height: 5,),
-                                                            Text(
-                                                              "Amount: ${nutrition.amount_of_food}",
-                                                              style: TextStyle(
-                                                                  color: AppColors.appThemeClr),
-                                                            ),
+                                                        Container(
+                                                          width: FrameSize.screenWidth/1.5,
+                                                          // color: Colors.red,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text(
+                                                                overflow: TextOverflow.ellipsis,
 
-                                                            SizedBox(height: 5,),
+                                                                "Food Name: ${nutrition.food_name}",
+                                                                style: TextStyle(
+                                                                    color: AppColors.appThemeClr),
+                                                              ),
+                                                              SizedBox(height: 5,),
+                                                              Text(
+                                                                overflow: TextOverflow.ellipsis,
+
+                                                                "Amount: ${nutrition.amount_of_food}",
+                                                                style: TextStyle(
+                                                                    color: AppColors.appThemeClr),
+                                                              ),
+
+                                                              SizedBox(height: 5,),
 
 
-                                                            Text(
-                                                              "Date: ${nutrition.food_date!} / ${nutrition.food_time!}",
-                                                              style: TextStyle(
-                                                                  color: AppColors.appThemeClr),
-                                                            ),
+                                                              Text(
+                                                                "Date: ${nutrition.food_date!} / ${nutrition.food_time!}",
+                                                                style: TextStyle(
+                                                                    color: AppColors.appThemeClr),
+                                                              ),
 
 
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
 
                                                         // Column(
@@ -204,7 +214,10 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                             Icons.info_outline_rounded,
                                                             color: AppColors.appThemeClr,
                                                           ),
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
+
+                                                          },
                                                         ),
                                                       ],
                                                     ),
@@ -215,16 +228,21 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                           ],
                                         ),
                                       ): Container();
-                                }
+                                    }
 
 
 
-                              ),
-                            );
+                                ),
+                              );
+
+                            }else{
+                              return  Center(child: Text("There is no recorded data in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+
+                            }
+
 
                           } else {
-                            return Center();
-                          }
+                            return BuildCircularIndicatorWidget();                          }
                         },
 
                       ),

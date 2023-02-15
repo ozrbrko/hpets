@@ -9,6 +9,7 @@ import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/view/bottom_navigation_bar/all_vaccines_bottom.dart';
 import '../../main.dart';
 import '../constants/colors.dart';
 import 'config.dart';
@@ -48,18 +49,15 @@ TextEditingController appointmentAddressInputController = TextEditingController(
 
 var refPets =
 FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-var notePets = FirebaseDatabase.instance
-    .ref()
-    .child("pets_table")
-    .child("notes")
-    .child(Config.token);
+var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("notes");
 
-var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child("vaccines").child(Config.token);
-var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child("diseases").child(Config.token);
-var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-    "nutritions").child(Config.token);
-var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-    "appointments").child(Config.token);
+
+var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("vaccines");
+var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
+var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("nutritions");
+
+var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(
+    "appointments");
 final _formKey = GlobalKey<FormState>();
 
 class AlertDialogFunctions {
@@ -170,6 +168,114 @@ class AlertDialogFunctions {
           );
         });
   }
+
+  static Object deletePet(BuildContext context) {
+    const storage = FlutterSecureStorage();
+
+    mailInputController.clear();
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Delete Pet",
+                              style: TextStyle(
+                                  fontFamily: themeFontBold, fontSize: 19),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(Icons.close)),
+                          ],
+                        ),
+
+                        Divider(
+                          endIndent: 0,
+                          indent: 0,
+                        ),
+                        // const Divider(
+                        //   height: 15,
+                        //   thickness: 0.5,
+                        //   indent: 0,
+                        //   endIndent: 0,
+                        //   color: appThemeClr,
+                        // ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Are you sure you want to delete?",
+                          style: TextStyle(
+                              fontSize: 14, fontFamily: themeFontRegular),
+                        ),
+                        SizedBox(
+                          height: 35,
+                        ),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: FrameSize.screenHeight / 14,
+                                  child: hPetsElevatedButton(
+                                      "No",
+                                      AppColors.appThemeClr,
+                                      40,
+                                      themeFontSemiBold,
+                                          () =>
+                                      {
+                                        Navigator.pop(context),
+                                      })),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: FrameSize.screenHeight / 14,
+                                  child: hPetsElevatedButton(
+                                      "Yes",
+                                      AppColors.redThemeClr,
+                                      40,
+                                      themeFontSemiBold,
+                                          () async =>
+                                      {
+                                          logger.i(Config.petKey),
+                                          refPets.child(Config.petKey).remove(),
+                                          Navigator.pushNamed(context, '/bottomnav'),
+                                      })),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
 
   static Future forgotPassword(BuildContext context) {
     mailInputController.clear();
@@ -775,6 +881,8 @@ class AlertDialogFunctions {
                                       if (_formKey.currentState!.validate())
                                         {
                                           print("Validated"),
+                                          vaccinesPets.child(vaccine_id!)
+                                              .remove(),
                                           vaccinesPets.child(vaccine_id!)
                                               .remove(),
                                           Navigator.pop(context),
@@ -1578,6 +1686,8 @@ class AlertDialogFunctions {
     logger.i(vaccine_date);
     logger.i(vaccine_id);
     vaccinesPets.child(vaccine_id).update(infoVacc);
+    // allVaccinesPets.child(vaccine_id).update(infoVacc);
+
   }
 
 }

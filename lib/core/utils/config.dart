@@ -15,6 +15,8 @@ class Config {
   static String token = '';
   static String displayName = '';
   static String key ="";
+  static String petKey ="";
+
   static String notTitle= "";
   static String notContent= "";
   static String formattedTime= "";

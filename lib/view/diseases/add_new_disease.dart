@@ -23,7 +23,8 @@ class AddNewDisease extends StatefulWidget {
 class _AddNewDiseaseState extends State<AddNewDisease> {
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child("diseases").child(Config.token);
+  var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
+
   TextEditingController  diseaseNameInputController = TextEditingController();
   TextEditingController  diseaseContentInputController = TextEditingController();
   TextEditingController  diseaseDateInputController = TextEditingController();

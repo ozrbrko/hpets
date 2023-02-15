@@ -6,6 +6,7 @@ import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 import 'package:hpets/view/notes/add_new_note.dart';
+import '../../core/components/build_circular_indicator.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
 import '../../core/model/notes.dart';
@@ -28,7 +29,7 @@ class _NotesPageState extends State<NotesPage> {
     super.initState();
   }
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var notePets = FirebaseDatabase.instance.ref().child("pets_table").child("notes").child(Config.token);
+  var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("notes");
 
 
   @override
@@ -99,101 +100,118 @@ class _NotesPageState extends State<NotesPage> {
                               // Config.key = key;
                             });
                           }
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 58.0),
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: noteList.length,
-                              itemBuilder: (context, indeks) {
-                                var note = noteList[indeks];
+
+                          if(noteList.length!=0){
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 58.0),
+                              child: ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: noteList.length,
+                                itemBuilder: (context, indeks) {
+                                  var note = noteList[indeks];
 
 
-                                return
-                                  note.pet_id==widget.pet!.pet_id!?
+                                  return
+                                    note.pet_id==widget.pet!.pet_id!?
 
-                                  GestureDetector(
-                                  onTap: () {
+                                    GestureDetector(
+                                      onTap: () {
 
-                                    logger.i("{${noteList[indeks].note_time.toString()} tıklandı");
-                                    logger.e(note.pet_id);
-                                    logger.e(widget.pet!.pet_id!);
-                                    logger.e(note.note_id);
-
-
-                                    AlertDialogFunctions.infoNoteDetail(context,note.note_title,note.note_content,indeks,note.note_id);
+                                        logger.i("{${noteList[indeks].note_time.toString()} tıklandı");
+                                        logger.e(note.pet_id);
+                                        logger.e(widget.pet!.pet_id!);
+                                        logger.e(note.note_id);
 
 
-                                    // Navigator.pushNamed(context, "/petdetail");
-                                    // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
-                                  },
-                                  child: Column(
-                                    children: [
-                                      Card(
-                                        color: Color(0xffE6E6E6),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                        ),
-                                        child:
-
-                                    // note.pet_id==widget.pet!.pet_id!?
-
-                                Container(
-                                          height: 74,
-                                          width: FrameSize.screenWidth,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(15.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+                                        AlertDialogFunctions.infoNoteDetail(context,note.note_title,note.note_content,indeks,note.note_id);
 
 
-                                                Center(
-                                                  child: Column(
+                                        // Navigator.pushNamed(context, "/petdetail");
+                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Card(
+                                              color: Color(0xffE6E6E6),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                              child:
+
+                                              // note.pet_id==widget.pet!.pet_id!?
+
+                                              Container(
+                                                height: 74,
+                                                width: FrameSize.screenWidth,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(15.0),
+                                                  child: Row(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      Text(
-                                                        note.note_title!,
-                                                        style: TextStyle(
-                                                            color: AppColors.appThemeClr),
-                                                      ),
-                                                      SizedBox(height: 5,),
+                                                      // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
 
-                                                      Text(
-                                                        note.note_content!,
-                                                        style: TextStyle(
-                                                            color: AppColors.appThemeClr),
+
+                                                      Center(
+                                                        child: Container(
+                                                          width: FrameSize.screenWidth/1.5,
+                                                          // color:Colors.red,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text(
+                                                                overflow: TextOverflow.ellipsis,
+
+                                                                note.note_title!,
+                                                                style: TextStyle(
+                                                                    color: AppColors.appThemeClr),
+                                                              ),
+                                                              SizedBox(height: 5,),
+
+                                                              Text(
+                                                                overflow: TextOverflow.ellipsis,
+
+                                                                note.note_content!,
+                                                                style: TextStyle(
+                                                                    color: AppColors.appThemeClr),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      IconButton(
+                                                        icon: Icon(
+                                                          Icons.info_outline_rounded,
+                                                          color: AppColors.appThemeClr,
+                                                        ),
+                                                        onPressed: () {
+                                                          AlertDialogFunctions.infoNoteDetail(context,note.note_title,note.note_content,indeks,note.note_id);
+
+                                                        },
                                                       ),
                                                     ],
                                                   ),
                                                 ),
-                                                IconButton(
-                                                  icon: Icon(
-                                                    Icons.info_outline_rounded,
-                                                    color: AppColors.appThemeClr,
-                                                  ),
-                                                  onPressed: () {},
-                                                ),
-                                              ],
-                                            ),
+                                              )
+                                            // :Container()
                                           ),
-                                        )
-                                        // :Container()
-                                      ),
 
-                                    ],
-                                  ),
-                                ): Container();
-                              },
-                            ),
-                          );
+                                        ],
+                                      ),
+                                    ): Container();
+                                },
+                              ),
+                            );
+
+                          }else{
+                            return  Center(child: Text("There is no recorded data in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+
+                          }
                         } else {
-                          return Center();
-                        }
+                          return BuildCircularIndicatorWidget();                        }
                       },
                     ),
                   ),

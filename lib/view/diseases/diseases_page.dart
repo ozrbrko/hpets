@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/diseases.dart';
 
+import '../../core/components/build_circular_indicator.dart';
 import '../../core/components/widgets/cards.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
@@ -31,7 +32,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
   }
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child("diseases").child(Config.token);
+  var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
 
 
 
@@ -108,106 +109,126 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                 // Config.key = key;
                               });
                             }
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 58.0),
-                              child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemCount: diseaseList.length,
-                                itemBuilder: (context, indeks) {
-                                  var disease = diseaseList[indeks];
+
+                            if(diseaseList.length!=0){
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 58.0),
+                                child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount: diseaseList.length,
+                                  itemBuilder: (context, indeks) {
+                                    var disease = diseaseList[indeks];
 
 
-                                  return
-                                    disease.pet_id==widget.pet!.pet_id!?
+                                    return
+                                      disease.pet_id==widget.pet!.pet_id!?
 
-                                    GestureDetector(
-                                      onTap: () {
+                                      GestureDetector(
+                                        onTap: () {
 
-                                        logger.i("{${diseaseList[indeks].disease_content.toString()} tıklandı");
-                                        logger.e(disease.pet_id);
-                                        logger.e(widget.pet!.pet_id!);
-                                        logger.e(disease.disease_id);
-
-
-                                        AlertDialogFunctions.infoDiseaseDetail(context,disease.disease_title, disease.disease_date, disease.disease_time, disease.disease_content, disease.disease_id);                          // Navigator.pushNamed(context, "/petdetail");
-                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Card(
-                                              color: Color(0xffE6E6E6),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                              ),
-                                              child:
-
-                                              // note.pet_id==widget.pet!.pet_id!?
-
-                                              Container(
-                                                height: 100,
-                                                width: FrameSize.screenWidth,
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(15.0),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+                                          logger.i("{${diseaseList[indeks].disease_content.toString()} tıklandı");
+                                          logger.e(disease.pet_id);
+                                          logger.e(widget.pet!.pet_id!);
+                                          logger.e(disease.disease_id);
 
 
-                                                      Center(
-                                                        child: Column(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment.center,
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                          children: [
-                                                            Text(
-                                                              "Disease Name: ${disease.disease_title}",
-                                                              style: TextStyle(
-                                                                  color: AppColors.appThemeClr),
-                                                            ),
-                                                            SizedBox(height: 5,),
-                                                            Text(
-                                                              "Content: ${disease.disease_content}",
-                                                              style: TextStyle(
-                                                                  color: AppColors.appThemeClr),
-                                                            ),
-                                                            SizedBox(height: 5,),
-
-                                                            Text(
-                                                              "Date: ${disease.disease_date!} / ${disease.disease_time!}",
-                                                              style: TextStyle(
-                                                                  color: AppColors.appThemeClr),
-                                                            ),
-                                                            SizedBox(height: 5,),
-
-
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      IconButton(
-                                                        icon: Icon(
-                                                          Icons.info_outline_rounded,
-                                                          color: AppColors.appThemeClr,
-                                                        ),
-                                                        onPressed: () {},
-                                                      ),
-                                                    ],
-                                                  ),
+                                          AlertDialogFunctions.infoDiseaseDetail(context,disease.disease_title, disease.disease_date, disease.disease_time, disease.disease_content, disease.disease_id);                          // Navigator.pushNamed(context, "/petdetail");
+                                          // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Card(
+                                                color: Color(0xffE6E6E6),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(10.0),
                                                 ),
-                                              )
-                                            // :Container()
-                                          ),
+                                                child:
 
-                                        ],
-                                      ),
-                                    ): Container();
-                                },
-                              ),
-                            );
+                                                // note.pet_id==widget.pet!.pet_id!?
+
+                                                Container(
+                                                  height: 100,
+                                                  width: FrameSize.screenWidth,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(15.0),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+
+
+                                                        Center(
+                                                          child: Container(
+                                                            width: FrameSize.screenWidth/1.5,
+                                                            // color: Colors.red,
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                              MainAxisAlignment.center,
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              children: [
+                                                                Text(
+                                                                  overflow: TextOverflow.ellipsis,
+
+                                                                  "Disease Name: ${disease.disease_title}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr),
+                                                                ),
+                                                                SizedBox(height: 5,),
+                                                                Text(
+                                                                  overflow: TextOverflow.ellipsis,
+
+                                                                  "Content: ${disease.disease_content}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr),
+                                                                ),
+                                                                SizedBox(height: 5,),
+
+                                                                Text(
+                                                                  "Date: ${disease.disease_date!} / ${disease.disease_time!}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr),
+                                                                ),
+                                                                SizedBox(height: 5,),
+
+
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        IconButton(
+                                                          icon: Icon(
+                                                            Icons.info_outline_rounded,
+                                                            color: AppColors.appThemeClr,
+                                                          ),
+                                                          onPressed: () {
+                                                            AlertDialogFunctions.infoDiseaseDetail(context,disease.disease_title, disease.disease_date, disease.disease_time, disease.disease_content, disease.disease_id);                          // Navigator.pushNamed(context, "/petdetail");
+
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )
+                                              // :Container()
+                                            ),
+
+                                          ],
+                                        ),
+                                      ): Container();
+                                  },
+                                ),
+                              );
+
+                            }else{
+                              return  Center(child: Text("There is no recorded data in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+
+                            }
+
+
                           } else {
-                            return Center();
+                            return BuildCircularIndicatorWidget();
                           }
                         },
                       ),
