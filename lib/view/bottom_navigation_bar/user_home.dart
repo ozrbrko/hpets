@@ -197,7 +197,7 @@ class _UserHomePageState extends State<UserHomePage> {
                               ),
                             );
                           } else{
-                            return  Center(child: Text("There is no recorded data in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+                            return  Center(child: Text("There is no data stored in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
 
 
 
