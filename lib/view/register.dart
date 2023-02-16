@@ -82,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: FrameSize.screenHeight / 14,
                       child: hPetsElevatedButton(
                           "Register",
-                          AppColors.appThemeClr,
+                          AppColors.appThemeClr,AppColors.whiteThemeClr,
                           40.0,
                           themeFontBold,
                               () => {

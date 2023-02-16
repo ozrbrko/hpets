@@ -151,7 +151,7 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
                       child: hPetsElevatedButton(
-                          "Save", AppColors.appThemeClr, 40, themeFontBold, () {
+                          "Save", AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
                         if (_formKey.currentState!.validate()) {
                           print("Validated");
                           var foodName = foodNameInputController.text;

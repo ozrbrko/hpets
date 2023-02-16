@@ -213,7 +213,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
                       child: hPetsElevatedButton(
-                          "Save", AppColors.appThemeClr, 40, themeFontBold, () {
+                          "Save", AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
                         if (_formKey.currentState!.validate()) {
                           print("Validated");
                           var veterinaryInfo = veterinaryInfoInputController.text;

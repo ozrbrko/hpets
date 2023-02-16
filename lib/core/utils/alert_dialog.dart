@@ -127,7 +127,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "No",
-                                      AppColors.appThemeClr,
+                                      AppColors.appThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () =>
@@ -144,7 +144,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "Yes",
-                                      AppColors.redThemeClr,
+                                      AppColors.redThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () async =>
@@ -235,7 +235,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "No",
-                                      AppColors.appThemeClr,
+                                      AppColors.appThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () =>
@@ -252,7 +252,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "Yes",
-                                      AppColors.redThemeClr,
+                                      AppColors.redThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () async =>
@@ -331,7 +331,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Send Email",
-                                    AppColors.appThemeClr,
+                                    AppColors.appThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -433,7 +433,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Send Email",
-                                    AppColors.appThemeClr,
+                                    AppColors.appThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -502,7 +502,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Login",
-                                    AppColors.appThemeClr,
+                                    AppColors.appThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -585,7 +585,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Send",
-                                    AppColors.appThemeClr,
+                                    AppColors.appThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -672,7 +672,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Delete",
-                                    AppColors.redThemeClr,
+                                    AppColors.redThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -699,7 +699,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "Update",
-                                      AppColors.appThemeClr,
+                                      AppColors.appThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () =>
@@ -871,7 +871,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Delete",
-                                    AppColors.redThemeClr,
+                                    AppColors.redThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -901,7 +901,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "Update",
-                                      AppColors.appThemeClr,
+                                      AppColors.appThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () =>
@@ -1079,7 +1079,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Delete",
-                                    AppColors.redThemeClr,
+                                    AppColors.redThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -1107,7 +1107,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "Update",
-                                      AppColors.appThemeClr,
+                                      AppColors.appThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () =>
@@ -1342,7 +1342,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Delete",
-                                    AppColors.redThemeClr,
+                                    AppColors.redThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -1370,7 +1370,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "Update",
-                                      AppColors.appThemeClr,
+                                      AppColors.appThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () =>
@@ -1547,7 +1547,7 @@ class AlertDialogFunctions {
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
                                     "Delete",
-                                    AppColors.redThemeClr,
+                                    AppColors.redThemeClr,AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
                                         () =>
@@ -1575,7 +1575,7 @@ class AlertDialogFunctions {
                                   height: FrameSize.screenHeight / 14,
                                   child: hPetsElevatedButton(
                                       "Update",
-                                      AppColors.appThemeClr,
+                                      AppColors.appThemeClr,AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
                                           () =>

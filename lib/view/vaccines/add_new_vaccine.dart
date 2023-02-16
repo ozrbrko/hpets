@@ -135,7 +135,7 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
                     SizedBox(
                         width: FrameSize.screenWidth,
                         height: FrameSize.screenHeight / 14,
-                        child: hPetsElevatedButton("Save", AppColors.appThemeClr, 40, themeFontBold, () {
+                        child: hPetsElevatedButton("Save", AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
 
                           if (_formKey.currentState!.validate())
                           {

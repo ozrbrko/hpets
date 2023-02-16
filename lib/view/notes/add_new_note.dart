@@ -102,7 +102,7 @@ class _AddNewNoteState extends State<AddNewNote> {
                             height: FrameSize.screenHeight/ 14,
                             child: hPetsElevatedButton(
                                 "Save",
-                                AppColors.appThemeClr,
+                                AppColors.appThemeClr,AppColors.whiteThemeClr,
                                 40,
                                 themeFontSemiBold,
                                     () => {
