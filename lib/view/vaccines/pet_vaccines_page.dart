@@ -153,7 +153,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
 
                                                         Center(
                                                           child: Container(
-                                                            width: FrameSize.screenWidth/1.5,
+                                                            width: FrameSize.screenWidth/1.55,
                                                             // color:Colors.red,
                                                             child: Column(
                                                               mainAxisAlignment:

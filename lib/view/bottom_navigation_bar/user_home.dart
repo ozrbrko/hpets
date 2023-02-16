@@ -150,7 +150,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                                   Center(
                                                     child: Container(
                                                       // color: Colors.red,
-                                                      width: FrameSize.screenWidth/1.8,
+                                                      width: FrameSize.screenWidth/1.9,
                                                       child: Column(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment.center,

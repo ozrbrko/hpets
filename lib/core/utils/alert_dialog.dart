@@ -9,7 +9,6 @@ import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
-import 'package:hpets/view/bottom_navigation_bar/all_vaccines_bottom.dart';
 import '../../main.dart';
 import '../constants/colors.dart';
 import 'config.dart';
@@ -55,9 +54,8 @@ var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.
 var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("vaccines");
 var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
 var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("nutritions");
-
-var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(
-    "appointments");
+var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child(
+    "appointments").child(Config.token);
 final _formKey = GlobalKey<FormState>();
 
 class AlertDialogFunctions {

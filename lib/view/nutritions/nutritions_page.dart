@@ -158,7 +158,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                         // ),
 
                                                         Container(
-                                                          width: FrameSize.screenWidth/1.5,
+                                                          width: FrameSize.screenWidth/1.6,
                                                           // color: Colors.red,
                                                           child: Column(
                                                             mainAxisAlignment:

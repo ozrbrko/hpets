@@ -29,6 +29,9 @@ dependencies:
   rounded_expansion_tile: ^0.0.13
   permission_handler: ^10.2.0
   intl: ^0.18.0
+  firebase_messaging: ^14.2.2
+  http: ^0.13.5
+  google_sign_in: ^5.4.4
 
 dev_dependencies:
   flutter_test:

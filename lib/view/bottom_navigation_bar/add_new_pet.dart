@@ -201,7 +201,7 @@ class _AddNewPetState extends State<AddNewPet> {
                   hPetsTextFormField("Race", petRaceInputController, "Race is required !", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
-                  hPetsTextFormField("Age", petAgeInputController, "Age is required !", TextInputType.text, false, "false"),
+                  hPetsTextFormField("Age", petAgeInputController, "Age is required !", TextInputType.number, false, "false"),
 
 
                   // hPetsTextFormField("Birthdate", petBirthdateInputController, "required", TextInputType.text, false, "false"),
