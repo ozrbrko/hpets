@@ -62,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  SizedBox(height: 90,),
+                  SizedBox(height: 80,),
                   Text("lets_go".tr,style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                   Text("fill_details".tr,style: TextStyle(fontSize: 16,fontFamily: themeFontSemiBold,color: AppColors.blackThemeClr),),
 

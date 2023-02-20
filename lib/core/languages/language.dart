@@ -109,7 +109,7 @@ class Languages extends Translations {
           'update': "Update",
           'new_vaccine': "New Vaccine",
           'appointments': "Appointments",
-          '_nutritions': "Nutritions",
+          '_nutritions': " Nutritions",
           'address': "Address:",
           'new_appointment': "New Appointment",
           'pet_required': "     Please Select Pet !",

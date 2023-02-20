@@ -40,176 +40,171 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            SizedBox(height: 80),
-                            Center(
-                              child: SizedBox(
-                                  width: 130,
-                                  child: Image.asset(Images.logo_hpets)),
-                            ),
-                            Text(
-                              'welcome'.tr,
-                              style: TextStyle(
-                                  fontSize: 28, fontFamily: themeFontMedium),
-                            ),
-                            SizedBox(height: 40),
-                            // Text("Email",style: TextStyle(fontFamily: themeFontMedium),),
-                            hPetsTextFormField(
-                                'email'.tr,
-                                loginInputController,
-                                'email_required'.tr,
-                                TextInputType.text,
-                                false,
-                                "mail"),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            hPetsTextFormField(
-                                'password'.tr,
-                                passwordInputController,
-                                'password_required'.tr,
-                                TextInputType.text,
-                                true,
-                                "password"),
-                            SizedBox(height: 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          SizedBox(height: FrameSize.screenHeight/13),
+                          Center(
+                            child: SizedBox(
+                                width: 130,
+                                child: Image.asset(Images.logo_hpets)),
+                          ),
+                          Text(
+                            'welcome'.tr,
+                            style: TextStyle(
+                                fontSize: 28, fontFamily: themeFontMedium),
+                          ),
+                          SizedBox(height: 40),
+                          // Text("Email",style: TextStyle(fontFamily: themeFontMedium),),
+                          hPetsTextFormField(
+                              'email'.tr,
+                              loginInputController,
+                              'email_required'.tr,
+                              TextInputType.text,
+                              false,
+                              "mail"),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          hPetsTextFormField(
+                              'password'.tr,
+                              passwordInputController,
+                              'password_required'.tr,
+                              TextInputType.text,
+                              true,
+                              "password"),
+                          SizedBox(height: 40),
 
-                            SizedBox(
-                                width: FrameSize.screenWidth,
-                                height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    'login'.tr,
-                                    AppColors.appThemeClr,AppColors.whiteThemeClr,
-                                    40.0,
-                                    themeFontRegular,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              _authService
-                                                  .logIn(
-                                                      loginInputController.text,
-                                                      passwordInputController
-                                                          .text,
-                                                      context)
-                                                  .then((value) {
-                                                logger.e("döndü ${value}");
-                                                Config.token = value!.uid;
-                                                Config.secureStorage
-                                                    .savePreferences(value!.uid);
-                                                logger.i("token ${Config.token}");
-                                                // if(value!.uid!=null){
-                                                //   FirebaseDatabase.instance.ref().child("users").child(value.uid).set(
-                                                //       {"name": value.displayName,
-                                                //        "email": value.email});
-                                                // }
-
-                                                Navigator.of(context)
-                                                    .pushReplacementNamed(
-                                                        '/bottomnav');
-                                              }).catchError((error) => {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          content: Text(
-                                                              "mail_or_password_wrong".tr),
-                                                        ))
-                                                      }),
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        })),
-                            SizedBox(height: 10),
-
-                            SizedBox(
+                          SizedBox(
                               width: FrameSize.screenWidth,
                               height: FrameSize.screenHeight / 14,
-                              child: hPetsElevatedButtonwithLogo(
-                                  'login_with_google'.tr,
-                                  AppColors.redDarkThemeClr, AppColors.whiteThemeClr,
-                                  40,
-                                  themeFontRegular, () async {
-                               var data = await GoogleSignHelper.instance.signIn();
-                               if(data!=null){
-                                var userData = await GoogleSignHelper.instance.firebaseSignIn().then((value) {
+                              child: hPetsElevatedButton(
+                                  'login'.tr,
+                                  AppColors.appThemeClr,AppColors.whiteThemeClr,
+                                  40.0,
+                                  themeFontRegular,
+                                  () => {
+                                        if (_formKey.currentState!.validate())
+                                          {
+                                            print("Validated"),
+                                            _authService
+                                                .logIn(
+                                                    loginInputController.text,
+                                                    passwordInputController
+                                                        .text,
+                                                    context)
+                                                .then((value) {
+                                              logger.e("döndü ${value}");
+                                              Config.token = value!.uid;
+                                              Config.secureStorage
+                                                  .savePreferences(value!.uid);
+                                              logger.i("token ${Config.token}");
+                                              // if(value!.uid!=null){
+                                              //   FirebaseDatabase.instance.ref().child("users").child(value.uid).set(
+                                              //       {"name": value.displayName,
+                                              //        "email": value.email});
+                                              // }
 
-                                  logger.e("döndü ${value}");
-                                  Config.token = value!.uid;
-                                  Config.secureStorage
-                                      .savePreferences(value!.uid);
-                                  logger.i("token ${Config.token}");
-                                  Navigator.of(context)
-                                      .pushReplacementNamed(
-                                      '/bottomnav');
-                                });
-                                // print("access: ${userData.accessToken}");
-                                // print("id: ${userData.idToken}");
-                               }
-                              }),
-                            ),
+                                              Navigator.of(context)
+                                                  .pushReplacementNamed(
+                                                      '/bottomnav');
+                                            }).catchError((error) => {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                              SnackBar(
+                                                        content: Text(
+                                                            "mail_or_password_wrong".tr),
+                                                      ))
+                                                    }),
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
+                          SizedBox(height: 10),
 
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    AlertDialogFunctions.forgotPassword(context);
-                                    logger.e("Forgot Password tıklandı.");
-                                  },
-                                  child: Container(
-                                    height: 30,
-                                    color: AppColors.whiteThemeClr,
-                                    child: Text(
-                                      "forgot_password".tr,
-                                      style: TextStyle(
-                                          color: AppColors.appThemeClr,
-                                          fontFamily: themeFontMedium,
-                                          fontSize: 15),
-                                    ),
+                          SizedBox(
+                            width: FrameSize.screenWidth,
+                            height: FrameSize.screenHeight / 14,
+                            child: hPetsElevatedButtonwithLogo(
+                                'login_with_google'.tr,
+                                AppColors.redDarkThemeClr, AppColors.whiteThemeClr,
+                                40,
+                                themeFontRegular, () async {
+                             var data = await GoogleSignHelper.instance.signIn();
+                             if(data!=null){
+                              var userData = await GoogleSignHelper.instance.firebaseSignIn().then((value) {
+
+                                logger.e("döndü ${value}");
+                                Config.token = value!.uid;
+                                Config.secureStorage
+                                    .savePreferences(value!.uid);
+                                logger.i("token ${Config.token}");
+                                Navigator.of(context)
+                                    .pushReplacementNamed(
+                                    '/bottomnav');
+                              });
+                              // print("access: ${userData.accessToken}");
+                              // print("id: ${userData.idToken}");
+                             }
+                            }),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  AlertDialogFunctions.forgotPassword(context);
+                                  logger.e("Forgot Password tıklandı.");
+                                },
+                                child: Container(
+                                  height: 30,
+                                  color: AppColors.whiteThemeClr,
+                                  child: Text(
+                                    "forgot_password".tr,
+                                    style: TextStyle(
+                                        color: AppColors.appThemeClr,
+                                        fontFamily: themeFontMedium,
+                                        fontSize: 15),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(1.0),
-                        child: RichText(
-                          text: TextSpan(children: <TextSpan>[
-                            TextSpan(
-                                text: "dont_have_account".tr,
-                                style: TextStyle(
-                                    color: AppColors.appThemeClr,
-                                    fontFamily: themeFontMedium,
-                                    fontSize: 16)),
-                            TextSpan(
-                                text: "register".tr,
-                                style: TextStyle(
-                                    color: AppColors.redThemeClr,
-                                    fontFamily: themeFontMedium,
-                                    fontSize: 16),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () async {
-                                    Navigator.pushNamed(context, '/register');
+                    ),
+                    RichText(
+                      text: TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: "dont_have_account".tr,
+                            style: TextStyle(
+                                color: AppColors.appThemeClr,
+                                fontFamily: themeFontMedium,
+                                fontSize: 16)),
+                        TextSpan(
+                            text: "register".tr,
+                            style: TextStyle(
+                                color: AppColors.redThemeClr,
+                                fontFamily: themeFontMedium,
+                                fontSize: 16),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                Navigator.pushNamed(context, '/register');
 
-                                    logger.i("Register tıklandı.");
-                                  }),
-                          ]),
-                        ),
-                      ),
-                    ],
-                  ),
+                                logger.i("Register tıklandı.");
+                              }),
+                      ]),
+                    ),
+                  ],
                 ),
               ),
             ),

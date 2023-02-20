@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
+import 'package:hpets/main.dart';
 
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
@@ -26,6 +27,12 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
   var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child(
       "appointments").child(Config.token);
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    logger.e(Config.languageValue);
+  }
 
   TextEditingController veterinaryInfoInputController = TextEditingController();
   TextEditingController petNameInputController = TextEditingController();
@@ -151,6 +158,11 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                       FocusScope.of(context).requestFocus(new FocusNode());
 
                       date = (await showDatePicker(
+
+                          // locale: const Locale("tr", "TR"),
+                          locale:  Locale("${Config.languageValue.toString().toLowerCase()}", "${Config.languageValue.toString().toUpperCase()}"),
+                          // pet_type=="dog"? "assets/images/guide_image_1.png" : pet_type=="cat"
+
                           context: context,
                           initialDate: DateTime.now(),
                           firstDate: DateTime(1900),
@@ -183,6 +195,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                     onTap: () {
                       FocusScope.of(context).requestFocus(new FocusNode());
                       showTimePicker(
+
                         context: context,
                         initialTime: TimeOfDay.now(),
                       ).then((value) {

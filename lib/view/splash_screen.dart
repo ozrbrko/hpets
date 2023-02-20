@@ -57,22 +57,24 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: FrameSize.screenHeight,
         width: FrameSize.screenWidth,
-        color: AppColors.whiteThemeClr,
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(
-            children: [
-              SizedBox(height: 180),
-              Image.asset(Images.logo_hpets),
-              Text(
-                "hPETS",
-                style: TextStyle(
-                  fontFamily: themeFontMedium,
-                  fontSize: 32,
-                ),
-              )
-            ],
-          ),
+        color: AppColors.blackThemeClr,
+        child: Column(
+
+          mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+
+
+          children: [
+            // SizedBox(height: 180),
+            Image.asset(Images.logo_hpets),
+            // Text(
+            //   "hPETS",
+            //   style: TextStyle(
+            //     fontFamily: themeFontMedium,
+            //     fontSize: 32,
+            //   ),
+            // )
+          ],
         ),
       ),
     );

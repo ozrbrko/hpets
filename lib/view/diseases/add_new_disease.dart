@@ -89,6 +89,8 @@ class _AddNewDiseaseState extends State<AddNewDisease> {
                         FocusScope.of(context).requestFocus(new FocusNode());
 
                         date = (await showDatePicker(
+                            locale:  Locale("${Config.languageValue.toString().toLowerCase()}", "${Config.languageValue.toString().toUpperCase()}"),
+
                             context: context,
                             initialDate:DateTime.now(),
                             firstDate:DateTime(1900),

@@ -33,7 +33,7 @@
 
 
    <application
-        android:label="hpets"
+        android:label="hPETS"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
