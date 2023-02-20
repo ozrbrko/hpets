@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/cards.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/pets.dart';
@@ -35,6 +36,8 @@ class _NotesPageState extends State<NotesPage> {
   @override
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
+    String lower_pet_type = widget.pet!.pet_type!.toLowerCase();
+    String lower_pet_gender =widget.pet!.pet_gender!.toLowerCase();
     return Scaffold(
       appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
       body: Container(
@@ -53,8 +56,8 @@ class _NotesPageState extends State<NotesPage> {
                     child: cardContainerDetail(
                         FrameSize.screenHeight,
                         FrameSize.screenWidth,
-                        widget.pet!.pet_type!,
-                        widget.pet!.pet_gender!,
+                        lower_pet_type,
+                        lower_pet_gender,
                         widget.pet!.pet_age!,
                         widget.pet!.pet_name!)),
 
@@ -64,11 +67,24 @@ class _NotesPageState extends State<NotesPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "${widget.pet!.pet_name!}'s Notes",
-                      style: TextStyle(
-                          fontFamily: themeFontSemiBold, fontSize: 22),
+
+                    RichText(
+                      text: TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: widget.pet!.pet_name,
+                            style: TextStyle(
+                                fontFamily: themeFontSemiBold,
+                                fontSize: 22,color: AppColors.blackThemeClr)),
+                        TextSpan(
+                          text: "_notes".tr,
+                          style: TextStyle(
+                              fontFamily: themeFontSemiBold,
+                              fontSize: 22,color: AppColors.blackThemeClr),
+
+                        ),
+                      ]),
                     ),
+
                     GestureDetector(
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewNote(pet: widget.pet)));
@@ -162,22 +178,42 @@ class _NotesPageState extends State<NotesPage> {
                                                             MainAxisAlignment.center,
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              Text(
-                                                                overflow: TextOverflow.ellipsis,
 
-                                                                note.note_title!,
-                                                                style: TextStyle(
-                                                                    color: AppColors.appThemeClr),
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "title".tr,
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr)),
+                                                                  TextSpan(
+                                                                    text: " ${note.note_title!}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr),
+
+                                                                  ),
+                                                                ]),
                                                               ),
+
+
                                                               SizedBox(height: 5,),
 
-                                                              Text(
-                                                                overflow: TextOverflow.ellipsis,
 
-                                                                note.note_content!,
-                                                                style: TextStyle(
-                                                                    color: AppColors.appThemeClr),
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "content".tr,
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr)),
+                                                                  TextSpan(
+                                                                    text: " ${note.note_content!}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr),
+
+                                                                  ),
+                                                                ]),
                                                               ),
+
+
                                                             ],
                                                           ),
                                                         ),
@@ -207,7 +243,7 @@ class _NotesPageState extends State<NotesPage> {
                             );
 
                           }else{
-                            return  Center(child: Text("There is no recorded data in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+                            return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
 
                           }
                         } else {

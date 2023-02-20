@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hpets/core/languages/language.dart';
 import 'package:hpets/router.dart';
 import 'package:logger/logger.dart';
 
@@ -34,7 +36,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
+    return GetMaterialApp(
+      translations: Languages(),
+      locale: Get.locale==null?Get.deviceLocale: Get.locale,
+      fallbackLocale: Languages.default_language,
       debugShowCheckedModeBanner: false,
       title: 'hPets',
       theme: ThemeData(

@@ -4,6 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/config.dart';
@@ -57,7 +58,7 @@ class _AddNewPetState extends State<AddNewPet> {
     FrameSize.init(context: context);
 
     return Scaffold(
-      appBar: hpetsAppBar(context, true, "New Pet",false),
+      appBar: hpetsAppBar(context, true, "new_pet".tr,false),
       body: Container(
         height: FrameSize.screenHeight,
         child: Padding(
@@ -71,13 +72,13 @@ class _AddNewPetState extends State<AddNewPet> {
                 children: [
 
                   SizedBox(height: 20,),
-                  Text("Let's add your new pet friend's archive",style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
+                  Text("add_new_pet".tr,style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                   // Text("Fill in your details to get add.",style: TextStyle(fontSize: 16,fontFamily: themeFontSemiBold,color: AppColors.blackThemeClr),),
 
                   SizedBox(height: 15,),
 
 
-                  hPetsTextFormField("Name", petNameInputController, "Name is required !", TextInputType.text, false, "false"),
+                  hPetsTextFormField("name".tr, petNameInputController, "name_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
                   DropdownButtonFormField2(
@@ -90,14 +91,14 @@ class _AddNewPetState extends State<AddNewPet> {
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(40.0))),
                         filled: true,
-                        hintText: "Select Type",
+                        hintText: "select_pet".tr,
 
 
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                     isExpanded: true,
-                    hint: const Text(
-                      'Select Your Pet',
+                    hint:  Text(
+                      "select_pet".tr,
                       style: TextStyle(fontSize: 16),
                     ),
 
@@ -119,7 +120,7 @@ class _AddNewPetState extends State<AddNewPet> {
                         .toList(),
                     validator: (value) {
                       if (value == null) {
-                        return '     Please select pet !';
+                        return 'dropdown_required'.tr;
                       }
                     },
                     onChanged: (value) {
@@ -150,14 +151,14 @@ class _AddNewPetState extends State<AddNewPet> {
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(40.0))),
                         filled: true,
-                        hintText: "Select Gender",
+                        hintText: "select_gender".tr,
 
 
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                     isExpanded: true,
-                    hint: const Text(
-                      'Select Gender',
+                    hint:  Text(
+                      'select_gender'.tr,
                       style: TextStyle(fontSize: 16),
                     ),
 
@@ -179,7 +180,7 @@ class _AddNewPetState extends State<AddNewPet> {
                         .toList(),
                     validator: (value) {
                       if (value == null) {
-                        return '     Please select gender !';
+                        return 'dropdown_required'.tr;
                       }
                     },
                     onChanged: (value) {
@@ -198,11 +199,10 @@ class _AddNewPetState extends State<AddNewPet> {
 
                   // hPetsTextFormField("Gender", petGenderInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
-                  hPetsTextFormField("Race", petRaceInputController, "Race is required !", TextInputType.text, false, "false"),
+                  hPetsTextFormField("race".tr, petRaceInputController, "race_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
-                  hPetsTextFormField("Age", petAgeInputController, "Age is required !", TextInputType.number, false, "false"),
-
+                  hPetsTextFormField("age".tr, petAgeInputController, "age_required".tr, TextInputType.number, false, "false"),
 
                   // hPetsTextFormField("Birthdate", petBirthdateInputController, "required", TextInputType.text, false, "false"),
                   // SizedBox(height: 12,),
@@ -212,7 +212,7 @@ class _AddNewPetState extends State<AddNewPet> {
                   SizedBox(
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
-                      child: hPetsElevatedButton("Save", AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
+                      child: hPetsElevatedButton("save".tr, AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
 
                         if (_formKey.currentState!.validate())
                         {
@@ -274,17 +274,17 @@ class _AddNewPetState extends State<AddNewPet> {
 }
 
 final List<String> genderItems = [
-  'He',
-  'She',
+  'he'.tr,
+  'she'.tr,
 ];
 
 final List<String> petItems = [
-  'Dog',
-  'Cat',
-  'Bird',
-  'Fish',
-  'Turtle',
-  'Horse'
+  'dog'.tr,
+  'cat'.tr,
+  'bird'.tr,
+  'fish'.tr,
+  'turtle'.tr,
+  'horse'.tr
 ];
 
 

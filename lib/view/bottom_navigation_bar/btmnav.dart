@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/view/bottom_navigation_bar/appointments_page.dart';
@@ -21,14 +20,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Color navigationBarColor = Colors.white;
   late PageController pageController;
-  int selectedIndex = 1;
-  int _selectedIndex = 1;
+  int selectedIndex = 0;
+  int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
-    AppointmentPage(),
     UserHomePage(),
-
+    AppointmentPage(),
     // VaccinePage(),
     GuidePage(),
   ];
@@ -79,14 +77,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   color: AppColors.appThemeClr,
                   tabs: [
                     GButton(
-                      icon: Icons.date_range_outlined,
-                      text: 'appointment'.tr,
+                      icon: Icons.home_outlined,
+                      text: 'Home',
                     ),
                     GButton(
-
-                      icon: Icons.home_outlined,
-                      text: 'home'.tr,
-
+                      icon: Icons.date_range_outlined,
+                      text: 'Appointment',
                     ),
                     // GButton(
                     //   icon: Icons.vaccines,
@@ -94,7 +90,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     // ),
                     GButton(
                       icon: Icons.info_outline_rounded,
-                      text: 'guide'.tr,
+                      text: 'Guide',
                     ),
                   ],
                   selectedIndex: _selectedIndex,

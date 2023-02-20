@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 
@@ -39,7 +40,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        appBar: hpetsAppBar(context, true, "New Appointment", false),
+        appBar: hpetsAppBar(context, true, "new_appointment".tr, false),
       body: Container(
 
         height: FrameSize.screenHeight,
@@ -54,7 +55,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                 children: [
 
                   SizedBox(height: 20,),
-                  Text("Let's add your pet's appointment archive", style: TextStyle(
+                  Text("add_new_appointment".tr, style: TextStyle(
                       fontSize: 30,
                       fontFamily: themeFontBold,
                       color: AppColors.appThemeClr),),
@@ -82,8 +83,8 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                     isExpanded: true,
-                    hint: const Text(
-                      'Select Your Pet',
+                    hint:  Text(
+                      'select_pet'.tr,
                       style: TextStyle(fontSize: 16),
                     ),
 
@@ -105,7 +106,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                         .toList(),
                     validator: (value) {
                       if (value == null) {
-                        return '     Please select pet !';
+                        return 'pet_required'.tr;
                       }
                     },
                     onChanged: (value) {
@@ -140,7 +141,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                             borderRadius: BorderRadius.all(
                                 Radius.circular(40.0))),
                         filled: true,
-                        hintText: "Appointment Date",
+                        hintText: "date".tr,
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight,
                             color: AppColors.greyThemeClr,
@@ -174,7 +175,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                             borderRadius: BorderRadius.all(
                                 Radius.circular(40.0))),
                         filled: true,
-                        hintText: "Appointment Time",
+                        hintText: "time".tr,
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight,
                             color: AppColors.greyThemeClr,
@@ -199,12 +200,12 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                   //     "Veterinary Address is required !", TextInputType.text, false,
                   //     "false"),
 
-                  hPetsTextFormField("Veterinary Info", veterinaryInfoInputController,
-                      "Veterinary Info is required !", TextInputType.text, false,
+                  hPetsTextFormField("veterinary".tr, veterinaryInfoInputController,
+                      "veterinary_required".tr, TextInputType.text, false,
                       "false"),
                   SizedBox(height: 12,),
 
-                  ContentTextFormField(appointmentAddressInputController,"Veterinary Address is required !","Veterinary Address"),
+                  ContentTextFormField(appointmentAddressInputController,"address_required".tr,"address".tr),
 
 
                   SizedBox(height: 40),
@@ -213,7 +214,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
                       child: hPetsElevatedButton(
-                          "Save", AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
+                          "save".tr, AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
                         if (_formKey.currentState!.validate()) {
                           print("Validated");
                           var veterinaryInfo = veterinaryInfoInputController.text;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/view/bottom_navigation_bar/guide_detail.dart';
 import '../../core/components/widgets/widgets.dart';
@@ -26,7 +27,7 @@ class _GuidePageState extends State<GuidePage> {
               children: <Widget>[
                 Align(
                     alignment: Alignment.topLeft,
-                    child: Text("Let's learn detailed information !",
+                    child: Text("lets_learn".tr,
                         style: TextStyle(
                             fontSize: 30,
                             fontFamily: themeFontBold,
@@ -74,7 +75,7 @@ class _GuidePageState extends State<GuidePage> {
                                         }
                                         return index == 0
                                             ? Text(
-                                                "Cat",
+                                                "cat".tr,
                                                 style: TextStyle(
                                                     fontFamily:
                                                         themeFontRegular,
@@ -82,7 +83,7 @@ class _GuidePageState extends State<GuidePage> {
                                               )
                                             : index == 1
                                                 ? Text(
-                                                    "Dog",
+                                                    "dog".tr,
                                                     style: TextStyle(
                                                         fontFamily:
                                                             themeFontRegular,
@@ -90,7 +91,7 @@ class _GuidePageState extends State<GuidePage> {
                                                   )
                                                 : index == 2
                                                     ? Text(
-                                                        "Fish",
+                                                        "fish".tr,
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 themeFontRegular,
@@ -98,7 +99,7 @@ class _GuidePageState extends State<GuidePage> {
                                                       )
                                                     : index == 3
                                                         ? Text(
-                                                            "Rabbit",
+                                                            "rabbit".tr,
                                                             style: TextStyle(
                                                                 fontFamily:
                                                                     themeFontRegular,
@@ -106,7 +107,7 @@ class _GuidePageState extends State<GuidePage> {
                                                           )
                                                         : index == 4
                                                             ? Text(
-                                                                "Bird",
+                                                                "bird".tr,
                                                                 style: TextStyle(
                                                                     fontFamily:
                                                                         themeFontRegular,
@@ -115,7 +116,7 @@ class _GuidePageState extends State<GuidePage> {
                                                               )
                                                             : index == 5
                                                                 ? Text(
-                                                                    "Turtle",
+                                                                    "turtle".tr,
                                                                     style: TextStyle(
                                                                         fontFamily:
                                                                             themeFontRegular,
@@ -124,7 +125,7 @@ class _GuidePageState extends State<GuidePage> {
                                                                   )
                                                                 : index == 6
                                                                     ? Text(
-                                                                        "Hamster",
+                                                                        "hamster".tr,
                                                                         style: TextStyle(
                                                                             fontFamily:
                                                                                 themeFontRegular,
@@ -133,7 +134,7 @@ class _GuidePageState extends State<GuidePage> {
                                                                       )
                                                                     : index == 7
                                                                         ? Text(
-                                                                            "Horse",
+                                                                            "horse".tr,
                                                                             style:
                                                                                 TextStyle(fontFamily: themeFontRegular, fontSize: 18),
                                                                           )

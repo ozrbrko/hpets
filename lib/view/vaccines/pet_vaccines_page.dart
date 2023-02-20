@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/build_circular_indicator.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/vaccines.dart';
@@ -32,7 +33,8 @@ class _VaccinesPageState extends State<VaccinesPage> {
   @override
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
-
+    String lower_pet_type = widget.pet!.pet_type!.toLowerCase();
+    String lower_pet_gender =widget.pet!.pet_gender!.toLowerCase();
     return Scaffold(
         appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
         body: Container(
@@ -53,8 +55,8 @@ class _VaccinesPageState extends State<VaccinesPage> {
                       child: cardContainerDetail(
                           FrameSize.screenHeight,
                           FrameSize.screenWidth,
-                          widget.pet!.pet_type!,
-                          widget.pet!.pet_gender!,
+                          lower_pet_type,
+                          lower_pet_gender,
                           widget.pet!.pet_age!,
                           widget.pet!.pet_name!)),
 
@@ -64,10 +66,21 @@ class _VaccinesPageState extends State<VaccinesPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "${widget.pet!.pet_name!}'s Vaccines",
-                        style: TextStyle(
-                            fontFamily: themeFontSemiBold, fontSize: 22),
+                      RichText(
+                        text: TextSpan(children: <TextSpan>[
+                          TextSpan(
+                              text: widget.pet!.pet_name,
+                              style: TextStyle(
+                                  fontFamily: themeFontSemiBold,
+                                  fontSize: 22,color: AppColors.blackThemeClr)),
+                          TextSpan(
+                              text: "_vaccines".tr,
+                              style: TextStyle(
+                                  fontFamily: themeFontSemiBold,
+                                  fontSize: 22,color: AppColors.blackThemeClr),
+
+                              ),
+                        ]),
                       ),
                       GestureDetector(
                           onTap: () {
@@ -160,28 +173,55 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                               MainAxisAlignment.center,
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                Text(
-                                                                  overflow: TextOverflow.ellipsis,
 
-                                                                  "Vaccine Name: ${vaccine.vaccine_name!}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "vaccine_name".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${vaccine.vaccine_name!}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
+
+                                                                    ),
+                                                                  ]),
                                                                 ),
                                                                 SizedBox(height: 5,),
-                                                                Text(
-                                                                  "Date: ${vaccine.vaccine_date!} / ${vaccine.vaccine_time!}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
+
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "date".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${vaccine.vaccine_date!} / ${vaccine.vaccine_time!}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
+
+                                                                    ),
+                                                                  ]),
                                                                 ),
+
+
                                                                 SizedBox(height: 5,),
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "veterinary".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${vaccine.veterinary!}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
 
-                                                                Text(
-                                                                  overflow: TextOverflow.ellipsis,
-
-                                                                  "Veterinary: ${vaccine.veterinary!}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
+                                                                    ),
+                                                                  ]),
                                                                 ),
+
                                                               ],
                                                             ),
                                                           ),
@@ -211,7 +251,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
                               );
 
                             }else{
-                              return  Center(child: Text("There is no data stored in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+                              return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
 
                             }
                           } else {

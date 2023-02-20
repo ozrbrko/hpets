@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
@@ -22,7 +23,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
 
     return Scaffold(
 
-        appBar: hpetsAppBar(context,true,"Asked Questions",false),
+        appBar: hpetsAppBar(context,true,"frequently_asked_questions".tr,false),
         body: Container(
 
           width: FrameSize.screenWidth,
@@ -43,17 +44,17 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('hPETS uygulaması Nedir ve Nasıl Kullanılır ?',style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_1'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
-                            height: 200,
+                            height: 145,
 
                             child: Center(
                               child: Text(
-                                'hPETS evcil hayvan sahiplerinin ve veterinerlerin ortak kullanabileceği bir mobil uygulamadır.Evcil hayvan sahipleri bu uygulama sayesinde evcil hayvanlarının önemli bilgilerini kaydedebilir. (Hastalık, mama saati, hastalık belirtileri, aşı takvimi, duygu değişimleri).\nUygulama içerisinde yer alan evcil hayvan rehberi sayesinde doğru bilinen yanlışlar hakkında bilgi sahibi olunabilir. ',
+                                'sss_1_detail'.tr,
                                 style: TextStyle(color: AppColors.blackThemeClr),
                               ),
                             ),
@@ -70,87 +71,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('Yeni evcil hayvan nasıl eklenir ?',style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
-                      trailing: Icon(Icons.keyboard_arrow_down),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Container(
-                            height: 100,
-
-                            child: Center(
-                              child: Text(
-                                'Kullanıcı anasayfasında bulunan "+" butonu ile açılan formda gerekli bilgileri doldurarak yeni bir evcil hayvan ekleyebilirsiniz.',
-                                style: TextStyle(color: AppColors.blackThemeClr),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Card(
-                    color: AppColors.whiteThemeClr.withOpacity(0.8),
-                    shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-                    child: RoundedExpansionTile(
-                      leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      title: Text('Evcil hayvan detay bilgileri nerede bulunur. Yeni bilgiler nasıl eklenir ?',style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
-                      trailing: Icon(Icons.keyboard_arrow_down),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Container(
-                            height: 150,
-                            child: Center(
-                              child: Text(
-                                'Ana sayfada bulunan evcil hayvan listesinde gitmek istediğiniz evcil hayvana tıklayarak detay bilgilerine erişebilirsiniz. Açılan detay sayfasında "Aşılar", "Hastalıklar", "Notlar" ve "Beslenme" butonlarından görüntüleme veya yeni bilgi eklemek istediğiniz alanı seçebilirsiniz.',
-                                style: TextStyle(color: AppColors.blackThemeClr),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Card(
-                    color: AppColors.whiteThemeClr.withOpacity(0.8),
-                    shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-                    child: RoundedExpansionTile(
-                      leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      title: Text('Yeni randevu nasıl oluşturulur ?',style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
-                      trailing: Icon(Icons.keyboard_arrow_down),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Container(
-                            height: 100,
-
-                            child: Center(
-                              child: Text(
-                                'Uygulama anasayfasında alt tarafta bulunan yönlendirme çubuğu ile randevular sekmesine tıklayın. Açılan sayfada "+" butonuna tıklayarak yeni randevu bilgisi oluşturabilirsiniz.',
-                                style: TextStyle(color: AppColors.blackThemeClr),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Card(
-                    color: AppColors.whiteThemeClr.withOpacity(0.8),
-                    shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-                    child: RoundedExpansionTile(
-                      leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      title: Text('Randevu bilgileri nasıl güncellenir. Randevular nasıl silinir ?',style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_2'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
@@ -160,7 +81,87 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
 
                             child: Center(
                               child: Text(
-                                'Randevular sayfasında güncellemek veya silmek istediğiniz randevuya tıklayın. Açılan pencere üzerinden silme ve güncelleme işlemlerinizi tamamlayabilirsiniz.',
+                                'sss_2_detail'.tr,
+                                style: TextStyle(color: AppColors.blackThemeClr),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Card(
+                    color: AppColors.whiteThemeClr.withOpacity(0.8),
+                    shape:
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+                    child: RoundedExpansionTile(
+                      leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24)),
+                      title: Text('sss_3'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      trailing: Icon(Icons.keyboard_arrow_down),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Container(
+                            height: 130,
+                            child: Center(
+                              child: Text(
+                                'sss_3_detail'.tr,
+                                style: TextStyle(color: AppColors.blackThemeClr),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Card(
+                    color: AppColors.whiteThemeClr.withOpacity(0.8),
+                    shape:
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+                    child: RoundedExpansionTile(
+                      leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24)),
+                      title: Text('sss_4'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      trailing: Icon(Icons.keyboard_arrow_down),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Container(
+                            height: 80,
+
+                            child: Center(
+                              child: Text(
+                                'sss_4_detail'.tr,
+                                style: TextStyle(color: AppColors.blackThemeClr),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Card(
+                    color: AppColors.whiteThemeClr.withOpacity(0.8),
+                    shape:
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+                    child: RoundedExpansionTile(
+                      leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24)),
+                      title: Text('sss_5'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      trailing: Icon(Icons.keyboard_arrow_down),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Container(
+                            height: 80,
+
+                            child: Center(
+                              child: Text(
+                                'sss_5_detail'.tr,
                                 style: TextStyle(color: AppColors.blackThemeClr),
                               ),
                             ),
@@ -178,17 +179,17 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('Eklenen evcil hayvan detay bilgileri nasıl güncellenir veya silinir ?',style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_6'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
-                            height: 100,
+                            height: 80,
 
                             child: Center(
                               child: Text(
-                                'İlgili detay sayfasında güncellemek veya silmek istediğiniz liste elemanına tıklayın. Açılan pencere üzerinden silme ve güncelleme işlemlerinizi tamamlayabilirsiniz.',
+                                'sss_6_detail'.tr,
                                 style: TextStyle(color: AppColors.blackThemeClr),
                               ),
                             ),
@@ -206,7 +207,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('Evcil hayvan rehberi nerede bulunur ?',style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_7'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
@@ -216,7 +217,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
 
                             child: Center(
                               child: Text(
-                                'Uygulama anasayfasında alt tarafta bulunan yönlendirme çubuğu ile rehber sekmesine tıklayın. Açılan sayfa üzerinden görüntülemek istediğiniz evcil hayvan ile ilgili butonu seçerek detaylı bilgileri görüntüleyebilirsiniz.',
+                                'sss_7_detail'.tr,
                                 style: TextStyle(color: AppColors.blackThemeClr),
                               ),
                             ),

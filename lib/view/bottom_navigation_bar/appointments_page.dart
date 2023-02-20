@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/model/appointments.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 import 'package:hpets/view/bottom_navigation_bar/add_new_appointment.dart';
@@ -52,7 +53,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Appointments",style: TextStyle(fontFamily: themeFontSemiBold,fontSize: 22),),
+                      Text("appointments".tr,style: TextStyle(fontFamily: themeFontSemiBold,fontSize: 22),),
 
                       GestureDetector(
                           onTap: (){
@@ -149,41 +150,78 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                               MainAxisAlignment.center,
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                Text(
-                                                                  "Pet Name: ${appointment.pet_name}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
-                                                                ),
-                                                                SizedBox(height: 5,),
-                                                                Text(
-                                                                  "Veterinary: ${appointment.veterinary_info}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
-                                                                  overflow: TextOverflow.ellipsis,
 
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "pet_name".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${appointment.pet_name}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
+
+                                                                    ),
+                                                                  ]),
                                                                 ),
 
-                                                                SizedBox(height: 5,),
 
-                                                                Text(
-                                                                  "Veterinary Address: ${appointment.veterinary_address}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
-                                                                  overflow: TextOverflow.ellipsis,
-                                                                  maxLines: 1,
-                                                                ),
+
+
 
                                                                 SizedBox(height: 5,),
 
 
-                                                                Text(
-                                                                  "Date: ${appointment.appointment_date!} / ${appointment.appointment_time!}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "veterinary".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${appointment.veterinary_info}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
+
+                                                                    ),
+                                                                  ]),
                                                                 ),
 
 
+                                                                SizedBox(height: 5,),
 
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "address".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${appointment.veterinary_address}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
+
+                                                                    ),
+                                                                  ]),
+                                                                ),
+
+                                                                SizedBox(height: 5,),
+
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "date".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${appointment.appointment_time}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
+
+                                                                    ),
+                                                                  ]),
+                                                                ),
 
                                                               ],
                                                             ),
@@ -230,7 +268,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                               );
 
                             }else{
-                              return  Center(child: Text("There is no data stored in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+                              return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
 
                             }
 

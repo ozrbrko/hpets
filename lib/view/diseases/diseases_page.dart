@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/diseases.dart';
 
@@ -39,7 +40,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
   @override
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
-
+    String lower_pet_type = widget.pet!.pet_type!.toLowerCase();
+    String lower_pet_gender =widget.pet!.pet_gender!.toLowerCase();
     return Scaffold(
 
         appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
@@ -47,6 +49,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
 
           height: FrameSize.screenHeight,
           width: FrameSize.screenWidth,
+
+
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
@@ -61,8 +65,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
                       child: cardContainerDetail(
                           FrameSize.screenHeight,
                           FrameSize.screenWidth,
-                          widget.pet!.pet_type!,
-                          widget.pet!.pet_gender!,
+                          lower_pet_type,
+                          lower_pet_gender,
                           widget.pet!.pet_age!,
                           widget.pet!.pet_name!)),
 
@@ -72,10 +76,21 @@ class _DiseasesPageState extends State<DiseasesPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "${widget.pet!.pet_name!}'s Diseases",
-                        style: TextStyle(
-                            fontFamily: themeFontSemiBold, fontSize: 22),
+                      RichText(
+                        text: TextSpan(children: <TextSpan>[
+                          TextSpan(
+                              text: widget.pet!.pet_name,
+                              style: TextStyle(
+                                  fontFamily: themeFontSemiBold,
+                                  fontSize: 22,color: AppColors.blackThemeClr)),
+                          TextSpan(
+                            text: "_diseases".tr,
+                            style: TextStyle(
+                                fontFamily: themeFontSemiBold,
+                                fontSize: 22,color: AppColors.blackThemeClr),
+
+                          ),
+                        ]),
                       ),
                       GestureDetector(
                           onTap: () {
@@ -168,27 +183,50 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                               MainAxisAlignment.center,
                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                               children: [
-                                                                Text(
-                                                                  overflow: TextOverflow.ellipsis,
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "disease_name".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${disease.disease_title!}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
 
-                                                                  "Disease Name: ${disease.disease_title}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
+                                                                    ),
+                                                                  ]),
                                                                 ),
                                                                 SizedBox(height: 5,),
-                                                                Text(
-                                                                  overflow: TextOverflow.ellipsis,
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "content".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${disease.disease_content!}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
 
-                                                                  "Content: ${disease.disease_content}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
+                                                                    ),
+                                                                  ]),
                                                                 ),
                                                                 SizedBox(height: 5,),
 
-                                                                Text(
-                                                                  "Date: ${disease.disease_date!} / ${disease.disease_time!}",
-                                                                  style: TextStyle(
-                                                                      color: AppColors.appThemeClr),
+                                                                RichText(
+                                                                  text: TextSpan(children: <TextSpan>[
+                                                                    TextSpan(
+                                                                        text: "date".tr,
+                                                                        style: TextStyle(
+                                                                            color: AppColors.appThemeClr)),
+                                                                    TextSpan(
+                                                                      text: " ${disease.disease_date!}",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr),
+
+                                                                    ),
+                                                                  ]),
                                                                 ),
                                                                 SizedBox(height: 5,),
 
@@ -222,7 +260,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
                               );
 
                             }else{
-                              return  Center(child: Text("There is no data stored in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+                              return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
 
                             }
 

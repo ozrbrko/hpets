@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/enums/enum.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
@@ -62,18 +63,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
 
                   SizedBox(height: 90,),
-                  Text("Let's go!",style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
-                  Text("Fill in your details to get started.",style: TextStyle(fontSize: 16,fontFamily: themeFontSemiBold,color: AppColors.blackThemeClr),),
+                  Text("lets_go".tr,style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
+                  Text("fill_details".tr,style: TextStyle(fontSize: 16,fontFamily: themeFontSemiBold,color: AppColors.blackThemeClr),),
 
                   SizedBox(height: 60,),
 
-                  hPetsTextFormField("Name", nameInputController, "Name is required !", TextInputType.text, false, "false"),
+                  hPetsTextFormField("name".tr, nameInputController, "name_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
-                  hPetsTextFormField("Surname", surnameInputController, "Surname is required !", TextInputType.text, false, "false"),
+                  hPetsTextFormField("surname".tr, surnameInputController, "surname_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
-                  hPetsTextFormField("Email", mailInputController, "Email is required !", TextInputType.text, false, "mail"),
+                  hPetsTextFormField("email".tr, mailInputController, "email_required".tr, TextInputType.text, false, "mail"),
                   SizedBox(height: 12,),
-                  hPetsTextFormField("Password", passwordInputController, "Password is required !", TextInputType.text, true, "password"),
+                  hPetsTextFormField("password".tr, passwordInputController, "password_required".tr, TextInputType.text, true, "password"),
 
                   SizedBox(height: 40),
 
@@ -81,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
                       child: hPetsElevatedButton(
-                          "Register",
+                          "register".tr,
                           AppColors.appThemeClr,AppColors.whiteThemeClr,
                           40.0,
                           themeFontBold,
@@ -114,13 +115,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: RichText(
                   text: TextSpan(children: <TextSpan>[
                       TextSpan(
-                      text: "I already have an account,  ",
+                      text: "already_have_an_account".tr,
                       style: TextStyle(
                           color: AppColors.appThemeClr,
                           fontFamily: themeFontMedium,
                           fontSize: 16)),
                   TextSpan(
-                      text: "Login!",
+                      text: "login".tr,
                       style: TextStyle(
                           color: AppColors.redThemeClr,
                           fontFamily: themeFontMedium,

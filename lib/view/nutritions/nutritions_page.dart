@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/model/nutritions.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
@@ -31,6 +32,8 @@ class _NutritionsPageState extends State<NutritionsPage> {
   @override
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
+    String lower_pet_type = widget.pet!.pet_type!.toLowerCase();
+    String lower_pet_gender =widget.pet!.pet_gender!.toLowerCase();
     return Scaffold(
 
         appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
@@ -53,8 +56,8 @@ class _NutritionsPageState extends State<NutritionsPage> {
                       child: cardContainerDetail(
                           FrameSize.screenHeight,
                           FrameSize.screenWidth,
-                          widget.pet!.pet_type!,
-                          widget.pet!.pet_gender!,
+                          lower_pet_type,
+                          lower_pet_gender,
                           widget.pet!.pet_age!,
                           widget.pet!.pet_name!)),
 
@@ -64,11 +67,29 @@ class _NutritionsPageState extends State<NutritionsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "${widget.pet!.pet_name!}'s Nutritions",
-                        style: TextStyle(
-                            fontFamily: themeFontSemiBold, fontSize: 22),
+
+                      RichText(
+                        text: TextSpan(children: <TextSpan>[
+                          TextSpan(
+                              text: widget.pet!.pet_name,
+                              style: TextStyle(
+                                  fontFamily: themeFontSemiBold,
+                                  fontSize: 22,color: AppColors.blackThemeClr)),
+                          TextSpan(
+                            text: "_nutritions".tr,
+                            style: TextStyle(
+                                fontFamily: themeFontSemiBold,
+                                fontSize: 22,color: AppColors.blackThemeClr),
+
+                          ),
+                        ]),
                       ),
+
+
+
+
+
+
                       GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewNutrition(pet: widget.pet)));
@@ -165,30 +186,65 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                             MainAxisAlignment.center,
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              Text(
-                                                                overflow: TextOverflow.ellipsis,
 
-                                                                "Food Name: ${nutrition.food_name}",
-                                                                style: TextStyle(
-                                                                    color: AppColors.appThemeClr),
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "food_name".tr,
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr)),
+                                                                  TextSpan(
+                                                                    text: " ${nutrition.food_name}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr),
+
+                                                                  ),
+                                                                ]),
                                                               ),
+
                                                               SizedBox(height: 5,),
-                                                              Text(
-                                                                overflow: TextOverflow.ellipsis,
 
-                                                                "Amount: ${nutrition.amount_of_food}",
-                                                                style: TextStyle(
-                                                                    color: AppColors.appThemeClr),
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "amount_of_food".tr,
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr)),
+                                                                  TextSpan(
+                                                                    text: " ${nutrition.amount_of_food}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr),
+
+                                                                  ),
+                                                                ]),
                                                               ),
+
+
 
                                                               SizedBox(height: 5,),
 
 
-                                                              Text(
-                                                                "Date: ${nutrition.food_date!} / ${nutrition.food_time!}",
-                                                                style: TextStyle(
-                                                                    color: AppColors.appThemeClr),
-                                                              ),
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "date".tr,
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr)),
+                                                                  TextSpan(
+                                                                    text: " ${nutrition.food_date}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr),
+
+                                                                  ),
+
+                                                                  TextSpan(
+                                                                    text: " / ${nutrition.food_time}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr),
+
+                                                                  ),
+                                                                ]),
+                                                              )
 
 
                                                             ],
@@ -236,7 +292,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                               );
 
                             }else{
-                              return  Center(child: Text("There is no data stored in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+                              return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
 
                             }
 

@@ -4,6 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
@@ -66,7 +67,7 @@ class _AddNewNoteState extends State<AddNewNote> {
     FrameSize.init(context: context);
 
     return Scaffold(
-        appBar: hpetsAppBar(context, true, "New Note",false),
+        appBar: hpetsAppBar(context, true, "new_note".tr,false),
         body: Container(
           child: Padding(
             padding: const EdgeInsets.all(25.0),
@@ -84,12 +85,12 @@ class _AddNewNoteState extends State<AddNewNote> {
                     ),
 
 
-                    hPetsTextFormField("Title", noteTitleInputController, "Title is required !",
+                    hPetsTextFormField("title".tr, noteTitleInputController, "title_required".tr,
                         TextInputType.text, false, "false"),
 
                     SizedBox(height: 10,),
 
-                    ContentTextFormField(noteContentInputController,"Content is required !","Content"),
+                    ContentTextFormField(noteContentInputController,"content_required".tr,"content".tr),
 
                     SizedBox(
                       height: 25,
@@ -101,7 +102,7 @@ class _AddNewNoteState extends State<AddNewNote> {
                             width: FrameSize.screenWidth,
                             height: FrameSize.screenHeight/ 14,
                             child: hPetsElevatedButton(
-                                "Save",
+                                "save".tr,
                                 AppColors.appThemeClr,AppColors.whiteThemeClr,
                                 40,
                                 themeFontSemiBold,

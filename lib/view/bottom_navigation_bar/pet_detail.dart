@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
@@ -39,9 +40,11 @@ class _PetDetailPageState extends State<PetDetailPage> {
   @override
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
+    String? pet_gender = widget.pet!.pet_gender!.toLowerCase();
+    String? pet_type = widget.pet!.pet_type!.toLowerCase();
 
     return Scaffold(
-      appBar: hpetsAppBar(context, true, "Pet Detail", false),
+      appBar: hpetsAppBar(context, true, "pet_detail".tr, false),
       body: Container(
         height: FrameSize.screenHeight,
         width: FrameSize.screenWidth,
@@ -81,14 +84,14 @@ class _PetDetailPageState extends State<PetDetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: 16,),
-                            Text("Type",style: TextStyle(fontFamily: themeFontRegular),),
-                            Text("${widget.pet!.pet_type}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
+                            Text("type".tr,style: TextStyle(fontFamily: themeFontRegular),),
+                            Text("${pet_type}".tr,style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
                             SizedBox(height: 7,),
-                            Text("Gender",style: TextStyle(fontFamily: themeFontRegular),),
-                            Text("${widget.pet!.pet_gender}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
+                            Text("gender".tr,style: TextStyle(fontFamily: themeFontRegular),),
+                            Text("${pet_gender}".tr,style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
                             SizedBox(height: 7,),
 
-                            Text("Age",style: TextStyle(fontFamily: themeFontRegular),),
+                            Text("age".tr,style: TextStyle(fontFamily: themeFontRegular),),
                             Text("${widget.pet!.pet_age}",style: TextStyle(fontFamily: themeFontBold,fontSize: 15),),
                             SizedBox(height: 7,),
 
@@ -97,7 +100,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                               // refPets.child(widget.pet!.pet_key!).remove();
                               // Navigator.pushNamed(context, '/bottomnav');
                               AlertDialogFunctions.deletePet(context);
-                            }, child: Text("Delete Pet",style: TextStyle(fontFamily: themeFontBold,fontSize: 15,color: Color(0xffEA4452)),))
+                            }, child: Text("delete_pet".tr,style: TextStyle(fontFamily: themeFontBold,fontSize: 15,color: Color(0xffEA4452)),))
                           ],
                         ),
 
@@ -108,7 +111,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                             children: [
                               SizedBox(
                                   height: FrameSize.screenHeight/8,
-                                  child: Image.asset(widget.pet!.pet_type=="Dog"? "assets/images/guide_image_1.png" : widget.pet!.pet_type=="Cat"? "assets/images/guide_image_0.png" : widget.pet!.pet_type=="Fish"? "assets/images/guide_image_2.png" :widget.pet!.pet_type=="Rabbit"? "assets/images/guide_image_3.png": widget.pet!.pet_type=="Bird"? "assets/images/guide_image_4.png": widget.pet!.pet_type=="Turtle"? "assets/images/guide_image_5.png": widget.pet!.pet_type=="Hamster"? "assets/images/guide_image_6.png": widget.pet!.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),),
+                                  child:Image.asset(widget.pet!.pet_type=="Dog"? "assets/images/guide_image_1.png" : widget.pet!.pet_type=="Cat"? "assets/images/guide_image_0.png" : widget.pet!.pet_type=="Fish"? "assets/images/guide_image_2.png" :widget.pet!.pet_type=="Rabbit"? "assets/images/guide_image_3.png": widget.pet!.pet_type=="Bird"? "assets/images/guide_image_4.png": widget.pet!.pet_type=="Turtle"? "assets/images/guide_image_5.png": widget.pet!.pet_type=="Hamster"? "assets/images/guide_image_6.png": widget.pet!.pet_type=="Horse"? "assets/images/guide_image_7.png": widget.pet!.pet_type=="Köpek"? "assets/images/guide_image_1.png" : widget.pet!.pet_type=="Kedi"? "assets/images/guide_image_0.png" : widget.pet!.pet_type=="Balık"? "assets/images/guide_image_2.png" :widget.pet!.pet_type=="Tavşan"? "assets/images/guide_image_3.png": widget.pet!.pet_type=="Kuş"? "assets/images/guide_image_4.png": widget.pet!.pet_type=="Kaplumbağa"? "assets/images/guide_image_5.png": widget.pet!.pet_type=="Hamster"? "assets/images/guide_image_6.png": widget.pet!.pet_type=="At"? "assets/images/guide_image_7.png": "")),
 
                             SizedBox(height: 7,),
 
@@ -148,7 +151,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
 
                         ),
 
-                        child: Center(child: Text("Vaccines",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr),),),
+                        child: Center(child: Text("vaccines".tr,style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr),),),
                       ),
                     ),
                     InkWell(
@@ -171,7 +174,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                           color: AppColors.appThemeClr,
 
                         ),
-                        child: Center(child: Text("Diseases",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
+                        child: Center(child: Text("diseases".tr,style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
                         ))),
 
 
@@ -193,7 +196,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
 
                         ),
 
-                        child: Center(child: Text("Notes",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
+                        child: Center(child: Text("notes".tr,style: TextStyle(fontFamily: themeFontRegular,fontSize: 21,color: AppColors.whiteThemeClr,
                         ))),
 
                       ),
@@ -213,7 +216,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
 
                         ),
 
-                        child: Center(child: Text("Nutrition",style: TextStyle(fontFamily: themeFontRegular,fontSize: 21, color: AppColors.whiteThemeClr,
+                        child: Center(child: Text("nutrition".tr,style: TextStyle(fontFamily: themeFontRegular,fontSize: 21, color: AppColors.whiteThemeClr,
                         ))),
 
 

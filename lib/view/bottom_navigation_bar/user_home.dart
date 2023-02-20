@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/cards.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
@@ -70,7 +71,7 @@ class _UserHomePageState extends State<UserHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "My Pets",
+                      "my_pets".tr,
 
                       style: TextStyle(
                           fontFamily: themeFontSemiBold, fontSize: 22),
@@ -145,7 +146,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+                                                  Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": pet.pet_type=="Köpek"? "assets/images/guide_image_1.png" : pet.pet_type=="Kedi"? "assets/images/guide_image_0.png" : pet.pet_type=="Balık"? "assets/images/guide_image_2.png" :pet.pet_type=="Tavşan"? "assets/images/guide_image_3.png": pet.pet_type=="Kuş"? "assets/images/guide_image_4.png": pet.pet_type=="Kaplumbağa"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="At"? "assets/images/guide_image_7.png": ""),
 
                                                   Center(
                                                     child: Container(
@@ -163,13 +164,13 @@ class _UserHomePageState extends State<UserHomePage> {
                                                             style: TextStyle(
                                                                 color: AppColors.appThemeClr),
                                                           ),
-                                                          Text(
-                                                            overflow: TextOverflow.ellipsis,
-
-                                                            "${pet.pet_type!}",
-                                                            style: TextStyle(
-                                                                color: AppColors.appThemeClr),
-                                                          ),
+                                                          // Text(
+                                                          //   overflow: TextOverflow.ellipsis,
+                                                          //
+                                                          //   "${pet.pet_type!}",
+                                                          //   style: TextStyle(
+                                                          //       color: AppColors.appThemeClr),
+                                                          // ),
                                                         ],
                                                       ),
                                                     ),
@@ -197,7 +198,7 @@ class _UserHomePageState extends State<UserHomePage> {
                               ),
                             );
                           } else{
-                            return  Center(child: Text("There is no data stored in the list.",style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
+                            return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
 
 
 

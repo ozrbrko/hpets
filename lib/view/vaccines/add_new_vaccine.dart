@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 
@@ -40,7 +41,7 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
     FrameSize.init(context: context);
 
     return Scaffold(
-        appBar: hpetsAppBar(context, true, "New Vaccine", false),
+        appBar: hpetsAppBar(context, true, "new_vaccine".tr, false),
         body: Container(
 
           height: FrameSize.screenHeight,
@@ -55,16 +56,16 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
                   children: [
 
                     SizedBox(height: 20,),
-                    Text("Let's add your pet's vaccine archive",style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
+                    Text("add_new_vaccine".tr,style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                     // Text("Fill in your details to get add.",style: TextStyle(fontSize: 16,fontFamily: themeFontSemiBold,color: AppColors.blackThemeClr),),
 
                     SizedBox(height: 25,),
 
 
-                    hPetsTextFormField("Vaccine Name", vaccineNameInputController, "Vaccine Name is required !", TextInputType.text, false, "false"),
+                    hPetsTextFormField("vaccine_name".tr, vaccineNameInputController, "vaccine_name_required".tr, TextInputType.text, false, "false"),
                     SizedBox(height: 12,),
 
-                    hPetsTextFormField("Veterinary Info", veterinaryInfoInputController, "Veterinary Info is required !", TextInputType.text, false, "false"),
+                    hPetsTextFormField("veterinary".tr, veterinaryInfoInputController, "veterinary_required".tr, TextInputType.text, false, "false"),
 
                     // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
@@ -81,7 +82,7 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(40.0))),
                           filled: true,
-                          hintText: "Vaccine Date",
+                          hintText: "date".tr,
                           hintStyle: TextStyle(
                               fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 16.0)),
                       onTap: () async{
@@ -109,7 +110,7 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(40.0))),
                           filled: true,
-                          hintText: "Vaccine Time",
+                          hintText: "time".tr,
                           hintStyle: TextStyle(
                               fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 16.0)),
                       onTap: () {
@@ -135,7 +136,7 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
                     SizedBox(
                         width: FrameSize.screenWidth,
                         height: FrameSize.screenHeight / 14,
-                        child: hPetsElevatedButton("Save", AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
+                        child: hPetsElevatedButton("save".tr, AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
 
                           if (_formKey.currentState!.validate())
                           {

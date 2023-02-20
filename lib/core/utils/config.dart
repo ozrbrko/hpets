@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/utils/secure_storage.dart';
 import '../../main.dart';
 import '../model/pets.dart';
@@ -16,6 +17,7 @@ class Config {
   static String displayName = '';
   static String key ="";
   static String petKey ="";
+  static String languageValue ="";
 
   static String notTitle= "";
   static String notContent= "";
@@ -76,12 +78,12 @@ class Config {
       logger.i("Mail Gönderildi}");
       Navigator.pop(context);
       // mailInputController.clear();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" Check your email address please !"), ));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("check_email".tr), ));
 
       // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail veya şifre hatalı!"), ))
     } on FirebaseAuthException catch (e) {
       print(e);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" This email is not registered in the system !"), ));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("not_registered".tr), ));
 
       logger.i("Mail Gönderilemedi");
 

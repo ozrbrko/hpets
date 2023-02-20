@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
@@ -45,7 +46,7 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
 
     return Scaffold(
 
-      appBar: hpetsAppBar(context, true, "New Nutrition", false),
+      appBar: hpetsAppBar(context, true, "new_nutrition".tr, false),
       body: Container(
 
         height: FrameSize.screenHeight,
@@ -60,7 +61,7 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
                 children: [
 
                   SizedBox(height: 20,),
-                  Text("Let's add your pet's nutrition archive", style: TextStyle(
+                  Text("lets_add_new_nutrition".tr, style: TextStyle(
                       fontSize: 30,
                       fontFamily: themeFontBold,
                       color: AppColors.appThemeClr),),
@@ -68,13 +69,13 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
 
                   SizedBox(height: 25,),
 
-                  hPetsTextFormField("Food Name", foodNameInputController,
-                      "Food Name is required !", TextInputType.text, false,
+                  hPetsTextFormField("food_name".tr, foodNameInputController,
+                      "food_name_required".tr, TextInputType.text, false,
                       "false"),
                   SizedBox(height: 12,),
 
-                  hPetsTextFormField("Amount of Food", amountFoodInputController,
-                      "Amount of Food is required !", TextInputType.text, false,
+                  hPetsTextFormField("amount_of_food".tr, amountFoodInputController,
+                      "amount_of_food_required".tr, TextInputType.text, false,
                       "false"),
 
                   // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
@@ -92,7 +93,7 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
                             borderRadius: BorderRadius.all(
                                 Radius.circular(40.0))),
                         filled: true,
-                        hintText: "Food Date",
+                        hintText: "date".tr,
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight,
                             color: AppColors.greyThemeClr,
@@ -126,7 +127,7 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
                             borderRadius: BorderRadius.all(
                                 Radius.circular(40.0))),
                         filled: true,
-                        hintText: "Food Time",
+                        hintText: "time".tr,
                         hintStyle: TextStyle(
                             fontFamily: themeFontLight,
                             color: AppColors.greyThemeClr,
@@ -151,7 +152,7 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
                       child: hPetsElevatedButton(
-                          "Save", AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
+                          "save".tr, AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontBold, () {
                         if (_formKey.currentState!.validate()) {
                           print("Validated");
                           var foodName = foodNameInputController.text;

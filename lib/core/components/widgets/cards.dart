@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 
 import '../../constants/colors.dart';
@@ -57,7 +58,9 @@ Container cardContainerDefault(double height) {
 
 Container cardContainerDetail(double height, double width, String pet_type,
     String pet_gender, String pet_age, String pet_name) {
+
   return Container(
+
     height: height / 4,
     width: width,
     decoration: BoxDecoration(
@@ -80,32 +83,26 @@ Container cardContainerDetail(double height, double width, String pet_type,
               SizedBox(
                 height: 16,
               ),
+              Text("type".tr,style: TextStyle(fontFamily: themeFontRegular),),
+
               Text(
-                "Type",
-                style: TextStyle(fontFamily: themeFontRegular),
-              ),
-              Text(
-                "${pet_type}",
+                "${pet_type}".tr,
                 style: TextStyle(fontFamily: themeFontBold, fontSize: 15),
               ),
               SizedBox(
                 height: 7,
               ),
+              Text("gender".tr,style: TextStyle(fontFamily: themeFontRegular),),
+
               Text(
-                "Gender",
-                style: TextStyle(fontFamily: themeFontRegular),
-              ),
-              Text(
-                "${pet_gender}",
+                "${pet_gender}".tr,
                 style: TextStyle(fontFamily: themeFontBold, fontSize: 15),
               ),
               SizedBox(
                 height: 7,
               ),
-              Text(
-                "Age",
-                style: TextStyle(fontFamily: themeFontRegular),
-              ),
+              Text("age".tr,style: TextStyle(fontFamily: themeFontRegular),),
+
               Text(
                 "${pet_age}",
                 style: TextStyle(fontFamily: themeFontBold, fontSize: 15),
@@ -119,24 +116,8 @@ Container cardContainerDetail(double height, double width, String pet_type,
               children: [
                 SizedBox(
                   height: FrameSize.screenHeight / 8,
-                  child: Image.asset(pet_type == "Dog"
-                      ? "assets/images/guide_image_1.png"
-                      : pet_type == "Cat"
-                          ? "assets/images/guide_image_0.png"
-                          : pet_type == "Fish"
-                              ? "assets/images/guide_image_2.png"
-                              : pet_type == "Rabbit"
-                                  ? "assets/images/guide_image_3.png"
-                                  : pet_type == "Bird"
-                                      ? "assets/images/guide_image_4.png"
-                                      : pet_type == "Turtle"
-                                          ? "assets/images/guide_image_5.png"
-                                          : pet_type == "Hamster"
-                                              ? "assets/images/guide_image_6.png"
-                                              : pet_type == "Horse"
-                                                  ? "assets/images/guide_image_7.png"
-                                                  : ""),
-                ),
+                child:Image.asset(pet_type=="dog"? "assets/images/guide_image_1.png" : pet_type=="cat"? "assets/images/guide_image_0.png" : pet_type=="fish"? "assets/images/guide_image_2.png" :pet_type=="rabbit"? "assets/images/guide_image_3.png": pet_type=="bird"? "assets/images/guide_image_4.png": pet_type=="turtle"? "assets/images/guide_image_5.png": pet_type=="hamster"? "assets/images/guide_image_6.png": pet_type=="horse"? "assets/images/guide_image_7.png":pet_type=="köpek"? "assets/images/guide_image_1.png" : pet_type=="kedi"? "assets/images/guide_image_0.png" : pet_type=="balık"? "assets/images/guide_image_2.png" :pet_type=="tavşan"? "assets/images/guide_image_3.png": pet_type=="kuş"? "assets/images/guide_image_4.png": pet_type=="kaplumbağa"? "assets/images/guide_image_5.png": pet_type=="hamster"? "assets/images/guide_image_6.png": pet_type=="at"? "assets/images/guide_image_7.png": "")),
+
                 SizedBox(
                   height: 7,
                 ),

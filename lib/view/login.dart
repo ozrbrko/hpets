@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/colors.dart';
 import 'package:hpets/core/constants/fonts.dart';
@@ -54,16 +55,16 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Image.asset(Images.logo_hpets)),
                             ),
                             Text(
-                              "Welcome to hPETS!",
+                              'welcome'.tr,
                               style: TextStyle(
                                   fontSize: 28, fontFamily: themeFontMedium),
                             ),
                             SizedBox(height: 40),
                             // Text("Email",style: TextStyle(fontFamily: themeFontMedium),),
                             hPetsTextFormField(
-                                "Email",
+                                'email'.tr,
                                 loginInputController,
-                                "Email is required !",
+                                'email_required'.tr,
                                 TextInputType.text,
                                 false,
                                 "mail"),
@@ -71,9 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                               height: 12,
                             ),
                             hPetsTextFormField(
-                                "Password",
+                                'password'.tr,
                                 passwordInputController,
-                                "Password is required !",
+                                'password_required'.tr,
                                 TextInputType.text,
                                 true,
                                 "password"),
@@ -83,10 +84,10 @@ class _LoginPageState extends State<LoginPage> {
                                 width: FrameSize.screenWidth,
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
-                                    "Login",
+                                    'login'.tr,
                                     AppColors.appThemeClr,AppColors.whiteThemeClr,
                                     40.0,
-                                    themeFontSemiBold,
+                                    themeFontRegular,
                                     () => {
                                           if (_formKey.currentState!.validate())
                                             {
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                                                             .showSnackBar(
                                                                 SnackBar(
                                                           content: Text(
-                                                              "E-mail or password is wrong !"),
+                                                              "mail_or_password_wrong".tr),
                                                         ))
                                                       }),
                                             }
@@ -133,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: FrameSize.screenWidth,
                               height: FrameSize.screenHeight / 14,
                               child: hPetsElevatedButtonwithLogo(
-                                  "Login with Google",
+                                  'login_with_google'.tr,
                                   AppColors.redDarkThemeClr, AppColors.whiteThemeClr,
                                   40,
                                   themeFontRegular, () async {
@@ -169,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                                     height: 30,
                                     color: AppColors.whiteThemeClr,
                                     child: Text(
-                                      "Forgot Password ?",
+                                      "forgot_password".tr,
                                       style: TextStyle(
                                           color: AppColors.appThemeClr,
                                           fontFamily: themeFontMedium,
@@ -187,13 +188,13 @@ class _LoginPageState extends State<LoginPage> {
                         child: RichText(
                           text: TextSpan(children: <TextSpan>[
                             TextSpan(
-                                text: "Don't have an account ?  ",
+                                text: "dont_have_account".tr,
                                 style: TextStyle(
                                     color: AppColors.appThemeClr,
                                     fontFamily: themeFontMedium,
                                     fontSize: 16)),
                             TextSpan(
-                                text: "Register!",
+                                text: "register".tr,
                                 style: TextStyle(
                                     color: AppColors.redThemeClr,
                                     fontFamily: themeFontMedium,
