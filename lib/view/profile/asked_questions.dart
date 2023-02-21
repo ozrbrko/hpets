@@ -44,18 +44,18 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('sss_1'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_1'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
-                            height: 145,
+                            height: 170,
 
                             child: Center(
                               child: Text(
                                 'sss_1_detail'.tr,
-                                style: TextStyle(color: AppColors.blackThemeClr),
+                                style: TextStyle(color: AppColors.blackThemeClr,fontFamily: themeFontRegular),
                               ),
                             ),
                           ),
@@ -71,7 +71,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('sss_2'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_2'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
@@ -82,7 +82,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                             child: Center(
                               child: Text(
                                 'sss_2_detail'.tr,
-                                style: TextStyle(color: AppColors.blackThemeClr),
+                                style: TextStyle(color: AppColors.blackThemeClr,fontFamily: themeFontRegular),
                               ),
                             ),
                           ),
@@ -98,7 +98,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('sss_3'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_3'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
@@ -108,7 +108,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                             child: Center(
                               child: Text(
                                 'sss_3_detail'.tr,
-                                style: TextStyle(color: AppColors.blackThemeClr),
+                                style: TextStyle(color: AppColors.blackThemeClr,fontFamily: themeFontRegular),
                               ),
                             ),
                           ),
@@ -124,18 +124,18 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('sss_4'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_4'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
-                            height: 80,
+                            height: 85,
 
                             child: Center(
                               child: Text(
                                 'sss_4_detail'.tr,
-                                style: TextStyle(color: AppColors.blackThemeClr),
+                                style: TextStyle(color: AppColors.blackThemeClr,fontFamily: themeFontRegular),
                               ),
                             ),
                           ),
@@ -151,7 +151,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('sss_5'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_5'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
@@ -162,7 +162,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                             child: Center(
                               child: Text(
                                 'sss_5_detail'.tr,
-                                style: TextStyle(color: AppColors.blackThemeClr),
+                                style: TextStyle(color: AppColors.blackThemeClr,fontFamily: themeFontRegular),
                               ),
                             ),
                           ),
@@ -179,7 +179,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('sss_6'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_6'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
@@ -190,7 +190,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                             child: Center(
                               child: Text(
                                 'sss_6_detail'.tr,
-                                style: TextStyle(color: AppColors.blackThemeClr),
+                                style: TextStyle(color: AppColors.blackThemeClr,fontFamily: themeFontRegular),
                               ),
                             ),
                           ),
@@ -207,7 +207,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       leading: Icon(Icons.question_answer_outlined, color: AppColors.appThemeClr,),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      title: Text('sss_7'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontRegular,color: AppColors.appThemeClr),),
+                      title: Text('sss_7'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
                         Padding(
@@ -218,7 +218,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                             child: Center(
                               child: Text(
                                 'sss_7_detail'.tr,
-                                style: TextStyle(color: AppColors.blackThemeClr),
+                                style: TextStyle(color: AppColors.blackThemeClr,fontFamily: themeFontRegular),
                               ),
                             ),
                           ),

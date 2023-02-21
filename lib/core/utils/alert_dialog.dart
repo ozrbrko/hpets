@@ -578,9 +578,11 @@ class AlertDialogFunctions {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
+                              overflow: TextOverflow.ellipsis,
+
                               "opinions_and_suggestions".tr,
                               style: TextStyle(
-                                  fontFamily: themeFontBold, fontSize: 19),
+                                  fontFamily: themeFontBold, fontSize: 18),
                             ),
                             InkWell(
                                 onTap: () {

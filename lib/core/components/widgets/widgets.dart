@@ -693,7 +693,7 @@ AppBar hpetsAppBar (BuildContext context, bool backButton, String appText, bool 
     centerTitle: true,
     title: Text(
       appText,
-      style: TextStyle(color: AppColors.whiteThemeClr,letterSpacing: 1),
+      style: TextStyle(color: AppColors.whiteThemeClr,letterSpacing: 1,fontFamily: themeFontRegular),
     ),
 
 

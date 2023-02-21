@@ -88,7 +88,6 @@ class Languages extends Translations {
           'at': "Horse",
           'erkek': "He",
           '_vaccines': " Vaccines",
-
           '_diseases': " Diseases",
           'disease_name': "Disease Name:",
           'content': "Content:",
@@ -97,6 +96,7 @@ class Languages extends Translations {
           'there_is_no': "There is no data stored in the list.",
           'vaccine_name': "Vaccine Name:",
           'vaccine_name_required': "Vaccine Name is required !",
+          'dişi': "She",
 
           'date': "Date:",
           'veterinary': "Veterinary:",
@@ -266,6 +266,7 @@ class Languages extends Translations {
       'he': "Erkek",
       'erkek': "Erkek",
       'she': "Dişi",
+      'dişi': "Dişi",
       'pet_detail': "Evcil Hayvan Detay",
       'type': "Tip",
       'gender': "Cinsiyet",

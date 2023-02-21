@@ -96,7 +96,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                               style: TextStyle(fontFamily: themeFontRegular),
                             ),
                             Text(
-                              "${pet_gender}".tr,
+                              "${pet_gender.toLowerCase()}".tr,
                               style: TextStyle(
                                   fontFamily: themeFontBold, fontSize: 15),
                             ),
@@ -231,141 +231,147 @@ class _PetDetailPageState extends State<PetDetailPage> {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 0),
 
               Flexible(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 10.0,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VaccinesPage(
-                                      pet: widget.pet,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColors.appThemeClr,
-                            width: 2.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    // color: Colors.red,
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10.0,
+                      crossAxisSpacing: 10.0,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => VaccinesPage(
+                                          pet: widget.pet,
+                                        )));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.appThemeClr,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(45),
+                                  topRight: Radius.circular(45),
+                                  topLeft: Radius.circular(45),
+                                  bottomRight: Radius.circular(0)),
+                              color: AppColors.appThemeClr,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "vaccines".tr,
+                                style: TextStyle(
+                                    fontFamily: themeFontRegular,
+                                    fontSize: 21,
+                                    color: AppColors.whiteThemeClr),
+                              ),
+                            ),
                           ),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(45),
-                              topRight: Radius.circular(45),
-                              topLeft: Radius.circular(45),
-                              bottomRight: Radius.circular(0)),
-                          color: AppColors.appThemeClr,
                         ),
-                        child: Center(
-                          child: Text(
-                            "vaccines".tr,
-                            style: TextStyle(
-                                fontFamily: themeFontRegular,
-                                fontSize: 21,
-                                color: AppColors.whiteThemeClr),
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        // logger.i(widget.pet!.pet_key);
-                        // refPets.child(widget.pet!.pet_key!).remove();
+                        InkWell(
+                          onTap: () {
+                            // logger.i(widget.pet!.pet_key);
+                            // refPets.child(widget.pet!.pet_key!).remove();
 
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DiseasesPage(
-                                      pet: widget.pet,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColors.appThemeClr,
-                            width: 2.0,
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DiseasesPage(
+                                          pet: widget.pet,
+                                        )));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.appThemeClr,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(45),
+                                  topLeft: Radius.circular(45),
+                                  topRight: Radius.circular(45)),
+                              color: AppColors.appThemeClr,
+                            ),
+                            child: Center(
+                                child: Text("diseases".tr,
+                                    style: TextStyle(
+                                      fontFamily: themeFontRegular,
+                                      fontSize: 21,
+                                      color: AppColors.whiteThemeClr,
+                                    ))),
                           ),
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(45),
-                              topLeft: Radius.circular(45),
-                              topRight: Radius.circular(45)),
-                          color: AppColors.appThemeClr,
                         ),
-                        child: Center(
-                            child: Text("diseases".tr,
-                                style: TextStyle(
-                                  fontFamily: themeFontRegular,
-                                  fontSize: 21,
-                                  color: AppColors.whiteThemeClr,
-                                ))),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NotesPage(
-                                      pet: widget.pet,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColors.appThemeClr,
-                            width: 2.0,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NotesPage(
+                                          pet: widget.pet,
+                                        )));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.appThemeClr,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(45),
+                                  bottomRight: Radius.circular(45),
+                                  bottomLeft: Radius.circular(45)),
+                              color: AppColors.appThemeClr,
+                            ),
+                            child: Center(
+                                child: Text("notes".tr,
+                                    style: TextStyle(
+                                      fontFamily: themeFontRegular,
+                                      fontSize: 21,
+                                      color: AppColors.whiteThemeClr,
+                                    ))),
                           ),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(45),
-                              bottomRight: Radius.circular(45),
-                              bottomLeft: Radius.circular(45)),
-                          color: AppColors.appThemeClr,
                         ),
-                        child: Center(
-                            child: Text("notes".tr,
-                                style: TextStyle(
-                                  fontFamily: themeFontRegular,
-                                  fontSize: 21,
-                                  color: AppColors.whiteThemeClr,
-                                ))),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NutritionsPage(
-                                      pet: widget.pet,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColors.appThemeClr,
-                            width: 2.0,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NutritionsPage(
+                                          pet: widget.pet,
+                                        )));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.appThemeClr,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(45),
+                                  bottomRight: Radius.circular(45),
+                                  bottomLeft: Radius.circular(45)),
+                              color: AppColors.appThemeClr,
+                            ),
+                            child: Center(
+                                child: Text("nutrition".tr,
+                                    style: TextStyle(
+                                      fontFamily: themeFontRegular,
+                                      fontSize: 21,
+                                      color: AppColors.whiteThemeClr,
+                                    ))),
                           ),
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(45),
-                              bottomRight: Radius.circular(45),
-                              bottomLeft: Radius.circular(45)),
-                          color: AppColors.appThemeClr,
                         ),
-                        child: Center(
-                            child: Text("nutrition".tr,
-                                style: TextStyle(
-                                  fontFamily: themeFontRegular,
-                                  fontSize: 21,
-                                  color: AppColors.whiteThemeClr,
-                                ))),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               )
             ],

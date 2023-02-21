@@ -47,6 +47,7 @@ Container cardContainerDefault(double height) {
               Text(
                 "${_auth.currentUser!.email!}",
                 overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontFamily: themeFontRegular),
               ),
             ],
           ),

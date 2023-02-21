@@ -183,11 +183,11 @@ class _NotesPageState extends State<NotesPage> {
                                                                   TextSpan(
                                                                       text: "title".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr)),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
                                                                     text: " ${note.note_title!}",
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                   ),
                                                                 ]),
@@ -202,15 +202,17 @@ class _NotesPageState extends State<NotesPage> {
                                                                   TextSpan(
                                                                       text: "content".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr)),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
                                                                     text: " ${note.note_content!}",
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                   ),
                                                                 ]),
                                                               ),
+
+
 
 
                                                             ],

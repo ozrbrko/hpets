@@ -191,11 +191,11 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                                   TextSpan(
                                                                       text: "food_name".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr)),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
                                                                     text: " ${nutrition.food_name}",
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                   ),
                                                                 ]),
@@ -208,11 +208,11 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                                   TextSpan(
                                                                       text: "amount_of_food".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr)),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
                                                                     text: " ${nutrition.amount_of_food}",
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                   ),
                                                                 ]),
@@ -228,18 +228,18 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                                   TextSpan(
                                                                       text: "date".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr)),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
                                                                     text: " ${nutrition.food_date}",
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                   ),
 
                                                                   TextSpan(
                                                                     text: " / ${nutrition.food_time}",
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                   ),
                                                                 ]),

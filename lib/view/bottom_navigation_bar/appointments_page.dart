@@ -156,11 +156,11 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                     TextSpan(
                                                                         text: "pet_name".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${appointment.pet_name}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
@@ -178,11 +178,11 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                     TextSpan(
                                                                         text: "veterinary".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${appointment.veterinary_info}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
@@ -196,11 +196,11 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                     TextSpan(
                                                                         text: "address".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${appointment.veterinary_address}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
@@ -213,11 +213,11 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                     TextSpan(
                                                                         text: "date".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${appointment.appointment_time}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),

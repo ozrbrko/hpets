@@ -270,22 +270,24 @@ class _AddNewPetState extends State<AddNewPet> {
 
   }
 
+  final List<String> genderItems = [
+    'he'.tr,
+    'she'.tr,
+  ];
+
+  final List<String> petItems = [
+    'dog'.tr,
+    'cat'.tr,
+    'bird'.tr,
+    'fish'.tr,
+    'turtle'.tr,
+    'horse'.tr
+  ];
+
 
 }
 
-final List<String> genderItems = [
-  'he'.tr,
-  'she'.tr,
-];
 
-final List<String> petItems = [
-  'dog'.tr,
-  'cat'.tr,
-  'bird'.tr,
-  'fish'.tr,
-  'turtle'.tr,
-  'horse'.tr
-];
 
 
 

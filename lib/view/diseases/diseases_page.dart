@@ -187,11 +187,11 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                                     TextSpan(
                                                                         text: "disease_name".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${disease.disease_title!}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
@@ -202,11 +202,11 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                                     TextSpan(
                                                                         text: "content".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${disease.disease_content!}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
@@ -218,11 +218,11 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                                     TextSpan(
                                                                         text: "date".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${disease.disease_date!}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),

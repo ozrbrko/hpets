@@ -87,6 +87,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       icon: Icons.home_outlined,
                       text: 'home'.tr,
 
+
                     ),
                     // GButton(
                     //   icon: Icons.vaccines,

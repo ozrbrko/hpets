@@ -116,7 +116,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Icon(Icons.question_answer_outlined,
                         color: AppColors.appThemeClr)),
                 Expanded(flex: 3,
-                    child: Text("opinions_and_suggestions".tr, style: TextStyle(
+                    child: Text(
+
+                      "opinions_and_suggestions".tr, style: TextStyle(
                         fontSize: 16, fontFamily: themeFontRegular),)),
                 Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
               ],

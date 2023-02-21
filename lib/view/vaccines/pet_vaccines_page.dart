@@ -152,7 +152,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                 // note.pet_id==widget.pet!.pet_id!?
 
                                                 Container(
-                                                  height: 90,
+                                                  height: 95,
                                                   width: FrameSize.screenWidth,
                                                   child: Padding(
                                                     padding: const EdgeInsets.all(15.0),
@@ -178,11 +178,11 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                                     TextSpan(
                                                                         text: "vaccine_name".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${vaccine.vaccine_name!}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
@@ -194,11 +194,11 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                                     TextSpan(
                                                                         text: "date".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${vaccine.vaccine_date!} / ${vaccine.vaccine_time!}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
@@ -211,11 +211,11 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                                     TextSpan(
                                                                         text: "veterinary".tr,
                                                                         style: TextStyle(
-                                                                            color: AppColors.appThemeClr)),
+                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
                                                                       text: " ${vaccine.veterinary!}",
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                     ),
                                                                   ]),
