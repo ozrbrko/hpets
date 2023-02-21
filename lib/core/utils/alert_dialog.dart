@@ -47,6 +47,13 @@ TextEditingController appointmentTimeInputController = TextEditingController();
 TextEditingController appointmentAddressInputController =
     TextEditingController();
 
+
+TextEditingController  editPetNameInputController = TextEditingController();
+TextEditingController  editPetTypeInputController = TextEditingController();
+TextEditingController  editPetGenderInputController = TextEditingController();
+TextEditingController  editPetRaceInputController = TextEditingController();
+TextEditingController  editPetAgeInputController = TextEditingController();
+
 var refPets =
     FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
 var notePets = FirebaseDatabase.instance
@@ -1632,6 +1639,247 @@ class AlertDialogFunctions {
         });
   }
 
+
+
+  static Future infoPetEdit(
+      BuildContext context,
+      String? petName,
+      String? petType,
+      String? petGender,
+      String? petRace,
+      String? petAge) {
+    editPetNameInputController.text = petName!;
+    editPetTypeInputController.text = petType!;
+    editPetGenderInputController.text = petGender!;
+    editPetRaceInputController.text = petRace!;
+    editPetAgeInputController.text = petAge!;
+
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "pet_edit".tr,
+                              style: TextStyle(
+                                  fontFamily: themeFontBold, fontSize: 19),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(Icons.close)),
+                          ],
+                        ),
+                        Divider(),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        hPetsTextFormField("name".tr, editPetNameInputController, "name_required".tr, TextInputType.text, false, "false"),
+
+                        SizedBox(
+                          height: 12,
+                        ),
+
+                        DropdownButtonFormField2(
+
+                          decoration: InputDecoration(
+
+                              contentPadding:
+                              const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                              filled: true,
+                              hintText: "select_pet",
+
+
+                              hintStyle: TextStyle(
+                                  fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+                          isExpanded: true,
+                          hint:  Text(
+                            "select_pet".tr,
+                            style: TextStyle(fontSize: 16),
+                          ),
+
+                          dropdownDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+
+                          items: petItems
+                              .map((item) =>
+                              DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style:  TextStyle(
+                                    fontSize: 16, color: AppColors.blackThemeClr,
+                                  ),
+                                ),
+                              ))
+                              .toList(),
+                          validator: (value) {
+                            if (value == null) {
+                              return 'dropdown_required'.tr;
+                            }
+                          },
+                          onChanged: (value) {
+                            logger.i(value);
+                            editPetTypeInputController.text = value!;
+
+
+                          },
+                          onSaved: (value) {
+                            selectedValue = value.toString();
+                            logger.i(value);
+                            editPetTypeInputController.text = value!;
+
+                          },
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+
+                        DropdownButtonFormField2(
+
+                          decoration: InputDecoration(
+
+                              contentPadding:
+                              const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                              filled: true,
+                              hintText: "select_gender".tr,
+
+
+                              hintStyle: TextStyle(
+                                  fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+                          isExpanded: true,
+                          hint:  Text(
+                              'select_gender'.tr,
+                            style: TextStyle(fontSize: 16),
+                          ),
+
+                          dropdownDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+
+                          items: genderItems
+                              .map((item) =>
+                              DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style:  TextStyle(
+                                    fontSize: 16, color: AppColors.blackThemeClr,
+                                  ),
+                                ),
+                              ))
+                              .toList(),
+                          validator: (value) {
+                            if (value == null) {
+                              return 'dropdown_required'.tr;
+                            }
+                          },
+                          onChanged: (value) {
+                            logger.i(value);
+                            editPetGenderInputController.text = value!;
+
+
+                          },
+                          onSaved: (value) {
+                            selectedValue = value.toString();
+                            logger.i(value);
+                            editPetGenderInputController.text = value!;
+
+                          },
+                        ),
+
+                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
+
+                        SizedBox(
+                          height: 12,
+                        ),
+
+                        hPetsTextFormField("race".tr, editPetRaceInputController, "race_required".tr, TextInputType.text, false, "false"),
+
+                        SizedBox(
+                          height: 12,
+                        ),
+
+                        hPetsTextFormField("age".tr, editPetAgeInputController, "age_required".tr, TextInputType.number, false, "false"),
+
+
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: FrameSize.screenHeight / 14,
+                                  child: hPetsElevatedButton(
+                                      "update".tr,
+                                      AppColors.appThemeClr,
+                                      AppColors.whiteThemeClr,
+                                      40,
+                                      themeFontSemiBold,
+                                          () => {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+                                            petName = editPetNameInputController.text,
+                                            petType = editPetTypeInputController.text,
+                                            petGender = editPetGenderInputController.text,
+                                            petRace = editPetRaceInputController.text,
+                                            petAge = editPetAgeInputController.text,
+
+                                            updatePet(petName!, petAge!, petRace!, petGender!, petType!),
+
+
+                                            Navigator.pushNamed(
+                                                context, '/bottomnav'),                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+
   static Future infoNutritionDetail(
       BuildContext context,
       String? food_name,
@@ -1818,24 +2066,11 @@ class AlertDialogFunctions {
                                                 .validate())
                                               {
                                                 print("Validated"),
-                                                food_name =
-                                                    foodNameInputController
-                                                        .text,
-                                                food_date =
-                                                    foodDateInputController
-                                                        .text,
-                                                food_time =
-                                                    foodTimeInputController
-                                                        .text,
-                                                amount_of_food =
-                                                    amountFoodInputController
-                                                        .text,
-                                                updateNutrition(
-                                                    food_name!,
-                                                    amount_of_food!,
-                                                    food_time!,
-                                                    food_date!,
-                                                    food_id!),
+                                                food_name = foodNameInputController.text,
+                                                food_date = foodDateInputController.text,
+                                                food_time = foodTimeInputController.text,
+                                                amount_of_food = amountFoodInputController.text,
+                                                updateNutrition(food_name!, amount_of_food!, food_time!, food_date!, food_id!),
                                                 Navigator.pop(context),
                                               }
                                             else
@@ -1902,6 +2137,26 @@ class AlertDialogFunctions {
     appointmentPets.child(appointment_id!).update(info);
   }
 
+  static Future<void> updatePet(String pet_name, String pet_age, String pet_race, String pet_gender, String pet_type) async {
+    // await FirebaseFirestore.instance
+    //     .collection('Pets')
+    //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
+
+
+    var info = HashMap<String,dynamic>();
+    info["pet_name"] = pet_name;
+    info["pet_age"] = pet_age;
+    info["pet_race"] = pet_race;
+    info["pet_gender"] = pet_gender;
+    info["pet_type"] = pet_type;
+    info["pet_key"] = "";
+
+    // logger.e(_auth.currentUser!.uid);
+    refPets.child(Config.petKey).update(info);
+
+  }
+
+
   static Future<void> updateNutrition(String foodName, String amonutFood,
       String foodTime, String foodDate, String food_id) async {
     var info = HashMap<String, dynamic>();
@@ -1934,4 +2189,19 @@ class AlertDialogFunctions {
 final List<String> languageItems = [
   'TR',
   'EN',
+];
+
+
+final List<String> genderItems = [
+  'he'.tr,
+  'she'.tr,
+];
+
+final List<String> petItems = [
+  'dog'.tr,
+  'cat'.tr,
+  'bird'.tr,
+  'fish'.tr,
+  'turtle'.tr,
+  'horse'.tr
 ];

@@ -110,6 +110,7 @@ class Languages extends Translations {
           'new_vaccine': "New Vaccine",
           'appointments': "Appointments",
           '_nutritions': " Nutritions",
+          'pet_edit': "Edit Pet",
           'address': "Address:",
           'new_appointment': "New Appointment",
           'pet_required': "     Please Select Pet !",
@@ -208,6 +209,8 @@ class Languages extends Translations {
       'login': "Giriş Yap",
       '_notes':" Notları",
       'new_note': "Yeni Not",
+      'pet_edit': "Evcil Hayvan Düzenleme",
+
       'title_required':"Başlık gereklidir !",
       '_nutritions': " Beslenmeleri",
       'lets_add_new_nutrition': "Evcil hayvan arkadaşınızın yeni beslenme arşivini ekleyelim.",

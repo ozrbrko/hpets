@@ -11,9 +11,17 @@ class GuidePage extends StatefulWidget {
 
   @override
   State<GuidePage> createState() => _GuidePageState();
+
 }
 
 class _GuidePageState extends State<GuidePage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
@@ -57,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: FrameSize.screenHeight,
         width: FrameSize.screenWidth,
-        color: AppColors.blackThemeClr,
+        color: AppColors.whiteThemeClr,
         child: Column(
 
           mainAxisAlignment: MainAxisAlignment.center,
@@ -67,13 +68,17 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             // SizedBox(height: 180),
             Image.asset(Images.logo_hpets),
-            // Text(
-            //   "hPETS",
-            //   style: TextStyle(
-            //     fontFamily: themeFontMedium,
-            //     fontSize: 32,
-            //   ),
-            // )
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:
+                AnimatedTextKit(
+                  animatedTexts: [
+
+                    TyperAnimatedText("Schhh... You Know Healthy pet.",textStyle: TextStyle(fontSize: 22,fontFamily: themeFontBold,color: AppColors.appThemeClr)),
+
+                  ],
+                )
+            )
           ],
         ),
       ),
