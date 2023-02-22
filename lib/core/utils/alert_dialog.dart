@@ -1004,7 +1004,27 @@ class AlertDialogFunctions {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(1900),
-                                lastDate: DateTime(2100)))!;
+                                lastDate: DateTime(2100),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: Theme.of(context).copyWith(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                        // <-- SEE HERE
+                                        onPrimary: AppColors.whiteThemeClr,
+                                        // <-- SEE HERE
+                                        onSurface:
+                                        AppColors.blackThemeClr, // <-- SEE HERE
+                                      ),
+                                      textButtonTheme: TextButtonThemeData(
+                                        style: TextButton.styleFrom(
+                                          primary: AppColors.appThemeClr, // button text color
+                                        ),
+                                      ),
+                                    ),
+                                    child: child!,
+                                  );
+                                }))!;
                             String dateSlug =
                                 "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
 
@@ -1037,6 +1057,24 @@ class AlertDialogFunctions {
                             showTimePicker(
                               context: context,
                               initialTime: TimeOfDay.now(),
+                              builder: (context, child) {
+                                return Theme(
+                                  data: ThemeData.light().copyWith(
+                                    colorScheme: ColorScheme.light(
+                                      // change the border color
+                                      primary: AppColors.appThemeClr,
+                                      // change the text color
+                                      onSurface: AppColors.appThemeClr,
+                                    ),
+                                    // button colors
+                                    buttonTheme: ButtonThemeData(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                      ),
+                                    ),
+                                  ), child: child!,
+                                );
+                              },
                             ).then((value) {
                               vaccineTimeInputController.text =
                                   value!.format(context);
@@ -1231,7 +1269,27 @@ class AlertDialogFunctions {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(1900),
-                                lastDate: DateTime(2100)))!;
+                                lastDate: DateTime(2100),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: Theme.of(context).copyWith(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                        // <-- SEE HERE
+                                        onPrimary: AppColors.whiteThemeClr,
+                                        // <-- SEE HERE
+                                        onSurface:
+                                        AppColors.blackThemeClr, // <-- SEE HERE
+                                      ),
+                                      textButtonTheme: TextButtonThemeData(
+                                        style: TextButton.styleFrom(
+                                          primary: AppColors.appThemeClr, // button text color
+                                        ),
+                                      ),
+                                    ),
+                                    child: child!,
+                                  );
+                                }))!;
                             String dateSlug =
                                 "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
 
@@ -1264,6 +1322,24 @@ class AlertDialogFunctions {
                             showTimePicker(
                               context: context,
                               initialTime: TimeOfDay.now(),
+                              builder: (context, child) {
+                                return Theme(
+                                  data: ThemeData.light().copyWith(
+                                    colorScheme: ColorScheme.light(
+                                      // change the border color
+                                      primary: AppColors.appThemeClr,
+                                      // change the text color
+                                      onSurface: AppColors.appThemeClr,
+                                    ),
+                                    // button colors
+                                    buttonTheme: ButtonThemeData(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                      ),
+                                    ),
+                                  ), child: child!,
+                                );
+                              },
                             ).then((value) {
                               diseaseTimeInputController.text =
                                   value!.format(context);
@@ -1488,7 +1564,27 @@ class AlertDialogFunctions {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(1900),
-                                lastDate: DateTime(2100)))!;
+                                lastDate: DateTime(2100),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: Theme.of(context).copyWith(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                        // <-- SEE HERE
+                                        onPrimary: AppColors.whiteThemeClr,
+                                        // <-- SEE HERE
+                                        onSurface:
+                                        AppColors.blackThemeClr, // <-- SEE HERE
+                                      ),
+                                      textButtonTheme: TextButtonThemeData(
+                                        style: TextButton.styleFrom(
+                                          primary: AppColors.appThemeClr, // button text color
+                                        ),
+                                      ),
+                                    ),
+                                    child: child!,
+                                  );
+                                }))!;
                             String dateSlug =
                                 "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
 
@@ -1521,6 +1617,24 @@ class AlertDialogFunctions {
                             showTimePicker(
                               context: context,
                               initialTime: TimeOfDay.now(),
+                              builder: (context, child) {
+                                return Theme(
+                                  data: ThemeData.light().copyWith(
+                                    colorScheme: ColorScheme.light(
+                                      // change the border color
+                                      primary: AppColors.appThemeClr,
+                                      // change the text color
+                                      onSurface: AppColors.appThemeClr,
+                                    ),
+                                    // button colors
+                                    buttonTheme: ButtonThemeData(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                      ),
+                                    ),
+                                  ), child: child!,
+                                );
+                              },
                             ).then((value) {
                               appointmentTimeInputController.text =
                                   value!.format(context);
@@ -1978,7 +2092,27 @@ class AlertDialogFunctions {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(1900),
-                                lastDate: DateTime(2100)))!;
+                                lastDate: DateTime(2100),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: Theme.of(context).copyWith(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                        // <-- SEE HERE
+                                        onPrimary: AppColors.whiteThemeClr,
+                                        // <-- SEE HERE
+                                        onSurface:
+                                        AppColors.blackThemeClr, // <-- SEE HERE
+                                      ),
+                                      textButtonTheme: TextButtonThemeData(
+                                        style: TextButton.styleFrom(
+                                          primary: AppColors.appThemeClr, // button text color
+                                        ),
+                                      ),
+                                    ),
+                                    child: child!,
+                                  );
+                                }))!;
                             String dateSlug =
                                 "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
 
@@ -2011,6 +2145,24 @@ class AlertDialogFunctions {
                             showTimePicker(
                               context: context,
                               initialTime: TimeOfDay.now(),
+                              builder: (context, child) {
+                                return Theme(
+                                  data: ThemeData.light().copyWith(
+                                    colorScheme: ColorScheme.light(
+                                      // change the border color
+                                      primary: AppColors.appThemeClr,
+                                      // change the text color
+                                      onSurface: AppColors.appThemeClr,
+                                    ),
+                                    // button colors
+                                    buttonTheme: ButtonThemeData(
+                                      colorScheme: ColorScheme.light(
+                                        primary: AppColors.appThemeClr,
+                                      ),
+                                    ),
+                                  ), child: child!,
+                                );
+                              },
                             ).then((value) {
                               foodTimeInputController.text =
                                   value!.format(context);

@@ -235,7 +235,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
 
               Flexible(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(25.0),
                   child: Container(
                     // color: Colors.red,
                     child: GridView.count(

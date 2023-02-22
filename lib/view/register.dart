@@ -3,15 +3,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
-import 'package:hpets/core/enums/enum.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
-
 import '../core/constants/colors.dart';
 import '../core/constants/fonts.dart';
 import '../core/services/auth_service.dart';
-import '../core/utils/config.dart';
-import '../main.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

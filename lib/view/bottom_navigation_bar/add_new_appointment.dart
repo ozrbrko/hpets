@@ -47,7 +47,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        appBar: hpetsAppBar(context, true, "new_appointment".tr, false),
+      appBar: hpetsAppBar(context, true, "new_appointment".tr, false),
       body: Container(
 
         height: FrameSize.screenHeight,
@@ -137,75 +137,10 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
 
                   SizedBox(height: 12,),
 
-                  TextFormField(
-                    controller: appointmentDateInputController,
-                    decoration: InputDecoration(
-
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "date".tr,
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight,
-                            color: AppColors.greyThemeClr,
-                            fontSize: 16.0)),
-                    onTap: () async {
-                      DateTime date = DateTime(1900);
-                      FocusScope.of(context).requestFocus(new FocusNode());
-
-                      date = (await showDatePicker(
-
-                          // locale: const Locale("tr", "TR"),
-                          locale:  Locale("${Config.languageValue.toString().toLowerCase()}", "${Config.languageValue.toString().toUpperCase()}"),
-                          // pet_type=="dog"? "assets/images/guide_image_1.png" : pet_type=="cat"
-
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1900),
-                          lastDate: DateTime(2100)))!;
-                      String dateSlug = "${date.year.toString()}-${date.month
-                          .toString().padLeft(2, '0')}-${date.day.toString()
-                          .padLeft(2, '0')}";
-
-                      appointmentDateInputController.text = dateSlug;
-                    },),
+                  Config.DateTextFormField(context,appointmentDateInputController),
                   SizedBox(height: 12,),
 
-                  TextFormField(
-                    controller: appointmentTimeInputController,
-
-                    decoration: InputDecoration(
-
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "time".tr,
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight,
-                            color: AppColors.greyThemeClr,
-                            fontSize: 16.0)),
-                    onTap: () {
-                      FocusScope.of(context).requestFocus(new FocusNode());
-                      showTimePicker(
-
-                        context: context,
-                        initialTime: TimeOfDay.now(),
-                      ).then((value) {
-                        setState(() {
-                          appointmentTimeInputController.text = value!.format(context);
-                        });
-                      });
-                    },
-                    // controller: TextEditingController(text: selectedTime.format(context)),
-                  ),
+                  Config.TimeTextFormField(context, appointmentTimeInputController),
 
                   SizedBox(height: 12,),
 

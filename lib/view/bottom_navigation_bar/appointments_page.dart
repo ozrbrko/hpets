@@ -215,6 +215,12 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                         style: TextStyle(
                                                                             color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
+                                                                      text: " ${appointment.appointment_date} / ",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
+
+                                                                    ),
+                                                                    TextSpan(
                                                                       text: " ${appointment.appointment_time}",
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontBold),
