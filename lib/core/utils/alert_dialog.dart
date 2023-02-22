@@ -20,7 +20,7 @@ TextEditingController suggestionInputController = TextEditingController();
 TextEditingController currentPasswordInputController = TextEditingController();
 TextEditingController newPasswordInputController = TextEditingController();
 TextEditingController restartNewPasswordInputController =
-    TextEditingController();
+TextEditingController();
 TextEditingController vaccineNameInputController = TextEditingController();
 TextEditingController veterinaryInfoInputController = TextEditingController();
 TextEditingController vaccineDateInputController = TextEditingController();
@@ -40,12 +40,12 @@ TextEditingController noteTitleInputController = TextEditingController();
 TextEditingController noteContentInputController = TextEditingController();
 
 TextEditingController veterinaryInfoAppInputController =
-    TextEditingController();
+TextEditingController();
 TextEditingController petNameInputController = TextEditingController();
 TextEditingController appointmentDateInputController = TextEditingController();
 TextEditingController appointmentTimeInputController = TextEditingController();
 TextEditingController appointmentAddressInputController =
-    TextEditingController();
+TextEditingController();
 
 
 TextEditingController  editPetNameInputController = TextEditingController();
@@ -55,7 +55,7 @@ TextEditingController  editPetRaceInputController = TextEditingController();
 TextEditingController  editPetAgeInputController = TextEditingController();
 
 var refPets =
-    FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
+FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
 var notePets = FirebaseDatabase.instance
     .ref()
     .child("pets_table")
@@ -69,12 +69,7 @@ var vaccinesPets = FirebaseDatabase.instance
     .child(Config.token)
     .child(Config.petKey)
     .child("vaccines");
-var diseasePets = FirebaseDatabase.instance
-    .ref()
-    .child("pets_table")
-    .child(Config.token)
-    .child(Config.petKey)
-    .child("diseases");
+var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
 var nutritionPets = FirebaseDatabase.instance
     .ref()
     .child("pets_table")
@@ -161,9 +156,9 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () => {
-                                            Navigator.pop(context),
-                                          })),
+                                          () => {
+                                        Navigator.pop(context),
+                                      })),
                             ),
                             SizedBox(
                               width: 10,
@@ -178,12 +173,12 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () async => {
-                                            await storage.delete(
-                                                key: "remem_token"),
-                                            Navigator.of(context)
-                                                .pushReplacementNamed('/login'),
-                                          })),
+                                          () async => {
+                                        await storage.delete(
+                                            key: "remem_token"),
+                                        Navigator.of(context)
+                                            .pushReplacementNamed('/login'),
+                                      })),
                             ),
                           ],
                         )
@@ -269,9 +264,9 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () => {
-                                            Navigator.pop(context),
-                                          })),
+                                          () => {
+                                        Navigator.pop(context),
+                                      })),
                             ),
                             SizedBox(
                               width: 10,
@@ -286,14 +281,13 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () async => {
-                                            logger.i(Config.petKey),
-                                            refPets
-                                                .child(Config.petKey)
-                                                .remove(),
-                                            Navigator.pushNamed(
-                                                context, '/bottomnav'),
-                                          })),
+                                          () async => {
+                                        logger.i(Config.petKey),
+                                        refPets.child(Config.petKey).remove(),
+
+                                      Navigator.pushNamed(
+                                            context, '/bottomnav'),
+                                      })),
                             ),
                           ],
                         )
@@ -367,18 +361,18 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              Config.resetPassword(
-                                                  context, mailInputController)
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        })),
+                                        () => {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          Config.resetPassword(
+                                              context, mailInputController)
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    })),
                           ],
                         )
                       ],
@@ -469,18 +463,18 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              Config.resetPassword(
-                                                  context, mailInputController)
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        })),
+                                        () => {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          Config.resetPassword(
+                                              context, mailInputController)
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    })),
                           ],
                         )
                       ],
@@ -538,12 +532,12 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          Navigator.pushNamed(
-                                            context,
-                                            '/login',
-                                          ),
-                                        })),
+                                        () => {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/login',
+                                      ),
+                                    })),
                           ],
                         )
                       ],
@@ -623,13 +617,13 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          Navigator.pop(context),
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            content: Text("it_was_send".tr),
-                                          )),
-                                        })),
+                                        () => {
+                                      Navigator.pop(context),
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text("it_was_send".tr),
+                                      )),
+                                    })),
                           ],
                         )
                       ],
@@ -697,7 +691,7 @@ class AlertDialogFunctions {
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
+                                  BorderRadius.all(Radius.circular(40.0))),
                               filled: true,
                               hintText: "select_language".tr,
                               hintStyle: TextStyle(
@@ -712,17 +706,17 @@ class AlertDialogFunctions {
                           dropdownDecoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          items: languageItems
+                          items: Config.languageItems
                               .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: AppColors.blackThemeClr,
-                                      ),
-                                    ),
-                                  ))
+                            value: item,
+                            child: Text(
+                              item,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.blackThemeClr,
+                              ),
+                            ),
+                          ))
                               .toList(),
                           validator: (value) {
                             if (value == null) {
@@ -754,23 +748,31 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (Config.languageValue == "TR")
-                                            {
-                                              Get.updateLocale(
-                                                  Locale("tr", "TR")),
-                                            }
-                                          else if (Config.languageValue == "EN")
-                                            {
-                                              Get.updateLocale(
-                                                  Locale("en", "US")),
-                                            },
-                                          Navigator.pop(context),
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            content: Text("change_success".tr),
-                                          )),
-                                        })),
+                                        () => {
+                                      if (Config.languageValue == "TR")
+                                        {
+                                          Get.updateLocale(
+                                              Locale("tr", "TR")),
+
+                                          Config.dropdownGenderList = Config.genderItemsTr,
+                                          Config.dropdownPetList = Config.petItemsTr
+
+                                        }
+                                      else if (Config.languageValue == "EN")
+                                        {
+                                          Get.updateLocale(
+                                              Locale("en", "US")),
+
+                                          Config.dropdownGenderList = Config.genderItemsEn,
+                                          Config.dropdownPetList = Config.petItemsEn
+
+                                        },
+                                      Navigator.pop(context),
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text("change_success".tr),
+                                      )),
+                                    })),
                           ],
                         )
                       ],
@@ -850,18 +852,18 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              notePets.child(note_id!).remove(),
-                                              Navigator.pop(context),
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        }),
+                                        () => {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          notePets.child(note_id!).remove(),
+                                          Navigator.pop(context),
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    }),
                               ),
                             ),
                             SizedBox(
@@ -877,24 +879,24 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () => {
-                                            if (_formKey.currentState!
-                                                .validate())
-                                              {
-                                                print("Validated"),
-                                                updateNote(
-                                                    noteTitleInputController
-                                                        .text,
-                                                    noteContentInputController
-                                                        .text,
-                                                    note_id!),
-                                                Navigator.pop(context),
-                                              }
-                                            else
-                                              {
-                                                print("Not Validated"),
-                                              }
-                                          })),
+                                          () => {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+                                            updateNote(
+                                                noteTitleInputController
+                                                    .text,
+                                                noteContentInputController
+                                                    .text,
+                                                note_id!),
+                                            Navigator.pop(context),
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
                             ),
                           ],
                         )
@@ -980,108 +982,14 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: vaccineDateInputController,
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "date".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () async {
-                            DateTime date = DateTime(1900);
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
+                        Config.DateTextFormField(context, vaccineDateInputController),
 
-                            date = (await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime(2100),
-                                builder: (context, child) {
-                                  return Theme(
-                                    data: Theme.of(context).copyWith(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                        // <-- SEE HERE
-                                        onPrimary: AppColors.whiteThemeClr,
-                                        // <-- SEE HERE
-                                        onSurface:
-                                        AppColors.blackThemeClr, // <-- SEE HERE
-                                      ),
-                                      textButtonTheme: TextButtonThemeData(
-                                        style: TextButton.styleFrom(
-                                          primary: AppColors.appThemeClr, // button text color
-                                        ),
-                                      ),
-                                    ),
-                                    child: child!,
-                                  );
-                                }))!;
-                            String dateSlug =
-                                "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-
-                            vaccineDateInputController.text = dateSlug;
-                          },
-                        ),
                         SizedBox(
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: vaccineTimeInputController,
+                        Config.TimeTextFormField(context, vaccineTimeInputController),
 
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "time".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () {
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
-                            showTimePicker(
-                              context: context,
-                              initialTime: TimeOfDay.now(),
-                              builder: (context, child) {
-                                return Theme(
-                                  data: ThemeData.light().copyWith(
-                                    colorScheme: ColorScheme.light(
-                                      // change the border color
-                                      primary: AppColors.appThemeClr,
-                                      // change the text color
-                                      onSurface: AppColors.appThemeClr,
-                                    ),
-                                    // button colors
-                                    buttonTheme: ButtonThemeData(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                      ),
-                                    ),
-                                  ), child: child!,
-                                );
-                              },
-                            ).then((value) {
-                              vaccineTimeInputController.text =
-                                  value!.format(context);
-                            });
-                          },
-                          // controller: TextEditingController(text: selectedTime.format(context)),
-                        ),
                         SizedBox(
                           height: 25,
                         ),
@@ -1098,23 +1006,23 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              vaccinesPets
-                                                  .child(vaccine_id!)
-                                                  .remove(),
-                                              vaccinesPets
-                                                  .child(vaccine_id!)
-                                                  .remove(),
-                                              Navigator.pop(context),
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        }),
+                                        () => {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          vaccinesPets
+                                              .child(vaccine_id!)
+                                              .remove(),
+                                          vaccinesPets
+                                              .child(vaccine_id!)
+                                              .remove(),
+                                          Navigator.pop(context),
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    }),
                               ),
                             ),
                             SizedBox(
@@ -1130,36 +1038,36 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () => {
-                                            if (_formKey.currentState!
-                                                .validate())
-                                              {
-                                                print("Validated"),
-                                                vaccine_name =
-                                                    vaccineNameInputController
-                                                        .text,
-                                                vaccine_date =
-                                                    vaccineDateInputController
-                                                        .text,
-                                                vaccine_time =
-                                                    vaccineTimeInputController
-                                                        .text,
-                                                veterinary_info =
-                                                    veterinaryInfoInputController
-                                                        .text,
-                                                updateVaccine(
-                                                    vaccine_name!,
-                                                    veterinary_info!,
-                                                    vaccine_date!,
-                                                    vaccine_time!,
-                                                    vaccine_id!),
-                                                Navigator.pop(context),
-                                              }
-                                            else
-                                              {
-                                                print("Not Validated"),
-                                              }
-                                          })),
+                                          () => {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+                                            vaccine_name =
+                                                vaccineNameInputController
+                                                    .text,
+                                            vaccine_date =
+                                                vaccineDateInputController
+                                                    .text,
+                                            vaccine_time =
+                                                vaccineTimeInputController
+                                                    .text,
+                                            veterinary_info =
+                                                veterinaryInfoInputController
+                                                    .text,
+                                            updateVaccine(
+                                                vaccine_name!,
+                                                veterinary_info!,
+                                                vaccine_date!,
+                                                vaccine_time!,
+                                                vaccine_id!),
+                                            Navigator.pop(context),
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
                             ),
                           ],
                         )
@@ -1245,108 +1153,14 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: diseaseDateInputController,
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "date".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () async {
-                            DateTime date = DateTime(1900);
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
+                        Config.DateTextFormField(context, diseaseDateInputController),
 
-                            date = (await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime(2100),
-                                builder: (context, child) {
-                                  return Theme(
-                                    data: Theme.of(context).copyWith(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                        // <-- SEE HERE
-                                        onPrimary: AppColors.whiteThemeClr,
-                                        // <-- SEE HERE
-                                        onSurface:
-                                        AppColors.blackThemeClr, // <-- SEE HERE
-                                      ),
-                                      textButtonTheme: TextButtonThemeData(
-                                        style: TextButton.styleFrom(
-                                          primary: AppColors.appThemeClr, // button text color
-                                        ),
-                                      ),
-                                    ),
-                                    child: child!,
-                                  );
-                                }))!;
-                            String dateSlug =
-                                "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-
-                            diseaseDateInputController.text = dateSlug;
-                          },
-                        ),
                         SizedBox(
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: diseaseTimeInputController,
+                        Config.TimeTextFormField(context, diseaseTimeInputController),
 
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "time".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () {
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
-                            showTimePicker(
-                              context: context,
-                              initialTime: TimeOfDay.now(),
-                              builder: (context, child) {
-                                return Theme(
-                                  data: ThemeData.light().copyWith(
-                                    colorScheme: ColorScheme.light(
-                                      // change the border color
-                                      primary: AppColors.appThemeClr,
-                                      // change the text color
-                                      onSurface: AppColors.appThemeClr,
-                                    ),
-                                    // button colors
-                                    buttonTheme: ButtonThemeData(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                      ),
-                                    ),
-                                  ), child: child!,
-                                );
-                              },
-                            ).then((value) {
-                              diseaseTimeInputController.text =
-                                  value!.format(context);
-                            });
-                          },
-                          // controller: TextEditingController(text: selectedTime.format(context)),
-                        ),
                         SizedBox(
                           height: 25,
                         ),
@@ -1363,20 +1177,18 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              diseasePets
-                                                  .child(disease_id!)
-                                                  .remove(),
-                                              Navigator.pop(context),
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        }),
+                                        () => {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          diseasePets.child(disease_id!).remove(),
+                                          Navigator.pop(context),
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    }),
                               ),
                             ),
                             SizedBox(
@@ -1392,36 +1204,36 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () => {
-                                            if (_formKey.currentState!
-                                                .validate())
-                                              {
-                                                print("Validated"),
-                                                disease_title =
-                                                    diseaseNameInputController
-                                                        .text,
-                                                disease_date =
-                                                    diseaseDateInputController
-                                                        .text,
-                                                disease_time =
-                                                    diseaseTimeInputController
-                                                        .text,
-                                                disease_content =
-                                                    diseaseContentInputController
-                                                        .text,
-                                                updateDisease(
-                                                    disease_title!,
-                                                    disease_content!,
-                                                    disease_date!,
-                                                    disease_time!,
-                                                    disease_id!),
-                                                Navigator.pop(context),
-                                              }
-                                            else
-                                              {
-                                                print("Not Validated"),
-                                              }
-                                          })),
+                                          () => {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+                                            disease_title =
+                                                diseaseNameInputController
+                                                    .text,
+                                            disease_date =
+                                                diseaseDateInputController
+                                                    .text,
+                                            disease_time =
+                                                diseaseTimeInputController
+                                                    .text,
+                                            disease_content =
+                                                diseaseContentInputController
+                                                    .text,
+                                            updateDisease(
+                                                disease_title!,
+                                                disease_content!,
+                                                disease_date!,
+                                                disease_time!,
+                                                disease_id!),
+                                            Navigator.pop(context),
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
                             ),
                           ],
                         )
@@ -1491,7 +1303,7 @@ class AlertDialogFunctions {
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
+                                  BorderRadius.all(Radius.circular(40.0))),
                               filled: true,
                               hintText: "Select Type",
                               hintStyle: TextStyle(
@@ -1510,15 +1322,15 @@ class AlertDialogFunctions {
 
                           items: Config.petListConfig
                               .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: AppColors.blackThemeClr,
-                                      ),
-                                    ),
-                                  ))
+                            value: item,
+                            child: Text(
+                              item,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.blackThemeClr,
+                              ),
+                            ),
+                          ))
                               .toList(),
                           // validator: (value) {
                           //   if (value == null) {
@@ -1540,108 +1352,13 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: appointmentDateInputController,
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "date".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () async {
-                            DateTime date = DateTime(1900);
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
+                        Config.DateTextFormField(context, appointmentDateInputController),
 
-                            date = (await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime(2100),
-                                builder: (context, child) {
-                                  return Theme(
-                                    data: Theme.of(context).copyWith(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                        // <-- SEE HERE
-                                        onPrimary: AppColors.whiteThemeClr,
-                                        // <-- SEE HERE
-                                        onSurface:
-                                        AppColors.blackThemeClr, // <-- SEE HERE
-                                      ),
-                                      textButtonTheme: TextButtonThemeData(
-                                        style: TextButton.styleFrom(
-                                          primary: AppColors.appThemeClr, // button text color
-                                        ),
-                                      ),
-                                    ),
-                                    child: child!,
-                                  );
-                                }))!;
-                            String dateSlug =
-                                "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-
-                            appointmentDateInputController.text = dateSlug;
-                          },
-                        ),
                         SizedBox(
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: appointmentTimeInputController,
-
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "time".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () {
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
-                            showTimePicker(
-                              context: context,
-                              initialTime: TimeOfDay.now(),
-                              builder: (context, child) {
-                                return Theme(
-                                  data: ThemeData.light().copyWith(
-                                    colorScheme: ColorScheme.light(
-                                      // change the border color
-                                      primary: AppColors.appThemeClr,
-                                      // change the text color
-                                      onSurface: AppColors.appThemeClr,
-                                    ),
-                                    // button colors
-                                    buttonTheme: ButtonThemeData(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                      ),
-                                    ),
-                                  ), child: child!,
-                                );
-                              },
-                            ).then((value) {
-                              appointmentTimeInputController.text =
-                                  value!.format(context);
-                            });
-                          },
-                          // controller: TextEditingController(text: selectedTime.format(context)),
-                        ),
+                        Config.TimeTextFormField(context, appointmentTimeInputController),
 
                         // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
@@ -1680,20 +1397,20 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              appointmentPets
-                                                  .child(appointment_id!)
-                                                  .remove(),
-                                              Navigator.pop(context),
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        }),
+                                        () => {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          appointmentPets
+                                              .child(appointment_id!)
+                                              .remove(),
+                                          Navigator.pop(context),
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    }),
                               ),
                             ),
                             SizedBox(
@@ -1709,39 +1426,39 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () => {
-                                            if (_formKey.currentState!
-                                                .validate())
-                                              {
-                                                print("Validated"),
-                                                veterinaryInfo =
-                                                    veterinaryInfoAppInputController
-                                                        .text,
-                                                petName =
-                                                    petNameInputController.text,
-                                                appointmentDate =
-                                                    appointmentDateInputController
-                                                        .text,
-                                                appointmentTime =
-                                                    appointmentTimeInputController
-                                                        .text,
-                                                veterinary_address =
-                                                    appointmentAddressInputController
-                                                        .text,
-                                                updateAppointment(
-                                                    veterinaryInfo,
-                                                    petName,
-                                                    appointmentDate,
-                                                    appointmentTime,
-                                                    veterinary_address,
-                                                    appointment_id),
-                                                Navigator.pop(context),
-                                              }
-                                            else
-                                              {
-                                                print("Not Validated"),
-                                              }
-                                          })),
+                                          () => {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+                                            veterinaryInfo =
+                                                veterinaryInfoAppInputController
+                                                    .text,
+                                            petName =
+                                                petNameInputController.text,
+                                            appointmentDate =
+                                                appointmentDateInputController
+                                                    .text,
+                                            appointmentTime =
+                                                appointmentTimeInputController
+                                                    .text,
+                                            veterinary_address =
+                                                appointmentAddressInputController
+                                                    .text,
+                                            updateAppointment(
+                                                veterinaryInfo,
+                                                petName,
+                                                appointmentDate,
+                                                appointmentTime,
+                                                veterinary_address,
+                                                appointment_id),
+                                            Navigator.pop(context),
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
                             ),
                           ],
                         )
@@ -1836,7 +1553,7 @@ class AlertDialogFunctions {
                             borderRadius: BorderRadius.circular(15),
                           ),
 
-                          items: petItems
+                          items: Config.dropdownPetList
                               .map((item) =>
                               DropdownMenuItem<String>(
                                 value: item,
@@ -1887,7 +1604,7 @@ class AlertDialogFunctions {
                                   fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                           isExpanded: true,
                           hint:  Text(
-                              'select_gender'.tr,
+                            'select_gender'.tr,
                             style: TextStyle(fontSize: 16),
                           ),
 
@@ -1895,7 +1612,7 @@ class AlertDialogFunctions {
                             borderRadius: BorderRadius.circular(15),
                           ),
 
-                          items: genderItems
+                          items: Config.dropdownGenderList
                               .map((item) =>
                               DropdownMenuItem<String>(
                                 value: item,
@@ -2068,108 +1785,14 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: foodDateInputController,
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "date".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () async {
-                            DateTime date = DateTime(1900);
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
+                        Config.DateTextFormField(context, foodDateInputController),
 
-                            date = (await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime(2100),
-                                builder: (context, child) {
-                                  return Theme(
-                                    data: Theme.of(context).copyWith(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                        // <-- SEE HERE
-                                        onPrimary: AppColors.whiteThemeClr,
-                                        // <-- SEE HERE
-                                        onSurface:
-                                        AppColors.blackThemeClr, // <-- SEE HERE
-                                      ),
-                                      textButtonTheme: TextButtonThemeData(
-                                        style: TextButton.styleFrom(
-                                          primary: AppColors.appThemeClr, // button text color
-                                        ),
-                                      ),
-                                    ),
-                                    child: child!,
-                                  );
-                                }))!;
-                            String dateSlug =
-                                "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-
-                            foodDateInputController.text = dateSlug;
-                          },
-                        ),
                         SizedBox(
                           height: 12,
                         ),
 
-                        TextFormField(
-                          controller: foodTimeInputController,
+                        Config.TimeTextFormField(context, foodTimeInputController),
 
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 32),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40.0))),
-                              filled: true,
-                              hintText: "time".tr,
-                              hintStyle: TextStyle(
-                                  fontFamily: themeFontLight,
-                                  color: AppColors.greyThemeClr,
-                                  fontSize: 16.0)),
-                          onTap: () {
-                            FocusScope.of(context)
-                                .requestFocus(new FocusNode());
-                            showTimePicker(
-                              context: context,
-                              initialTime: TimeOfDay.now(),
-                              builder: (context, child) {
-                                return Theme(
-                                  data: ThemeData.light().copyWith(
-                                    colorScheme: ColorScheme.light(
-                                      // change the border color
-                                      primary: AppColors.appThemeClr,
-                                      // change the text color
-                                      onSurface: AppColors.appThemeClr,
-                                    ),
-                                    // button colors
-                                    buttonTheme: ButtonThemeData(
-                                      colorScheme: ColorScheme.light(
-                                        primary: AppColors.appThemeClr,
-                                      ),
-                                    ),
-                                  ), child: child!,
-                                );
-                              },
-                            ).then((value) {
-                              foodTimeInputController.text =
-                                  value!.format(context);
-                            });
-                          },
-                          // controller: TextEditingController(text: selectedTime.format(context)),
-                        ),
                         SizedBox(
                           height: 25,
                         ),
@@ -2186,20 +1809,20 @@ class AlertDialogFunctions {
                                     AppColors.whiteThemeClr,
                                     40,
                                     themeFontSemiBold,
-                                    () => {
-                                          if (_formKey.currentState!.validate())
-                                            {
-                                              print("Validated"),
-                                              nutritionPets
-                                                  .child(food_id!)
-                                                  .remove(),
-                                              Navigator.pop(context),
-                                            }
-                                          else
-                                            {
-                                              print("Not Validated"),
-                                            }
-                                        }),
+                                        () => {
+                                      if (_formKey.currentState!.validate())
+                                        {
+                                          print("Validated"),
+                                          nutritionPets
+                                              .child(food_id!)
+                                              .remove(),
+                                          Navigator.pop(context),
+                                        }
+                                      else
+                                        {
+                                          print("Not Validated"),
+                                        }
+                                    }),
                               ),
                             ),
                             SizedBox(
@@ -2215,23 +1838,23 @@ class AlertDialogFunctions {
                                       AppColors.whiteThemeClr,
                                       40,
                                       themeFontSemiBold,
-                                      () => {
-                                            if (_formKey.currentState!
-                                                .validate())
-                                              {
-                                                print("Validated"),
-                                                food_name = foodNameInputController.text,
-                                                food_date = foodDateInputController.text,
-                                                food_time = foodTimeInputController.text,
-                                                amount_of_food = amountFoodInputController.text,
-                                                updateNutrition(food_name!, amount_of_food!, food_time!, food_date!, food_id!),
-                                                Navigator.pop(context),
-                                              }
-                                            else
-                                              {
-                                                print("Not Validated"),
-                                              }
-                                          })),
+                                          () => {
+                                        if (_formKey.currentState!
+                                            .validate())
+                                          {
+                                            print("Validated"),
+                                            food_name = foodNameInputController.text,
+                                            food_date = foodDateInputController.text,
+                                            food_time = foodTimeInputController.text,
+                                            amount_of_food = amountFoodInputController.text,
+                                            updateNutrition(food_name!, amount_of_food!, food_time!, food_date!, food_id!),
+                                            Navigator.pop(context),
+                                          }
+                                        else
+                                          {
+                                            print("Not Validated"),
+                                          }
+                                      })),
                             ),
                           ],
                         )
@@ -2339,23 +1962,3 @@ class AlertDialogFunctions {
     // allVaccinesPets.child(vaccine_id).update(infoVacc);
   }
 }
-
-final List<String> languageItems = [
-  'TR',
-  'EN',
-];
-
-
-final List<String> genderItems = [
-  'he'.tr,
-  'she'.tr,
-];
-
-final List<String> petItems = [
-  'dog'.tr,
-  'cat'.tr,
-  'bird'.tr,
-  'fish'.tr,
-  'turtle'.tr,
-  'horse'.tr
-];

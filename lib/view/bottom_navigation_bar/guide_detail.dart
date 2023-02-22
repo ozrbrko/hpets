@@ -12,20 +12,7 @@ class GuideDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        centerTitle: true,
-        title: Text(
-          "hPETS",
-          style: TextStyle(color: AppColors.whiteThemeClr),
-        ),
-        backgroundColor: AppColors.appThemeClr,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(25),
-          ),
-        ),
-      ),
+      appBar: hpetsAppBar(context, true, "hPETS", false),
       body: Container(
         color: AppColors.whiteThemeClr,
 

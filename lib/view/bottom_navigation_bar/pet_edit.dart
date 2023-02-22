@@ -91,123 +91,13 @@ class _PetEditState extends State<PetEdit> {
                   hPetsTextFormField("${petName}", petNameInputController, "name_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
-                  DropdownButtonFormField2(
-
-                    decoration: InputDecoration(
-
-
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "select_pet",
-
-
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
-                    isExpanded: true,
-                    hint:  Text(
-                      "${petType}",
-                      style: TextStyle(fontSize: 16),
-                    ),
-
-                    dropdownDecoration: BoxDecoration(
-
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-
-                    items: petItems
-                        .map((item) =>
-                        DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            style:  TextStyle(
-                              fontSize: 16, color: AppColors.blackThemeClr,
-                            ),
-                          ),
-                        ))
-                        .toList(),
-                    validator: (value) {
-                      if (value == null) {
-                        return 'dropdown_required'.tr;
-                      }
-                    },
-                    onChanged: (value) {
-                      logger.i(value);
-                      petTypeInputController.text = value!;
-
-
-                    },
-                    onSaved: (value) {
-                      selectedValue = value.toString();
-                      logger.i(value);
-                      petTypeInputController.text = value!;
-
-                    },
-                  ),
+                  Config.DropdownFormFieldPet(petTypeInputController),
 
                   // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
                   SizedBox(height: 12,),
 
-                  DropdownButtonFormField2(
-
-                    decoration: InputDecoration(
-
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "select_gender".tr,
-
-
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
-                    isExpanded: true,
-                    hint:  Text(
-                      '${petGender}',
-                      style: TextStyle(fontSize: 16),
-                    ),
-
-                    dropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-
-                    items: genderItems
-                        .map((item) =>
-                        DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            style:  TextStyle(
-                              fontSize: 16, color: AppColors.blackThemeClr,
-                            ),
-                          ),
-                        ))
-                        .toList(),
-                    validator: (value) {
-                      if (value == null) {
-                        return 'dropdown_required'.tr;
-                      }
-                    },
-                    onChanged: (value) {
-                      logger.i(value);
-                      petGenderInputController.text = value!;
-
-
-                    },
-                    onSaved: (value) {
-                      selectedValue = value.toString();
-                      logger.i(value);
-                      petGenderInputController.text = value!;
-
-                    },
-                  ),
+                  Config.DropdownFormFieldGender(petGenderInputController),
 
                   // hPetsTextFormField("Gender", petGenderInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
@@ -246,11 +136,8 @@ class _PetEditState extends State<PetEdit> {
                           print("Not Validated");
                         }
 
-
-
                         logger.i("Kaydet Butonu Tıklandı.");
                       }))
-
                 ],
               ),
             ),
@@ -265,7 +152,6 @@ class _PetEditState extends State<PetEdit> {
     //     .collection('Pets')
     //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
 
-
     var info = HashMap<String,dynamic>();
     info["pet_name"] = pet_name;
     info["pet_age"] = pet_age;
@@ -278,23 +164,4 @@ class _PetEditState extends State<PetEdit> {
     refPets.child(Config.petKey).update(info);
 
   }
-
-
 }
-
-final List<String> genderItems = [
-  'he'.tr,
-  'she'.tr,
-];
-
-final List<String> petItems = [
-  'dog'.tr,
-  'cat'.tr,
-  'bird'.tr,
-  'fish'.tr,
-  'turtle'.tr,
-  'horse'.tr
-];
-
-
-

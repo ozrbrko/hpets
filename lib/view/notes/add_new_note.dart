@@ -1,26 +1,16 @@
-import 'dart:collection';
-
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
-import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/core/services/firebase_services.dart';
 import 'package:hpets/core/utils/config.dart';
 import 'package:hpets/main.dart';
 import 'package:intl/intl.dart';
-
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
 import '../../core/model/pets.dart';
-import '../../core/utils/alert_dialog.dart';
-
-
-
-
-
 
 class AddNewNote extends StatefulWidget {
   Pets? pet;
@@ -34,16 +24,11 @@ class _AddNewNoteState extends State<AddNewNote> {
 
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
   var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("notes");
-
   // var refPets = FirebaseDatabase.instance.ref().child("pets_table");
-
   // final databaseReference = FirebaseDatabase.instance.reference().child("pets_table");
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var user =  FirebaseAuth.instance.currentUser;
   final String? uid = Config.token;
-
-
   final FirebaseDatabase database = FirebaseDatabase.instance;
 
   DateTime? selectedDate;
@@ -53,13 +38,10 @@ class _AddNewNoteState extends State<AddNewNote> {
     selectedDate = DateTime.now();
   }
 
-
   TextEditingController  noteTitleInputController = TextEditingController();
   TextEditingController  noteContentInputController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
   String? selectedValue;
-
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +61,9 @@ class _AddNewNoteState extends State<AddNewNote> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-
                     SizedBox(
                       height: 45,
                     ),
-
 
                     hPetsTextFormField("title".tr, noteTitleInputController, "title_required".tr,
                         TextInputType.text, false, "false"),
@@ -119,19 +99,15 @@ class _AddNewNoteState extends State<AddNewNote> {
 
                                       logger.e(Config.formattedDate),
                                       logger.e(Config.formattedTime),
-
                                       Navigator.pop(context),
-                                      addNote(Config.notTitle, Config.notContent, Config.formattedTime, Config.formattedDate, widget.pet!.pet_id!)
 
-
-
+                                      NoteService.addNote(Config.notTitle, Config.notContent, Config.formattedTime, Config.formattedDate, widget.pet!.pet_id!)
+                                      // addNote(Config.notTitle, Config.notContent, Config.formattedTime, Config.formattedDate, widget.pet!.pet_id!)
                                     }
                                   else
                                     {
                                       print("Not Validated"),
-
                                     }
-
                                 })),
                       ],
                     )
@@ -143,41 +119,4 @@ class _AddNewNoteState extends State<AddNewNote> {
         )
     );
   }
-
-  Future<void> addNote(String note_title, String note_content, String note_time, String note_date, String pet_id) async {
-    // await FirebaseFirestore.instance
-    //     .collection('Pets')
-    //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
-
-
-    var info = HashMap<String,dynamic>();
-    info["note_title"] = note_title.basHarfleriBuyut();
-    info["note_content"] = note_content;
-    info["note_time"] = note_time;
-    info["note_date"] = note_date.basHarfleriBuyut();
-    info["note_id"] = "";
-    info["pet_id"] = pet_id;
-    logger.e(_auth.currentUser!.uid);
-    notePets.push().set(info);
-
-  }
-
-
 }
-
-final List<String> genderItems = [
-  'He',
-  'She',
-];
-
-final List<String> petItems = [
-  'Dog',
-  'Cat',
-  'Bird',
-  'Fish',
-  'Turtle',
-  'Horse'
-];
-
-
-

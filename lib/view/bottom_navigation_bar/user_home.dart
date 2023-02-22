@@ -28,17 +28,6 @@ class _UserHomePageState extends State<UserHomePage> {
   // var refPets = FirebaseDatabase.instance.ref().child("pets_table");
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
 
-  Future<void> addPet() async {
-    var info = HashMap<String, dynamic>();
-    info["pet_name"] = "karabaş";
-    info["pet_id"] = "4";
-    info["pet_age"] = 12;
-    info["pet_race"] = "Alman";
-    info["pet_gender"] = "Dişi";
-    info["pet_type"] = "Köpek";
-    info["pet_birthdate"] = 12 / 12 / 4111;
-    refPets.push().set(info);
-  }
 
   @override
   void initState() {
@@ -89,7 +78,6 @@ class _UserHomePageState extends State<UserHomePage> {
                 ),
                 Divider(),
 
-
                 SingleChildScrollView(
 
                   child: Container(
@@ -118,6 +106,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                 itemBuilder: (context, indeks) {
 
                                   var pet = petList[indeks];
+
                                   if (!Config.petListConfig.contains(pet.pet_name)) {
                                     Config.petListConfig.add(pet.pet_name);
                                   }
@@ -164,13 +153,6 @@ class _UserHomePageState extends State<UserHomePage> {
                                                             style: TextStyle(
                                                                 color: AppColors.appThemeClr),
                                                           ),
-                                                          // Text(
-                                                          //   overflow: TextOverflow.ellipsis,
-                                                          //
-                                                          //   "${pet.pet_type!}",
-                                                          //   style: TextStyle(
-                                                          //       color: AppColors.appThemeClr),
-                                                          // ),
                                                         ],
                                                       ),
                                                     ),
@@ -199,9 +181,6 @@ class _UserHomePageState extends State<UserHomePage> {
                             );
                           } else{
                             return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
-
-
-
                           }
 
                         } else {

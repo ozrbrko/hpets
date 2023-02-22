@@ -41,6 +41,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
     String lower_pet_type = widget.pet!.pet_type!.toLowerCase();
+    String lower_pet_gender = widget.pet!.pet_gender!.toLowerCase();
+
     return Scaffold(
 
         appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
@@ -65,7 +67,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           FrameSize.screenHeight,
                           FrameSize.screenWidth,
                           lower_pet_type,
-                          widget.pet!.pet_gender!,
+                          lower_pet_gender,
                           widget.pet!.pet_age!,
                           widget.pet!.pet_name!)),
 
@@ -220,7 +222,13 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                                         style: TextStyle(
                                                                             color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                     TextSpan(
-                                                                      text: " ${disease.disease_date!}",
+                                                                      text: " ${disease.disease_date!} / ",
+                                                                      style: TextStyle(
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
+
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text: " ${disease.disease_time!}",
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontBold),
 

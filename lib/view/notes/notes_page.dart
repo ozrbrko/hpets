@@ -37,6 +37,8 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
     String lower_pet_type = widget.pet!.pet_type!.toLowerCase();
+    String lower_pet_gender = widget.pet!.pet_gender!.toLowerCase();
+
     return Scaffold(
       appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
       body: Container(
@@ -56,7 +58,7 @@ class _NotesPageState extends State<NotesPage> {
                         FrameSize.screenHeight,
                         FrameSize.screenWidth,
                         lower_pet_type,
-                        widget.pet!.pet_gender!,
+                        lower_pet_gender,
                         widget.pet!.pet_age!,
                         widget.pet!.pet_name!)),
 

@@ -5,7 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
-import 'package:hpets/core/extension/string_extension.dart';
+import 'package:hpets/core/services/firebase_services.dart';
 import 'package:hpets/main.dart';
 
 import '../../core/constants/colors.dart';
@@ -173,8 +173,8 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
 
                           Navigator.pop(context);
 
-
-                          addAppointment(veterinaryInfo, appointmentDate, appointmentTime, petName, veterinary_address);
+                          AppointmentService.addAppointment(veterinaryInfo, appointmentDate, appointmentTime, petName, veterinary_address);
+                          // addAppointment(veterinaryInfo, appointmentDate, appointmentTime, petName, veterinary_address);
                           // return Navigator.pushNamed(context, '/bottomnav');
 
                           // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ));
@@ -195,34 +195,6 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
 
       ),
 
-
-
     );
   }
-
-  Future<void> addAppointment(String veterinaryInfo,String appointmentDate,String appointmentTime, String petName,
-      String veterinary_address) async {
-
-
-    var info = HashMap<String, dynamic>();
-    info["veterinary_info"] = veterinaryInfo.basHarfleriBuyut();
-    info["appointment_date"] = appointmentDate;
-    info["appointment_time"] = appointmentTime;
-    info["pet_name"] = petName;
-    info["veterinary_address"] = veterinary_address.basHarfleriBuyut();
-    info["appointment_id"] = "";
-
-
-
-    appointmentPets.push().set(info);
-  }
 }
-
-final List<String> petItems = [
-  'Dog',
-  'Cat',
-  'Bird',
-  'Fish',
-  'Turtle',
-  'Horse'
-];

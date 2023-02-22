@@ -1,12 +1,9 @@
-import 'dart:collection';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
-import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
-
+import 'package:hpets/core/services/firebase_services.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
 import '../../core/model/pets.dart';
@@ -24,21 +21,14 @@ class AddNewNutrition extends StatefulWidget {
 
 class _AddNewNutritionState extends State<AddNewNutrition> {
 
-
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-      Config.token);
+  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
   var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("nutritions");
-
-
 
   TextEditingController foodNameInputController = TextEditingController();
   TextEditingController amountFoodInputController = TextEditingController();
   TextEditingController foodDateInputController = TextEditingController();
   TextEditingController foodTimeInputController = TextEditingController();
-
-
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -82,109 +72,11 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
 
                   SizedBox(height: 12,),
 
-                  TextFormField(
-                    controller: foodDateInputController,
-                    decoration: InputDecoration(
+                  Config.DateTextFormField(context, foodDateInputController),
 
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "date".tr,
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight,
-                            color: AppColors.greyThemeClr,
-                            fontSize: 16.0)),
-                    onTap: () async {
-                      DateTime date = DateTime(1900);
-                      FocusScope.of(context).requestFocus(new FocusNode());
-
-                      date = (await showDatePicker(
-                          locale:  Locale("${Config.languageValue.toString().toLowerCase()}", "${Config.languageValue.toString().toUpperCase()}"),
-
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1900),
-                          lastDate: DateTime(2100),
-                          builder: (context, child) {
-                            return Theme(
-                              data: Theme.of(context).copyWith(
-                                colorScheme: ColorScheme.light(
-                                  primary: AppColors.appThemeClr,
-                                  // <-- SEE HERE
-                                  onPrimary: AppColors.whiteThemeClr,
-                                  // <-- SEE HERE
-                                  onSurface:
-                                  AppColors.blackThemeClr, // <-- SEE HERE
-                                ),
-                                textButtonTheme: TextButtonThemeData(
-                                  style: TextButton.styleFrom(
-                                    primary: AppColors.appThemeClr, // button text color
-                                  ),
-                                ),
-                              ),
-                              child: child!,
-                            );
-                          }))!;
-                      String dateSlug = "${date.year.toString()}-${date.month
-                          .toString().padLeft(2, '0')}-${date.day.toString()
-                          .padLeft(2, '0')}";
-
-                      foodDateInputController.text = dateSlug;
-                    },),
                   SizedBox(height: 12,),
 
-                  TextFormField(
-                    controller: foodTimeInputController,
-
-                    decoration: InputDecoration(
-
-                        contentPadding:
-                        const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(40.0))),
-                        filled: true,
-                        hintText: "time".tr,
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight,
-                            color: AppColors.greyThemeClr,
-                            fontSize: 16.0)),
-                    onTap: () {
-                      FocusScope.of(context).requestFocus(new FocusNode());
-                      showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.now(),
-                        builder: (context, child) {
-                          return Theme(
-                            data: ThemeData.light().copyWith(
-                              colorScheme: ColorScheme.light(
-                                // change the border color
-                                primary: AppColors.appThemeClr,
-                                // change the text color
-                                onSurface: AppColors.appThemeClr,
-                              ),
-                              // button colors
-                              buttonTheme: ButtonThemeData(
-                                colorScheme: ColorScheme.light(
-                                  primary: AppColors.appThemeClr,
-                                ),
-                              ),
-                            ), child: child!,
-                          );
-                        },
-                      ).then((value) {
-                        setState(() {
-                          foodTimeInputController.text = value!.format(context);
-                        });
-                      });
-                    },
-                    // controller: TextEditingController(text: selectedTime.format(context)),
-                  ),
+                  Config.TimeTextFormField(context, foodTimeInputController),
 
                   SizedBox(height: 40),
 
@@ -200,11 +92,10 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
                           var foodDate = foodDateInputController.text;
                           var foodTime = foodTimeInputController.text;
 
-
                           Navigator.pop(context);
 
-                          addNutrition(foodName, amonutFood, foodTime, foodDate,
-                              widget.pet!.pet_id!, widget.pet!.pet_name!);
+                          NutritionService.addNutrition(foodName, amonutFood, foodTime, foodDate, widget.pet!.pet_id!, widget.pet!.pet_name!);
+                          // addNutrition(foodName, amonutFood, foodTime, foodDate, widget.pet!.pet_id!, widget.pet!.pet_name!);
                           // return Navigator.pushNamed(context, '/bottomnav');
 
                           // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ));
@@ -213,10 +104,8 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
                           print("Not Validated");
                         }
 
-
                         // logger.i("Kaydet Butonu Tıklandı.");
                       }))
-
                 ],
               ),
             ),
@@ -226,25 +115,4 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
       ),
     );
   }
-
-  Future<void> addNutrition(String foodName, String amonutFood, String foodTime,
-      String foodDate, String pet_id, String pet_name) async {
-    // await FirebaseFirestore.instance
-    //     .collection('Pets')
-    //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
-
-
-    var info = HashMap<String, dynamic>();
-    info["food_name"] = foodName.basHarfleriBuyut();
-    info["amount_of_food"] = amonutFood;
-    info["food_date"] = foodDate;
-    info["food_time"] = foodTime.basHarfleriBuyut();
-    info["food_id"] = "";
-    info["pet_id"] = pet_id;
-    info["pet_name"] = pet_name;
-
-
-    nutritionPets.push().set(info);
-  }
-
 }
