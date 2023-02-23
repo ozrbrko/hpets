@@ -271,7 +271,7 @@ class Languages extends Translations {
       'she': "Dişi",
       'dişi': "Dişi",
       'pet_detail': "Evcil Hayvan Detay",
-      'type': "Tip",
+      'type': "Tür",
       'gender': "Cinsiyet",
       'delete_pet': "Evcil hayvanı sil",
       'vaccines': "Aşılar",

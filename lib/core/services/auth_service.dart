@@ -9,21 +9,6 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Future<UserModel>addUser(String email, String password, String name, String surname) async{
-  //   var ref = _firestore.collection("User");
-  //
-  //   var documentRef = await ref.add({
-  //     'email': email,
-  //     'password': password,
-  //     'name': name,
-  //     'surname': surname,
-  //   });
-  //
-  //   return UserModel(email: email, password: password, name: name, surname: surname);
-  // }
-
-
-
 
   Future<User?> logIn(String email, String password, BuildContext context) async {
     var user = await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -45,15 +30,12 @@ class AuthService {
     // addUser(email, password, name, surname);
 
 
-    await _firestore.collection("User")
-    .doc(user.user!.uid)
+    await _firestore.collection("User").doc(user.user!.uid)
     .set({
       'email' : email,
       'password' : password,
       'name' : name,
       'surname' : surname,
-
-
     });
 
 

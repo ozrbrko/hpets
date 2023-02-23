@@ -804,7 +804,7 @@ class AlertDialogFunctions {
                                         content: Text("change_success".tr),
                                       )),
                                     })),
-                          ],
+                  ],
                         )
                       ],
                     ),
