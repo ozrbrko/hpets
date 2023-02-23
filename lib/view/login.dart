@@ -90,12 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                                         if (_formKey.currentState!.validate())
                                           {
                                             print("Validated"),
-                                            _authService
-                                                .logIn(
-                                                    loginInputController.text,
-                                                    passwordInputController
-                                                        .text,
-                                                    context)
+                                            _authService.logIn(loginInputController.text, passwordInputController.text, context)
                                                 .then((value) {
                                               logger.e("döndü ${value}");
                                               Config.token = value!.uid;

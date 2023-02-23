@@ -117,12 +117,13 @@ Container cardContainerDetail(double height, double width, String pet_type,
               children: [
                 SizedBox(
                   height: FrameSize.screenHeight / 8,
-                child:Image.asset(pet_type=="dog"? "assets/images/guide_image_1.png" : pet_type=="cat"? "assets/images/guide_image_0.png" : pet_type=="fish"? "assets/images/guide_image_2.png" :pet_type=="rabbit"? "assets/images/guide_image_3.png": pet_type=="bird"? "assets/images/guide_image_4.png": pet_type=="turtle"? "assets/images/guide_image_5.png": pet_type=="hamster"? "assets/images/guide_image_6.png": pet_type=="horse"? "assets/images/guide_image_7.png":pet_type=="köpek"? "assets/images/guide_image_1.png" : pet_type=="kedi"? "assets/images/guide_image_0.png" : pet_type=="balık"? "assets/images/guide_image_2.png" :pet_type=="tavşan"? "assets/images/guide_image_3.png": pet_type=="kuş"? "assets/images/guide_image_4.png": pet_type=="kaplumbağa"? "assets/images/guide_image_5.png": pet_type=="hamster"? "assets/images/guide_image_6.png": pet_type=="at"? "assets/images/guide_image_7.png": "")),
+                child: Config.petImage(pet_type.basHarfleriBuyut()),
+                ),
 
                 SizedBox(
-                  height: 7,
+                  height: 5,
                 ),
-                Text("${pet_name}")
+                Text("${pet_name!.basHarfleriBuyut()}",style: TextStyle(fontFamily: themeFontBold,color: AppColors.appThemeClr),)
               ],
             ),
           )

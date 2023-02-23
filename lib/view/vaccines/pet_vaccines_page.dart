@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/build_circular_indicator.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
+import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/model/vaccines.dart';
 import 'package:hpets/view/vaccines/add_new_vaccine.dart';
 
@@ -37,7 +38,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
     String lower_pet_gender = widget.pet!.pet_gender!.toLowerCase();
 
     return Scaffold(
-        appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
+        appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!.basHarfleriBuyut()}", false),
         body: Container(
 
           height: FrameSize.screenHeight,
@@ -117,138 +118,137 @@ class _VaccinesPageState extends State<VaccinesPage> {
                             }
 
                             if(vaccineList.length!=0){
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 58.0),
-                                child: ListView.builder(
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  itemCount: vaccineList.length,
-                                  itemBuilder: (context, indeks) {
-                                    var vaccine = vaccineList[indeks];
+                              return ListView.builder(
+
+                                physics: NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: vaccineList.length,
+                                itemBuilder: (context, indeks) {
+                                  var vaccine = vaccineList[indeks];
 
 
-                                    return
-                                      vaccine.pet_id==widget.pet!.pet_id!?
+                                  return
+                                    vaccine.pet_id==widget.pet!.pet_id!?
 
-                                      GestureDetector(
-                                        onTap: () {
+                                    GestureDetector(
+                                      onTap: () {
 
-                                          logger.i("{${vaccineList[indeks].vaccine_name.toString()} tıklandı");
-                                          logger.e(vaccine.pet_id);
-                                          logger.e(widget.pet!.pet_id!);
-                                          logger.e(vaccine.vaccine_id);
-
-
-                                          AlertDialogFunctions.infoVaccineDetail(context,vaccine.vaccine_name, vaccine.vaccine_date, vaccine.vaccine_time, vaccine.veterinary, vaccine.vaccine_id);                          // Navigator.pushNamed(context, "/petdetail");
-                                          // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
-                                        },
-                                        child: Column(
-                                          children: [
-                                            Card(
-                                                color: Color(0xffE6E6E6),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(10.0),
-                                                ),
-                                                child:
-
-                                                // note.pet_id==widget.pet!.pet_id!?
-
-                                                Container(
-                                                  height: 95,
-                                                  width: FrameSize.screenWidth,
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(15.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+                                        logger.i("{${vaccineList[indeks].vaccine_name.toString()} tıklandı");
+                                        logger.e(vaccine.pet_id);
+                                        logger.e(widget.pet!.pet_id!);
+                                        logger.e(vaccine.vaccine_id);
 
 
-                                                        Center(
-                                                          child: Container(
-                                                            width: FrameSize.screenWidth/1.55,
-                                                            // color:Colors.red,
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment.center,
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                              children: [
+                                        AlertDialogFunctions.infoVaccineDetail(context,vaccine.vaccine_name, vaccine.vaccine_date, vaccine.vaccine_time, vaccine.veterinary, vaccine.vaccine_id);                          // Navigator.pushNamed(context, "/petdetail");
+                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Card(
+                                              color: Color(0xffE6E6E6),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                              child:
 
-                                                                RichText(
-                                                                  text: TextSpan(children: <TextSpan>[
-                                                                    TextSpan(
-                                                                        text: "vaccine_name".tr,
-                                                                        style: TextStyle(
-                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
-                                                                    TextSpan(
-                                                                      text: " ${vaccine.vaccine_name!}",
+                                              // note.pet_id==widget.pet!.pet_id!?
+
+                                              Container(
+                                                height: 95,
+                                                width: FrameSize.screenWidth,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(15.0),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+
+
+                                                      Center(
+                                                        child: Container(
+                                                          width: FrameSize.screenWidth/1.55,
+                                                          // color:Colors.red,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "vaccine_name".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
+                                                                  TextSpan(
+                                                                    text: " ${vaccine.vaccine_name!}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
-                                                                    ),
-                                                                  ]),
-                                                                ),
-                                                                SizedBox(height: 5,),
+                                                                  ),
+                                                                ]),
+                                                              ),
+                                                              SizedBox(height: 5,),
 
-                                                                RichText(
-                                                                  text: TextSpan(children: <TextSpan>[
-                                                                    TextSpan(
-                                                                        text: "date".tr,
-                                                                        style: TextStyle(
-                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
-                                                                    TextSpan(
-                                                                      text: " ${vaccine.vaccine_date!} / ${vaccine.vaccine_time!}",
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "date".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
+                                                                  TextSpan(
+                                                                    text: " ${vaccine.vaccine_date!} / ${vaccine.vaccine_time!}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
-                                                                    ),
-                                                                  ]),
-                                                                ),
+                                                                  ),
+                                                                ]),
+                                                              ),
 
 
-                                                                SizedBox(height: 5,),
-                                                                RichText(
-                                                                  text: TextSpan(children: <TextSpan>[
-                                                                    TextSpan(
-                                                                        text: "veterinary".tr,
-                                                                        style: TextStyle(
-                                                                            color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
-                                                                    TextSpan(
-                                                                      text: " ${vaccine.veterinary!}",
+                                                              SizedBox(height: 5,),
+                                                              RichText(
+                                                                text: TextSpan(children: <TextSpan>[
+                                                                  TextSpan(
+                                                                      text: "veterinary".tr,
                                                                       style: TextStyle(
-                                                                          color: AppColors.appThemeClr,fontFamily: themeFontBold),
+                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
+                                                                  TextSpan(
+                                                                    text: " ${vaccine.veterinary!}",
+                                                                    style: TextStyle(
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
-                                                                    ),
-                                                                  ]),
-                                                                ),
+                                                                  ),
+                                                                ]),
+                                                              ),
 
-                                                              ],
-                                                            ),
+                                                            ],
                                                           ),
                                                         ),
-                                                        IconButton(
-                                                          icon: Icon(
-                                                            Icons.info_outline_rounded,
-                                                            color: AppColors.appThemeClr,
-                                                          ),
-                                                          onPressed: () {
-                                                            AlertDialogFunctions.infoVaccineDetail(context,vaccine.vaccine_name, vaccine.vaccine_date, vaccine.vaccine_time, vaccine.veterinary, vaccine.vaccine_id);                          // Navigator.pushNamed(context, "/petdetail");
-
-                                                          },
+                                                      ),
+                                                      IconButton(
+                                                        icon: Icon(
+                                                          Icons.info_outline_rounded,
+                                                          color: AppColors.appThemeClr,
                                                         ),
-                                                      ],
-                                                    ),
+                                                        onPressed: () {
+                                                          AlertDialogFunctions.infoVaccineDetail(context,vaccine.vaccine_name, vaccine.vaccine_date, vaccine.vaccine_time, vaccine.veterinary, vaccine.vaccine_id);                          // Navigator.pushNamed(context, "/petdetail");
+
+                                                        },
+                                                      ),
+                                                    ],
                                                   ),
-                                                )
-                                              // :Container()
-                                            ),
+                                                ),
+                                              )
+                                            // :Container()
+                                          ),
 
-                                          ],
-                                        ),
-                                      ): Container();
-                                  },
-                                ),
+                                        ],
+                                      ),
+                                    ): Container();
+                                },
                               );
 
                             }else{

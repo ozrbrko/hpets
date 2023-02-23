@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
+import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/model/nutritions.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/view/nutritions/add_new_nutrition.dart';
@@ -37,7 +38,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
 
     return Scaffold(
 
-        appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!}", false),
+        appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!.basHarfleriBuyut()}", false),
         body: Container(
 
 
@@ -126,170 +127,168 @@ class _NutritionsPageState extends State<NutritionsPage> {
                             }
 
                             if(nutritionList.length!=0){
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 58.0),
-                                child: ListView.builder(
+                              return ListView.builder(
 
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    itemCount: nutritionList.length,
-                                    itemBuilder: (context,indeks) {
-                                      var nutrition = nutritionList[indeks];
+                                  physics: NeverScrollableScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount: nutritionList.length,
+                                  itemBuilder: (context,indeks) {
+                                    var nutrition = nutritionList[indeks];
 
-                                      return nutrition.pet_id == widget.pet!.pet_id!?
-                                      GestureDetector(
-                                        onTap: (){
+                                    return nutrition.pet_id == widget.pet!.pet_id!?
+                                    GestureDetector(
+                                      onTap: (){
 
-                                          logger.i("{${nutritionList[indeks].food_name.toString()} tıklandı");
-                                          logger.e(nutrition.pet_id);
-                                          logger.e(widget.pet!.pet_id!);
-                                          logger.e(nutrition.food_id);
+                                        logger.i("{${nutritionList[indeks].food_name.toString()} tıklandı");
+                                        logger.e(nutrition.pet_id);
+                                        logger.e(widget.pet!.pet_id!);
+                                        logger.e(nutrition.food_id);
 
-                                          // Navigator.pushNamed(context, "/petdetail");
-                                          // Navigator.
-                                          AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
+                                        // Navigator.pushNamed(context, "/petdetail");
+                                        // Navigator.
+                                        AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
 
-                                        },
-                                        child: Column(
-                                          children: [
-                                            Card(
-                                                color: Color(0xffE6E6E6),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(10.0),
-                                                ),
-                                                child:
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Card(
+                                              color: Color(0xffE6E6E6),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                              child:
 
-                                                // note.pet_id==widget.pet!.pet_id!?
+                                              // note.pet_id==widget.pet!.pet_id!?
 
-                                                Container(
-                                                  height: 100,
-                                                  width: FrameSize.screenWidth,
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.all(15.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
-                                                        // IconButton(
-                                                        //   icon: Icon(
-                                                        //     Icons.info_outline_rounded,
-                                                        //     color: AppColors.appThemeClr,
-                                                        //   ),
-                                                        //   onPressed: () {},
-                                                        // ),
+                                              Container(
+                                                height: 100,
+                                                width: FrameSize.screenWidth,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(15.0),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
+                                                      // IconButton(
+                                                      //   icon: Icon(
+                                                      //     Icons.info_outline_rounded,
+                                                      //     color: AppColors.appThemeClr,
+                                                      //   ),
+                                                      //   onPressed: () {},
+                                                      // ),
 
-                                                        Container(
-                                                          width: FrameSize.screenWidth/1.6,
-                                                          // color: Colors.red,
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment.center,
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: [
+                                                      Container(
+                                                        width: FrameSize.screenWidth/1.6,
+                                                        // color: Colors.red,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment.center,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
 
-                                                              RichText(
-                                                                text: TextSpan(children: <TextSpan>[
-                                                                  TextSpan(
-                                                                      text: "food_name".tr,
-                                                                      style: TextStyle(
-                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
-                                                                  TextSpan(
-                                                                    text: " ${nutrition.food_name}",
+                                                            RichText(
+                                                              text: TextSpan(children: <TextSpan>[
+                                                                TextSpan(
+                                                                    text: "food_name".tr,
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
+                                                                TextSpan(
+                                                                  text: " ${nutrition.food_name}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
-                                                                  ),
-                                                                ]),
-                                                              ),
+                                                                ),
+                                                              ]),
+                                                            ),
 
-                                                              SizedBox(height: 5,),
+                                                            SizedBox(height: 5,),
 
-                                                              RichText(
-                                                                text: TextSpan(children: <TextSpan>[
-                                                                  TextSpan(
-                                                                      text: "amount_of_food".tr,
-                                                                      style: TextStyle(
-                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
-                                                                  TextSpan(
-                                                                    text: " ${nutrition.amount_of_food}",
+                                                            RichText(
+                                                              text: TextSpan(children: <TextSpan>[
+                                                                TextSpan(
+                                                                    text: "amount_of_food".tr,
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
+                                                                TextSpan(
+                                                                  text: " ${nutrition.amount_of_food}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
-                                                                  ),
-                                                                ]),
-                                                              ),
+                                                                ),
+                                                              ]),
+                                                            ),
 
 
 
-                                                              SizedBox(height: 5,),
+                                                            SizedBox(height: 5,),
 
 
-                                                              RichText(
-                                                                text: TextSpan(children: <TextSpan>[
-                                                                  TextSpan(
-                                                                      text: "date".tr,
-                                                                      style: TextStyle(
-                                                                          color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
-                                                                  TextSpan(
-                                                                    text: " ${nutrition.food_date}",
+                                                            RichText(
+                                                              text: TextSpan(children: <TextSpan>[
+                                                                TextSpan(
+                                                                    text: "date".tr,
                                                                     style: TextStyle(
-                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
+                                                                        color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
+                                                                TextSpan(
+                                                                  text: " ${nutrition.food_date}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
-                                                                  ),
+                                                                ),
 
-                                                                  TextSpan(
-                                                                    text: " / ${nutrition.food_time}",
-                                                                    style: TextStyle(
-                                                                        color: AppColors.appThemeClr,fontFamily: themeFontBold),
+                                                                TextSpan(
+                                                                  text: " / ${nutrition.food_time}",
+                                                                  style: TextStyle(
+                                                                      color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
-                                                                  ),
-                                                                ]),
-                                                              )
+                                                                ),
+                                                              ]),
+                                                            )
 
 
-                                                            ],
-                                                          ),
+                                                          ],
                                                         ),
+                                                      ),
 
-                                                        // Column(
-                                                        //   mainAxisAlignment:
-                                                        //   MainAxisAlignment.center,
-                                                        //   children: [
-                                                        //     Text("${nutrition.food_date}", style: TextStyle(
-                                                        //         color: AppColors.appThemeClr),),
-                                                        //     SizedBox(height: 5,),
-                                                        //
-                                                        //     Text("${nutrition.food_time}", style: TextStyle(
-                                                        //         color: AppColors.appThemeClr),),
-                                                        //
-                                                        //   ],
-                                                        // ),
+                                                      // Column(
+                                                      //   mainAxisAlignment:
+                                                      //   MainAxisAlignment.center,
+                                                      //   children: [
+                                                      //     Text("${nutrition.food_date}", style: TextStyle(
+                                                      //         color: AppColors.appThemeClr),),
+                                                      //     SizedBox(height: 5,),
+                                                      //
+                                                      //     Text("${nutrition.food_time}", style: TextStyle(
+                                                      //         color: AppColors.appThemeClr),),
+                                                      //
+                                                      //   ],
+                                                      // ),
 
-                                                        IconButton(
-                                                          icon: Icon(
-                                                            Icons.info_outline_rounded,
-                                                            color: AppColors.appThemeClr,
-                                                          ),
-                                                          onPressed: () {
-                                                            AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
-
-                                                          },
+                                                      IconButton(
+                                                        icon: Icon(
+                                                          Icons.info_outline_rounded,
+                                                          color: AppColors.appThemeClr,
                                                         ),
-                                                      ],
-                                                    ),
+                                                        onPressed: () {
+                                                          AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
+
+                                                        },
+                                                      ),
+                                                    ],
                                                   ),
-                                                )
-                                              // :Container()
-                                            ),
-                                          ],
-                                        ),
-                                      ): Container();
-                                    }
+                                                ),
+                                              )
+                                            // :Container()
+                                          ),
+                                        ],
+                                      ),
+                                    ): Container();
+                                  }
 
 
 
-                                ),
                               );
 
                             }else{

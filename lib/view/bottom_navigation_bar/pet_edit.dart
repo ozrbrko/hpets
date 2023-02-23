@@ -91,13 +91,13 @@ class _PetEditState extends State<PetEdit> {
                   hPetsTextFormField("${petName}", petNameInputController, "name_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
-                  Config.DropdownFormFieldPet(petTypeInputController),
+                  DropdownFormFieldPet(petTypeInputController),
 
                   // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
                   SizedBox(height: 12,),
 
-                  Config.DropdownFormFieldGender(petGenderInputController),
+                  DropdownFormFieldGender(petGenderInputController),
 
                   // hPetsTextFormField("Gender", petGenderInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),

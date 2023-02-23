@@ -72,11 +72,11 @@ class _AddNewNutritionState extends State<AddNewNutrition> {
 
                   SizedBox(height: 12,),
 
-                  Config.DateTextFormField(context, foodDateInputController),
+                  DateTextFormField(context, foodDateInputController),
 
                   SizedBox(height: 12,),
 
-                  Config.TimeTextFormField(context, foodTimeInputController),
+                  TimeTextFormField(context, foodTimeInputController),
 
                   SizedBox(height: 40),
 

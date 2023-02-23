@@ -137,10 +137,10 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
 
                   SizedBox(height: 12,),
 
-                  Config.DateTextFormField(context,appointmentDateInputController),
+                  DateTextFormField(context,appointmentDateInputController),
                   SizedBox(height: 12,),
 
-                  Config.TimeTextFormField(context, appointmentTimeInputController),
+                  TimeTextFormField(context, appointmentTimeInputController),
 
                   SizedBox(height: 12,),
 

@@ -10,6 +10,7 @@ import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
+import 'package:hpets/view/google_sign_in.dart';
 import '../../main.dart';
 import '../constants/colors.dart';
 import 'config.dart';
@@ -178,6 +179,22 @@ class AlertDialogFunctions {
                                             key: "remem_token"),
                                         Navigator.of(context)
                                             .pushReplacementNamed('/login'),
+
+
+                                       await GoogleSignHelper.instance.signOut().then((value) {
+
+                                    logger.e("döndü ${value}");
+
+                                    logger.i("token ${Config.token}");
+
+                                  }),
+
+
+
+
+
+
+
                                       })),
                             ),
                           ],
@@ -285,7 +302,7 @@ class AlertDialogFunctions {
                                         logger.i(Config.petKey),
                                         refPets.child(Config.petKey).remove(),
 
-                                      Navigator.pushNamed(
+                                        Navigator.pushNamed(
                                             context, '/bottomnav'),
                                       })),
                             ),
@@ -319,11 +336,23 @@ class AlertDialogFunctions {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'have_you_forgotten_your_password'.tr,
-                          style: TextStyle(
-                              fontFamily: themeFontBold, fontSize: 19),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'have_you_forgotten_your_password'.tr,
+                              style: TextStyle(
+                                  fontFamily: themeFontBold, fontSize: 19),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(Icons.close)),
+                          ],
                         ),
+
                         Divider(
                           endIndent: 0,
                           indent: 0,
@@ -505,7 +534,7 @@ class AlertDialogFunctions {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Registration is successful",
+                          "registration_success".tr,
                           style: TextStyle(
                               fontFamily: themeFontBold, fontSize: 19),
                         ),
@@ -513,7 +542,7 @@ class AlertDialogFunctions {
                           height: 15,
                         ),
                         Text(
-                          "Go to login and enjoy app !",
+                          "enjoy_app".tr,
                           style: TextStyle(
                               fontSize: 16, fontFamily: themeFontRegular),
                         ),
@@ -527,7 +556,7 @@ class AlertDialogFunctions {
                                 width: FrameSize.screenWidth,
                                 height: FrameSize.screenHeight / 14,
                                 child: hPetsElevatedButton(
-                                    "Login",
+                                    "login".tr,
                                     AppColors.appThemeClr,
                                     AppColors.whiteThemeClr,
                                     40,
@@ -637,7 +666,6 @@ class AlertDialogFunctions {
   }
 
   static Future languageSettings(BuildContext context) {
-    suggestionInputController.clear();
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -654,6 +682,7 @@ class AlertDialogFunctions {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -666,7 +695,9 @@ class AlertDialogFunctions {
                                 onTap: () {
                                   Navigator.pop(context);
                                 },
-                                child: Icon(Icons.close)),
+                                child: Icon(Icons.close)
+                            ),
+
                           ],
                         ),
                         Divider(
@@ -982,13 +1013,13 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        Config.DateTextFormField(context, vaccineDateInputController),
+                        DateTextFormField(context, vaccineDateInputController),
 
                         SizedBox(
                           height: 12,
                         ),
 
-                        Config.TimeTextFormField(context, vaccineTimeInputController),
+                        TimeTextFormField(context, vaccineTimeInputController),
 
                         SizedBox(
                           height: 25,
@@ -1153,13 +1184,13 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        Config.DateTextFormField(context, diseaseDateInputController),
+                        DateTextFormField(context, diseaseDateInputController),
 
                         SizedBox(
                           height: 12,
                         ),
 
-                        Config.TimeTextFormField(context, diseaseTimeInputController),
+                        TimeTextFormField(context, diseaseTimeInputController),
 
                         SizedBox(
                           height: 25,
@@ -1352,13 +1383,13 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        Config.DateTextFormField(context, appointmentDateInputController),
+                        DateTextFormField(context, appointmentDateInputController),
 
                         SizedBox(
                           height: 12,
                         ),
 
-                        Config.TimeTextFormField(context, appointmentTimeInputController),
+                        TimeTextFormField(context, appointmentTimeInputController),
 
                         // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
@@ -1785,13 +1816,13 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        Config.DateTextFormField(context, foodDateInputController),
+                        DateTextFormField(context, foodDateInputController),
 
                         SizedBox(
                           height: 12,
                         ),
 
-                        Config.TimeTextFormField(context, foodTimeInputController),
+                        TimeTextFormField(context, foodTimeInputController),
 
                         SizedBox(
                           height: 25,

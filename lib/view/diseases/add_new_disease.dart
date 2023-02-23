@@ -64,11 +64,11 @@ class _AddNewDiseaseState extends State<AddNewDisease> {
 
                     SizedBox(height: 12,),
 
-                    Config.DateTextFormField(context, diseaseDateInputController),
+                    DateTextFormField(context, diseaseDateInputController),
 
                     SizedBox(height: 12,),
 
-                    Config.TimeTextFormField(context, diseaseTimeInputController),
+                    TimeTextFormField(context, diseaseTimeInputController),
 
                     // hPetsTextFormField("Color", petColorInputController, "Color is required !", TextInputType.text, false, "false"),
                     SizedBox(height: 40),

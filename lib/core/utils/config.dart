@@ -10,6 +10,7 @@ import '../../main.dart';
 import '../constants/colors.dart';
 import '../constants/fonts.dart';
 import '../model/pets.dart';
+import '../responsive/frame_size.dart';
 
 class Config {
 
@@ -87,238 +88,6 @@ class Config {
 
   }
 
-  static TextFormField DateTextFormField(BuildContext context, TextEditingController txtController) {
-
-    return TextFormField(
-      controller: txtController,
-      decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(
-              vertical: 17, horizontal: 32),
-          border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius:
-              BorderRadius.all(Radius.circular(40.0))),
-          filled: true,
-          hintText: "date".tr,
-          hintStyle: TextStyle(
-              fontFamily: themeFontLight,
-              color: AppColors.greyThemeClr,
-              fontSize: 16.0)),
-      onTap: () async {
-        DateTime date = DateTime(1900);
-        FocusScope.of(context)
-            .requestFocus(new FocusNode());
-
-        date = (await showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime(1900),
-            lastDate: DateTime(2100),
-            builder: (context, child) {
-              return Theme(
-                data: Theme.of(context).copyWith(
-                  colorScheme: ColorScheme.light(
-                    primary: AppColors.appThemeClr,
-                    // <-- SEE HERE
-                    onPrimary: AppColors.whiteThemeClr,
-                    // <-- SEE HERE
-                    onSurface:
-                    AppColors.blackThemeClr, // <-- SEE HERE
-                  ),
-                  textButtonTheme: TextButtonThemeData(
-                    style: TextButton.styleFrom(
-                      primary: AppColors.appThemeClr, // button text color
-                    ),
-                  ),
-                ),
-                child: child!,
-              );
-            }))!;
-        String dateSlug =
-            "${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
-
-        txtController.text = dateSlug;
-      },
-    );
-  }
-
-  static TextFormField TimeTextFormField(BuildContext context, TextEditingController txtController) {
-
-    return  TextFormField(
-      controller: txtController,
-
-      decoration: InputDecoration(
-
-          contentPadding:
-          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
-          border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(
-                  Radius.circular(40.0))),
-          filled: true,
-          hintText: "time".tr,
-          hintStyle: TextStyle(
-              fontFamily: themeFontLight,
-              color: AppColors.greyThemeClr,
-              fontSize: 16.0)),
-      onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
-        showTimePicker(
-
-          context: context,
-          initialTime: TimeOfDay.now(),
-          builder: (context, child) {
-            return Theme(
-              data: ThemeData.light().copyWith(
-                colorScheme: ColorScheme.light(
-                  // change the border color
-                  primary: AppColors.appThemeClr,
-                  // change the text color
-                  onSurface: AppColors.appThemeClr,
-                ),
-                // button colors
-                buttonTheme: ButtonThemeData(
-                  colorScheme: ColorScheme.light(
-                    primary: AppColors.appThemeClr,
-                  ),
-                ),
-              ), child: child!,
-            );
-          },
-        ).then((value) {
-
-          txtController.text = value!.format(context);
-          // setState(() {
-          //   txtController.text = value!.format(context);
-          // });
-        });
-      },
-      // controller: TextEditingController(text: selectedTime.format(context)),
-    );
-  }
-
-
-  static DropdownButtonFormField2 DropdownFormFieldPet (TextEditingController txtController) {
-    return  DropdownButtonFormField2(
-
-      decoration: InputDecoration(
-
-          contentPadding:
-          const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
-          border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(40.0))),
-          filled: true,
-          hintText: "select_pet".tr,
-
-
-          hintStyle: TextStyle(
-              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
-      isExpanded: true,
-      hint:  Text(
-        "select_pet".tr,
-        style: TextStyle(fontSize: 16),
-      ),
-
-      dropdownDecoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-
-      items: Config.dropdownPetList
-          .map((item) =>
-          DropdownMenuItem<String>(
-            value: item,
-            child: Text(
-              item,
-              style:  TextStyle(
-                fontSize: 16, color: AppColors.blackThemeClr,
-              ),
-            ),
-          ))
-          .toList(),
-      validator: (value) {
-        if (value == null) {
-          return 'dropdown_required'.tr;
-        }
-      },
-      onChanged: (value) {
-        logger.i(value);
-        txtController.text = value!;
-
-
-      },
-      onSaved: (value) {
-        selectedValue = value.toString();
-        logger.i(value);
-        txtController.text = value!;
-
-      },
-    );
-
-  }
-
-  static DropdownButtonFormField2 DropdownFormFieldGender (TextEditingController txtController) {
-    return DropdownButtonFormField2(
-
-      decoration: InputDecoration(
-
-          contentPadding:
-          const EdgeInsets.symmetric(vertical: 17, horizontal: 15),
-          border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(40.0))),
-          filled: true,
-          hintText: "select_gender".tr,
-
-
-          hintStyle: TextStyle(
-              fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
-      isExpanded: true,
-      hint:  Text(
-        'select_gender'.tr,
-        style: TextStyle(fontSize: 16),
-      ),
-
-      dropdownDecoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-
-
-      items: Config.dropdownGenderList
-          .map((item) =>
-          DropdownMenuItem<String>(
-            value: item,
-            child: Text(
-              item,
-              style:  TextStyle(
-                fontSize: 16, color: AppColors.blackThemeClr,
-              ),
-            ),
-          ))
-          .toList(),
-      validator: (value) {
-        if (value == null) {
-          return 'dropdown_required'.tr;
-        }
-      },
-      onChanged: (value) {
-        logger.i(value);
-        txtController.text = value!;
-
-
-      },
-      onSaved: (value) {
-        selectedValue = value.toString();
-        logger.i(value);
-        txtController.text = value!;
-
-      },
-    );
-
-
-  }
-
-
   static final List<String> languageItems = [
     'TR',
     'EN',
@@ -365,4 +134,51 @@ class Config {
     'Turtle',
     'Horse'
   ];
+
+
+  static Image petImage (String pet_type) {
+    return Image.asset(pet_type ==
+        "Dog"
+        ? "assets/images/guide_image_1.png"
+        : pet_type == "Cat"
+        ? "assets/images/guide_image_0.png"
+        : pet_type == "Fish"
+        ? "assets/images/guide_image_2.png"
+        : pet_type == "Rabbit"
+        ? "assets/images/guide_image_3.png"
+        : pet_type ==
+        "Bird"
+        ? "assets/images/guide_image_4.png"
+        : pet_type ==
+        "Turtle"
+        ? "assets/images/guide_image_5.png"
+        : pet_type ==
+        "Hamster"
+        ? "assets/images/guide_image_6.png"
+        : pet_type ==
+        "Horse"
+        ? "assets/images/guide_image_7.png"
+        : pet_type ==
+        "Köpek"
+        ? "assets/images/guide_image_1.png"
+        : pet_type ==
+        "Kedi"
+        ? "assets/images/guide_image_0.png"
+        : pet_type == "Balık"
+        ? "assets/images/guide_image_2.png"
+        : pet_type == "Tavşan"
+        ? "assets/images/guide_image_3.png"
+        : pet_type == "Kuş"
+        ? "assets/images/guide_image_4.png"
+        : pet_type == "Kaplumbağa"
+        ? "assets/images/guide_image_5.png"
+        : pet_type == "Hamster"
+        ? "assets/images/guide_image_6.png"
+        : pet_type == "At"
+        ? "assets/images/guide_image_7.png"
+        : "");
+
+  }
+
+
 }

@@ -81,7 +81,7 @@ class _UserHomePageState extends State<UserHomePage> {
                 SingleChildScrollView(
 
                   child: Container(
-                    height: FrameSize.screenHeight/1.75,
+                    height: FrameSize.screenHeight/2.1,
                     child: StreamBuilder<DatabaseEvent>(
                       stream: refPets.onValue,
                       builder: (context, event) {
@@ -135,7 +135,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": pet.pet_type=="Köpek"? "assets/images/guide_image_1.png" : pet.pet_type=="Kedi"? "assets/images/guide_image_0.png" : pet.pet_type=="Balık"? "assets/images/guide_image_2.png" :pet.pet_type=="Tavşan"? "assets/images/guide_image_3.png": pet.pet_type=="Kuş"? "assets/images/guide_image_4.png": pet.pet_type=="Kaplumbağa"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="At"? "assets/images/guide_image_7.png": ""),
+                                                  Config.petImage(pet.pet_type!),
 
                                                   Center(
                                                     child: Container(

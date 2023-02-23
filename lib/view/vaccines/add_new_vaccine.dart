@@ -98,13 +98,13 @@ class _AddNewVaccineState extends State<AddNewVaccine> {
                       height: 12,
                     ),
 
-                    Config.DateTextFormField(context, vaccineDateInputController),
+                    DateTextFormField(context, vaccineDateInputController),
 
                     SizedBox(
                       height: 12,
                     ),
 
-                    Config.TimeTextFormField(context, vaccineTimeInputController),
+                    TimeTextFormField(context, vaccineTimeInputController),
 
                     //todo vaccine time
                     // hPetsTextFormField("Color", petColorInputController, "Color is required !", TextInputType.text, false, "false"),
