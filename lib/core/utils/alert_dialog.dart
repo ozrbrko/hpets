@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,10 @@ import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/view/google_sign_in.dart';
 import '../../main.dart';
 import '../constants/colors.dart';
+import '../services/firebase_services.dart';
 import 'config.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mailInputController = TextEditingController();
 TextEditingController suggestionInputController = TextEditingController();
@@ -629,7 +633,7 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 35,
                         ),
-                        hPetsTextFormField("", suggestionInputController, "",
+                        hPetsTextFormField("", suggestionInputController, "not_empty".tr,
                             TextInputType.text, false, "else"),
                         SizedBox(
                           height: 25,
@@ -647,11 +651,23 @@ class AlertDialogFunctions {
                                     40,
                                     themeFontSemiBold,
                                         () => {
-                                      Navigator.pop(context),
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text("it_was_send".tr),
-                                      )),
+
+
+                                      if(_formKey.currentState!.validate()){
+                                        SuggestionService.addSuggestion(suggestionInputController.text,  Config.toUtf8(
+                                          "${_auth.currentUser!.displayName}".basHarfleriBuyut(),
+                                        ),),
+
+                                        Navigator.pop(context),
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                          content: Text("it_was_send".tr),
+
+
+                                        )),
+                                      } else print("not validated"),
+
+
                                     })),
                           ],
                         )
@@ -1343,7 +1359,7 @@ class AlertDialogFunctions {
                                   fontSize: 14.0)),
                           isExpanded: true,
                           hint: Text(
-                            'select_pet'.tr,
+                            "${petName}",
                             style: TextStyle(fontSize: 16),
                           ),
 
@@ -1576,7 +1592,7 @@ class AlertDialogFunctions {
                                   fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                           isExpanded: true,
                           hint:  Text(
-                            "select_pet".tr,
+                            "${petType}",
                             style: TextStyle(fontSize: 16),
                           ),
 
@@ -1635,7 +1651,7 @@ class AlertDialogFunctions {
                                   fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                           isExpanded: true,
                           hint:  Text(
-                            'select_gender'.tr,
+                            "${petGender}",
                             style: TextStyle(fontSize: 16),
                           ),
 

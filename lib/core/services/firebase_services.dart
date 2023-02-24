@@ -27,9 +27,7 @@ class VaccineService {
   static Future<void> addVaccine(String vaccine_name, String veterinary,
       String vaccine_date, String vaccine_time, String pet_id,
       String pet_name) async {
-    var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table")
-        .child(Config.token).child(Config.petKey)
-        .child("vaccines");
+    var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("vaccines");
 
     var info = HashMap<String, dynamic>();
     info["vaccine_name"] = vaccine_name.basHarfleriBuyut();
@@ -121,5 +119,20 @@ class PetService {
     logger.i(user_id);
     refPets.push().set(info);
 
+  }
+}
+
+class SuggestionService {
+  static Future<void> addSuggestion( String suggestion_content,String display_name) async {
+    var suggestionPets = FirebaseDatabase.instance.ref().child("pets_table").child("suggestions");
+
+
+    var info = HashMap<String, dynamic>();
+    info["suggestion_content"] = suggestion_content;
+    info["display_name"] = display_name;
+    info["suggestion_id"] = "";
+
+
+    suggestionPets.push().set(info);
   }
 }

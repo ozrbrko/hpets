@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/cards.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/constants/fonts.dart';
-import 'package:hpets/core/constants/images.dart';
-import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/main.dart';
 import 'package:hpets/view/bottom_navigation_bar/pet_detail.dart';

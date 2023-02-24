@@ -167,6 +167,8 @@ class Languages extends Translations {
           'sss_5':"How to update appointment information. How to delete appointments ?",
           'sss_6':"How to update or delete added pet detail information ?",
           'sss_7':"Where to find the pet guide ?",
+          'not_empty': "This field cannot be empty !",
+
 
           'sss_1_detail':"hPETS is a mobile application that can be used jointly by pet owners and veterinarians. Pet owners can save important information of their pets thanks to this application. (Illness, feeding time, disease symptoms, vaccination schedule, emotional changes).",
           'sss_2_detail':"You can add a new pet by filling in the necessary information in the form opened with the "+" button on the user homepage.",
@@ -213,6 +215,7 @@ class Languages extends Translations {
       'pet_edit': "Evcil Hayvan Düzenleme",
       'registration_success': "Kayıt Başarılı !",
       'enjoy_app': "Giriş yapın ve uygulamanın tadını çıkarın !",
+      'not_empty': "Bu Alan Boş Olamaz !",
 
       'title_required':"Başlık gereklidir !",
       '_nutritions': " Beslenmeleri",
