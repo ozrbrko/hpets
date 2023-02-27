@@ -26,16 +26,7 @@ class DiseasesPage extends StatefulWidget {
 
 class _DiseasesPageState extends State<DiseasesPage> {
 
-  @override
-  void initState() {
-    //TODO: implement initState
-    super.initState();
-  }
-
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
   var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +42,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
           height: FrameSize.screenHeight,
           width: FrameSize.screenWidth,
 
-
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
@@ -61,6 +51,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
                   SizedBox(
                     height: 15,
                   ),
+                  // not: evcil hayvan bilgi kartı ->
                   ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                       child: cardContainerDetail(
@@ -93,6 +84,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           ),
                         ]),
                       ),
+
+                      // not: Yeni hastalık ekleme ->
                       GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewDisease(pet: widget.pet)));
@@ -106,10 +99,11 @@ class _DiseasesPageState extends State<DiseasesPage> {
                   ),
                   Divider(),
 
+                  // not: Hastalık listesi ->
                   SingleChildScrollView(
 
                     child: Container(
-                      height: FrameSize.screenHeight/2.5,
+                      height: FrameSize.screenHeight/2.6,
                       child: StreamBuilder<DatabaseEvent>(
                         stream: diseasePets.onValue,
                         builder: (context, event) {
@@ -135,7 +129,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                 itemBuilder: (context, indeks) {
                                   var disease = diseaseList[indeks];
 
-
                                   return
                                     disease.pet_id==widget.pet!.pet_id!?
 
@@ -147,9 +140,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                         logger.e(widget.pet!.pet_id!);
                                         logger.e(disease.disease_id);
 
-
                                         AlertDialogFunctions.infoDiseaseDetail(context,disease.disease_title, disease.disease_date, disease.disease_time, disease.disease_content, disease.disease_id);                          // Navigator.pushNamed(context, "/petdetail");
-                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
                                       },
                                       child: Column(
                                         children: [
@@ -160,8 +151,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                               ),
                                               child:
 
-                                              // note.pet_id==widget.pet!.pet_id!?
-
                                               Container(
                                                 height: 100,
                                                 width: FrameSize.screenWidth,
@@ -171,8 +160,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                     mainAxisAlignment:
                                                     MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
-
 
                                                       Center(
                                                         child: Container(
@@ -207,7 +194,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                                   TextSpan(
 
                                                                     text: "${disease.disease_content!}".length > 24 ? '${"${disease.disease_content!}".substring(0, 24)}...' : "${disease.disease_content!}",
-                                                                    // text: "${disease.disease_content!}",
                                                                     style: TextStyle(                                                                    overflow: TextOverflow.ellipsis,
 
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
@@ -239,7 +225,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                               ),
                                                               SizedBox(height: 5,),
 
-
                                                             ],
                                                           ),
                                                         ),
@@ -260,7 +245,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                               )
                                             // :Container()
                                           ),
-
                                         ],
                                       ),
                                     ): Container();
@@ -269,9 +253,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
 
                             }else{
                               return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
-
                             }
-
 
                           } else {
                             return BuildCircularIndicatorWidget();
@@ -280,14 +262,10 @@ class _DiseasesPageState extends State<DiseasesPage> {
                       ),
                     ),
                   ),
-
                 ],
-
               ),
             ),
           ),
-
-
         ));
   }
 }

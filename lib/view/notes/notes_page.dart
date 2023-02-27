@@ -99,7 +99,7 @@ class _NotesPageState extends State<NotesPage> {
                 SingleChildScrollView(
 
                   child: Container(
-                    height: FrameSize.screenHeight/1.75,
+                    height: FrameSize.screenHeight/2.6,
                     child: StreamBuilder<DatabaseEvent>(
                       stream: notePets.onValue,
                       builder: (context, event) {
@@ -119,7 +119,6 @@ class _NotesPageState extends State<NotesPage> {
                           if(noteList.length!=0){
                             return ListView.builder(
 
-                              physics: NeverScrollableScrollPhysics(),
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount: noteList.length,
@@ -174,7 +173,7 @@ class _NotesPageState extends State<NotesPage> {
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                 TextSpan(
-                                                                  text: " ${note.note_title!}".length > 25 ? '${" ${note.note_title!}".substring(0, 25)}...' : " ${note.note_title!}",
+                                                                  text: " ${note.note_title!}".length > 23 ? '${" ${note.note_title!}".substring(0, 23)}...' : " ${note.note_title!}",
 
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),
@@ -192,7 +191,7 @@ class _NotesPageState extends State<NotesPage> {
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                 TextSpan(
-                                                                  text: " ${note.note_content!}".length > 18 ? '${" ${note.note_content!}".substring(0, 18)}...' : " ${note.note_content!}",
+                                                                  text: " ${note.note_content!}".length > 16 ? '${" ${note.note_content!}".substring(0, 16)}...' : " ${note.note_content!}",
 
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),

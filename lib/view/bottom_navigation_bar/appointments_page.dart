@@ -31,7 +31,6 @@ class _AppointmentPageState extends State<AppointmentPage> {
 
     FrameSize.init(context: context);
 
-
     return Scaffold(
 
         appBar: hpetsAppBar(context,false,"hPETS",true),
@@ -87,7 +86,6 @@ class _AppointmentPageState extends State<AppointmentPage> {
 
                                 var cameAppointment = Appointments.fromJson(key, nesne);
                                 appointmentList.add(cameAppointment);
-
                               });
                             }
 
@@ -161,7 +159,6 @@ class _AppointmentPageState extends State<AppointmentPage> {
 
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
-
                                                                   ),
                                                                 ]),
                                                               ),
@@ -175,10 +172,9 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${appointment.veterinary_address}".length > 23 ? '${" ${appointment.veterinary_address}".substring(0, 23)}...' : " ${appointment.veterinary_address}",
+                                                                    text: " ${appointment.veterinary_address}".length > 21 ? '${" ${appointment.veterinary_address}".substring(0, 21)}...' : " ${appointment.veterinary_address}",
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
-
                                                                   ),
                                                                 ]),
                                                               ),
@@ -208,20 +204,6 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                           ),
                                                         ),
 
-                                                        // Column(
-                                                        //   mainAxisAlignment:
-                                                        //   MainAxisAlignment.center,
-                                                        //   children: [
-                                                        //     Text("${nutrition.food_date}", style: TextStyle(
-                                                        //         color: AppColors.appThemeClr),),
-                                                        //     SizedBox(height: 5,),
-                                                        //
-                                                        //     Text("${nutrition.food_time}", style: TextStyle(
-                                                        //         color: AppColors.appThemeClr),),
-                                                        //
-                                                        //   ],
-                                                        // ),
-
                                                         IconButton(
                                                           icon: Icon(
                                                             Icons.info_outline_rounded,
@@ -229,7 +211,6 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                           ),
                                                           onPressed: () {
                                                             AlertDialogFunctions.infoAppointmentDetail(context, appointment.veterinary_info, appointment.pet_name, appointment.appointment_date, appointment.appointment_time, appointment.veterinary_address, appointment.appointment_id);
-
                                                           },
                                                         ),
                                                       ],
@@ -246,9 +227,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
 
                             }else{
                               return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
-
                             }
-
                           } else {
                             return BuildCircularIndicatorWidget();
                           }

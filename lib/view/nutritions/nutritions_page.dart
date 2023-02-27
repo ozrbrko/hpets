@@ -100,7 +100,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                   SingleChildScrollView(
                     child: Container(
 
-                      height: FrameSize.screenHeight/1.75,
+                      height: FrameSize.screenHeight/2.6,
                       child: StreamBuilder<DatabaseEvent>(
 
                         stream: nutritionPets.onValue,
@@ -120,7 +120,6 @@ class _NutritionsPageState extends State<NutritionsPage> {
                             if(nutritionList.length!=0){
                               return ListView.builder(
 
-                                  physics: NeverScrollableScrollPhysics(),
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   itemCount: nutritionList.length,
@@ -190,7 +189,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                 TextSpan(
-                                                                  text: " ${nutrition.amount_of_food}".length > 15 ? '${" ${nutrition.amount_of_food}".substring(0, 15)}...' : " ${nutrition.amount_of_food}",
+                                                                  text: " ${nutrition.amount_of_food}".length > 13 ? '${" ${nutrition.amount_of_food}".substring(0, 13)}...' : " ${nutrition.amount_of_food}",
 
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),

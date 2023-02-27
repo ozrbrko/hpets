@@ -100,7 +100,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
                   SingleChildScrollView(
 
                     child: Container(
-                      height: FrameSize.screenHeight/1.75,
+                      height: FrameSize.screenHeight/2.6,
                       child: StreamBuilder<DatabaseEvent>(
                         stream: vaccinesPets.onValue,
                         builder: (context, event) {
@@ -122,7 +122,6 @@ class _VaccinesPageState extends State<VaccinesPage> {
                             if(vaccineList.length!=0){
                               return ListView.builder(
 
-                                physics: NeverScrollableScrollPhysics(),
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 itemCount: vaccineList.length,
@@ -175,7 +174,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${vaccine.vaccine_name!}".length > 27 ? '${" ${vaccine.vaccine_name!}".substring(0, 27)}...' : " ${vaccine.vaccine_name!}",
+                                                                    text: " ${vaccine.vaccine_name!}".length > 22 ? '${" ${vaccine.vaccine_name!}".substring(0, 22)}...' : " ${vaccine.vaccine_name!}",
 
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
@@ -207,7 +206,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${vaccine.veterinary!}".length > 27 ? '${" ${vaccine.veterinary!}".substring(0, 27)}...' : " ${vaccine.veterinary!}",
+                                                                    text: " ${vaccine.veterinary!}".length > 22 ? '${" ${vaccine.veterinary!}".substring(0, 22)}...' : " ${vaccine.veterinary!}",
 
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),

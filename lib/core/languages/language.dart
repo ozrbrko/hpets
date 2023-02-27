@@ -218,14 +218,12 @@ class Languages extends Translations {
       'registration_success': "Kayıt Başarılı !",
       'enjoy_app': "Giriş yapın ve uygulamanın tadını çıkarın !",
       'not_empty': "Bu Alan Boş Olamaz !",
-
       'title_required':"Başlık gereklidir !",
       '_nutritions': " Beslenmeleri",
       'lets_add_new_nutrition': "Evcil hayvan arkadaşınızın yeni beslenme arşivini ekleyelim.",
       'mail_or_password_wrong': "Eposta veya şifre yanlış !",
       'select_language': "Dil Seçin",
       'change_success': "Değişiklik başarıyla kaydedildi !",
-
       'forgot_password': "Şifremi Unuttum ?",
       'dont_have_account': "Hala hesabın yok mu ? ",
       'register': "Kayıt Ol!",
@@ -270,7 +268,6 @@ class Languages extends Translations {
       'new_pet': "Yeni Evcil Hayvan",
       'new_disease': "Yeni Hastalık",
       'note_detail': "Not Detay",
-
       'he': "Erkek",
       'erkek': "Erkek",
       'she': "Dişi",
@@ -278,7 +275,7 @@ class Languages extends Translations {
       'pet_detail': "Evcil Hayvan Detay",
       'type': "Tür",
       'gender': "Cinsiyet",
-      'delete_pet': "Evcil hayvanı sil",
+      'delete_pet': "Evcil Hayvanı Sil",
       'vaccines': "Aşılar",
       'diseases': "Hastalıklar",
       'notes': "Notlar",
