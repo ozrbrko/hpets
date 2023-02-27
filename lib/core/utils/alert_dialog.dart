@@ -1322,7 +1322,7 @@ class AlertDialogFunctions {
                                   fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                           isExpanded: true,
                           hint:  Text(
-                            "${petType}",
+                            "select_pet".tr,
                             style: TextStyle(fontSize: 16),
                           ),
 
@@ -1380,7 +1380,7 @@ class AlertDialogFunctions {
                                   fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                           isExpanded: true,
                           hint:  Text(
-                            "${petGender}",
+                            "select_gender".tr,
                             style: TextStyle(fontSize: 16),
                           ),
 
