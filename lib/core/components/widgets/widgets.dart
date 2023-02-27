@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -99,7 +100,199 @@ TextFormField hPetsTextFormField(
               color: AppColors.greyThemeClr,
               fontSize: 16.0)),
 
+
+
       obscureText: obscure,
+    );
+  }
+}
+
+
+TextFormField hPetsTextFormFieldPetName(
+    String hinttext,
+    TextEditingController txtcontroller,
+    String required,
+    TextInputType textType,
+    bool obscure,
+    String forValidation) {
+  if (forValidation == "mail") {
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+        EmailValidator(errorText: 'valid_email_address'.tr),
+      ]),
+      decoration: InputDecoration(
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight,
+              color: AppColors.greyThemeClr,
+              fontSize: 16.0)),
+
+
+    );
+  } else if (forValidation == "password") {
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+        MinLengthValidator(8, errorText: 'password_must'.tr)
+      ]),
+      decoration: InputDecoration(
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight,
+              color: AppColors.greyThemeClr,
+              fontSize: 16.0)),
+
+      obscureText: obscure,
+    );
+  } else {
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+      ]),
+      decoration: InputDecoration(
+          counterText: '',
+
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight,
+              color: AppColors.greyThemeClr,
+              fontSize: 16.0)),
+
+      obscureText: obscure,
+      maxLines: 1,
+      maxLength: 15,
+    );
+  }
+}
+
+
+TextFormField hPetsTextFormFieldPetAge(
+    String hinttext,
+    TextEditingController txtcontroller,
+    String required,
+    TextInputType textType,
+    bool obscure,
+    String forValidation) {
+  if (forValidation == "mail") {
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+        EmailValidator(errorText: 'valid_email_address'.tr),
+      ]),
+      decoration: InputDecoration(
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight,
+              color: AppColors.greyThemeClr,
+              fontSize: 16.0)),
+
+
+    );
+  } else if (forValidation == "password") {
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+        MinLengthValidator(8, errorText: 'password_must'.tr)
+      ]),
+      decoration: InputDecoration(
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight,
+              color: AppColors.greyThemeClr,
+              fontSize: 16.0)),
+
+      obscureText: obscure,
+    );
+  } else {
+    return TextFormField(
+      controller: txtcontroller,
+      onSaved: (deger) => txtcontroller.text = deger!,
+      keyboardType: textType,
+
+      // key: key1,
+
+      validator: MultiValidator([
+        RequiredValidator(errorText: required),
+      ]),
+      decoration: InputDecoration(
+          counterText: '',
+
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 17, horizontal: 32),
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(40.0))),
+          filled: true,
+          hintText: hinttext,
+          hintStyle: TextStyle(
+              fontFamily: themeFontLight,
+              color: AppColors.greyThemeClr,
+              fontSize: 16.0)),
+
+      obscureText: obscure,
+      maxLines: 1,
+      maxLength: 2,
     );
   }
 }

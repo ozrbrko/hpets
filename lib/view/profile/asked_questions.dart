@@ -15,11 +15,9 @@ class AskedQuestionsPage extends StatefulWidget {
 
 class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
 
-
   @override
   Widget build(BuildContext context) {
     FrameSize.init(context: context);
-
 
     return Scaffold(
 
@@ -28,14 +26,14 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
 
           width: FrameSize.screenWidth,
           height: FrameSize.screenHeight,
-
-          color: Colors.white,
+          color: AppColors.whiteThemeClr,
 
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  // not: Soru 1 ->
                   Card(
                     color: AppColors.whiteThemeClr.withOpacity(0.8),
                     shape:
@@ -47,6 +45,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       title: Text('sss_1'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
+                        // not: Cevap 1 ->
+
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
@@ -63,6 +63,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       ],
                     ),
                   ),
+                  // not: Soru 2 ->
+
                   Card(
                     color: AppColors.whiteThemeClr.withOpacity(0.8),
                     shape:
@@ -74,6 +76,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       title: Text('sss_2'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
+                        // not: Cevap 2 ->
+
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
@@ -90,6 +94,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       ],
                     ),
                   ),
+                  // not: Soru 3 ->
+
                   Card(
                     color: AppColors.whiteThemeClr.withOpacity(0.8),
                     shape:
@@ -101,6 +107,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       title: Text('sss_3'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
+                        // not: Cevap 3 ->
+
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
@@ -116,6 +124,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       ],
                     ),
                   ),
+                  // not: Soru 4 ->
+
                   Card(
                     color: AppColors.whiteThemeClr.withOpacity(0.8),
                     shape:
@@ -127,6 +137,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       title: Text('sss_4'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
+                        // not: Cevap 4 ->
+
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
@@ -143,6 +155,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       ],
                     ),
                   ),
+                  // not: Soru 5 ->
+
                   Card(
                     color: AppColors.whiteThemeClr.withOpacity(0.8),
                     shape:
@@ -154,6 +168,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       title: Text('sss_5'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
+                        // not: Cevap 5 ->
+
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
@@ -171,6 +187,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                     ),
                   ),
 
+                  // not: Soru 6 ->
+
                   Card(
                     color: AppColors.whiteThemeClr.withOpacity(0.8),
                     shape:
@@ -182,6 +200,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       title: Text('sss_6'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
+                        // not: Cevap 6 ->
+
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
@@ -198,6 +218,7 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       ],
                     ),
                   ),
+                  // not: Soru 7 ->
 
                   Card(
                     color: AppColors.whiteThemeClr.withOpacity(0.8),
@@ -210,6 +231,8 @@ class _AskedQuestionsPageState extends State<AskedQuestionsPage> {
                       title: Text('sss_7'.tr,style: TextStyle(fontSize: 15,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
                       trailing: Icon(Icons.keyboard_arrow_down),
                       children: [
+                        // not: Cevap 7 ->
+
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(

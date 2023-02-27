@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
@@ -22,26 +20,9 @@ class AddNewNote extends StatefulWidget {
 
 class _AddNewNoteState extends State<AddNewNote> {
 
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("notes");
-  // var refPets = FirebaseDatabase.instance.ref().child("pets_table");
-  // final databaseReference = FirebaseDatabase.instance.reference().child("pets_table");
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  var user =  FirebaseAuth.instance.currentUser;
-  final String? uid = Config.token;
-  final FirebaseDatabase database = FirebaseDatabase.instance;
-
-  DateTime? selectedDate;
-  @override
-  initState() {
-    super.initState();
-    selectedDate = DateTime.now();
-  }
-
   TextEditingController  noteTitleInputController = TextEditingController();
   TextEditingController  noteContentInputController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +46,7 @@ class _AddNewNoteState extends State<AddNewNote> {
                       height: 45,
                     ),
 
-                    hPetsTextFormField("title".tr, noteTitleInputController, "title_required".tr,
-                        TextInputType.text, false, "false"),
+                    hPetsTextFormField("title".tr, noteTitleInputController, "title_required".tr, TextInputType.text, false, "false"),
 
                     SizedBox(height: 10,),
 
@@ -75,17 +55,14 @@ class _AddNewNoteState extends State<AddNewNote> {
                     SizedBox(
                       height: 25,
                     ),
+
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         SizedBox(
                             width: FrameSize.screenWidth,
                             height: FrameSize.screenHeight/ 14,
-                            child: hPetsElevatedButton(
-                                "save".tr,
-                                AppColors.appThemeClr,AppColors.whiteThemeClr,
-                                40,
-                                themeFontSemiBold,
+                            child: hPetsElevatedButton("save".tr, AppColors.appThemeClr,AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                     () => {
 
                                   if (_formKey.currentState!
@@ -100,9 +77,7 @@ class _AddNewNoteState extends State<AddNewNote> {
                                       logger.e(Config.formattedDate),
                                       logger.e(Config.formattedTime),
                                       Navigator.pop(context),
-
                                       NoteService.addNote(Config.notTitle, Config.notContent, Config.formattedTime, Config.formattedDate, widget.pet!.pet_id!)
-                                      // addNote(Config.notTitle, Config.notContent, Config.formattedTime, Config.formattedDate, widget.pet!.pet_id!)
                                     }
                                   else
                                     {

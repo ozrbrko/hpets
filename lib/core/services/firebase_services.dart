@@ -1,8 +1,6 @@
 import 'dart:collection';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:hpets/core/extension/string_extension.dart';
-
 import '../../main.dart';
 import '../utils/config.dart';
 
@@ -31,7 +29,7 @@ class VaccineService {
 
     var info = HashMap<String, dynamic>();
     info["vaccine_name"] = vaccine_name.basHarfleriBuyut();
-    info["veterinary"] = veterinary.toUpperCase();
+    info["veterinary"] = veterinary.basHarfleriBuyut();
     info["vaccine_date"] = vaccine_date;
     info["vaccine_time"] = vaccine_time.basHarfleriBuyut();
     info["vaccine_id"] = "";

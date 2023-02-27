@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:hpets/core/model/appointments.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 import 'package:hpets/view/bottom_navigation_bar/add_new_appointment.dart';
-import '../../core/components/build_circular_indicator.dart';
+import '../../core/other/build_circular_indicator.dart';
 import '../../core/components/widgets/widgets.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
@@ -57,7 +57,8 @@ class _AppointmentPageState extends State<AppointmentPage> {
                       GestureDetector(
                           onTap: (){
 
-                            // Randevu modal açılacak. Randevu bilgileri ile birlikte kayıt oluşturulacak.
+                            // Yeni Randevu Ekleme ->
+
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewAppointment()));
                           },
                           child: Icon(Icons.add_box,color: AppColors.appThemeClr,size: 40,)),
@@ -70,7 +71,9 @@ class _AppointmentPageState extends State<AppointmentPage> {
                   SingleChildScrollView(
                     child: Container(
 
-                      height: FrameSize.screenHeight/1.4,
+                      height: FrameSize.screenHeight/1.57,
+
+                      // not: Randevu Listesi ->
                       child: StreamBuilder<DatabaseEvent>(
 
                         stream: appointmentPets.onValue,
@@ -90,7 +93,6 @@ class _AppointmentPageState extends State<AppointmentPage> {
 
                             if(appointmentList.length!=0){
                               return ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   itemCount: appointmentList.length,
@@ -100,15 +102,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                     return
                                       GestureDetector(
                                         onTap: (){
-
-                                          // logger.i("{${nutritionList[indeks].food_name.toString()} tıklandı");
-                                          // logger.e(nutrition.pet_id);
-                                          // logger.e(widget.pet!.pet_id!);
-                                          // logger.e(nutrition.food_id);
-
-                                          // Navigator.pushNamed(context, "/petdetail");
-                                          // Navigator.
-
+                                          // not: Randevu Detay Görüntüleme
                                           AlertDialogFunctions.infoAppointmentDetail(context, appointment.veterinary_info, appointment.pet_name, appointment.appointment_date, appointment.appointment_time, appointment.veterinary_address, appointment.appointment_id);
                                         },
                                         child: Column(
@@ -120,24 +114,15 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                 ),
                                                 child:
 
-                                                // note.pet_id==widget.pet!.pet_id!?
-
                                                 Container(
                                                   width: FrameSize.screenWidth,
+                                                  height: 120,
                                                   child: Padding(
                                                     padding: const EdgeInsets.all(15.0),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                       MainAxisAlignment.spaceBetween,
                                                       children: [
-                                                        // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
-                                                        // IconButton(
-                                                        //   icon: Icon(
-                                                        //     Icons.info_outline_rounded,
-                                                        //     color: AppColors.appThemeClr,
-                                                        //   ),
-                                                        //   onPressed: () {},
-                                                        // ),
 
                                                         Container(
                                                           width: FrameSize.screenWidth/1.7,
@@ -172,7 +157,8 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${appointment.veterinary_info}",
+                                                                    text: " ${appointment.veterinary_info}".length > 18 ? '${" ${appointment.veterinary_info}".substring(0, 18)}...' : " ${appointment.veterinary_info}",
+
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
@@ -189,7 +175,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${appointment.veterinary_address}",
+                                                                    text: " ${appointment.veterinary_address}".length > 23 ? '${" ${appointment.veterinary_address}".substring(0, 23)}...' : " ${appointment.veterinary_address}",
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
 

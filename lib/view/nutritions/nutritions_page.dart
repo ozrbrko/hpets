@@ -6,8 +6,7 @@ import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/model/nutritions.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/view/nutritions/add_new_nutrition.dart';
-
-import '../../core/components/build_circular_indicator.dart';
+import '../../core/other/build_circular_indicator.dart';
 import '../../core/components/widgets/cards.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
@@ -25,10 +24,7 @@ class NutritionsPage extends StatefulWidget {
 
 class _NutritionsPageState extends State<NutritionsPage> {
 
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-      Config.token);
   var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("nutritions");
-
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +36,6 @@ class _NutritionsPageState extends State<NutritionsPage> {
 
         appBar: hpetsAppBar(context, true, "${widget.pet!.pet_name!.basHarfleriBuyut()}", false),
         body: Container(
-
 
           height: FrameSize.screenHeight,
           width: FrameSize.screenWidth,
@@ -55,6 +50,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                   ),
                   ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
+                      // not: Evcil hayvan bilgi kartı ->
                       child: cardContainerDetail(
                           FrameSize.screenHeight,
                           FrameSize.screenWidth,
@@ -82,16 +78,11 @@ class _NutritionsPageState extends State<NutritionsPage> {
                             style: TextStyle(
                                 fontFamily: themeFontSemiBold,
                                 fontSize: 22,color: AppColors.blackThemeClr),
-
                           ),
                         ]),
                       ),
 
-
-
-
-
-
+                      // not: Yeni beslenme ekleme ->
                       GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewNutrition(pet: widget.pet)));
@@ -105,6 +96,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                   ),
                   Divider(),
 
+                  // not: Beslenme listesi ->
                   SingleChildScrollView(
                     child: Container(
 
@@ -122,7 +114,6 @@ class _NutritionsPageState extends State<NutritionsPage> {
 
                                 var cameNutrition = Nutritions.fromJson(key, nesne);
                                 nutritionList.add(cameNutrition);
-
                               });
                             }
 
@@ -145,11 +136,8 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                         logger.e(widget.pet!.pet_id!);
                                         logger.e(nutrition.food_id);
 
-                                        // Navigator.pushNamed(context, "/petdetail");
-                                        // Navigator.
-                                        AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
-
-                                      },
+                                        AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);
+                                        },
                                       child: Column(
                                         children: [
                                           Card(
@@ -158,8 +146,6 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                 borderRadius: BorderRadius.circular(10.0),
                                               ),
                                               child:
-
-                                              // note.pet_id==widget.pet!.pet_id!?
 
                                               Container(
                                                 height: 100,
@@ -170,18 +156,9 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                     mainAxisAlignment:
                                                     MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
-                                                      // IconButton(
-                                                      //   icon: Icon(
-                                                      //     Icons.info_outline_rounded,
-                                                      //     color: AppColors.appThemeClr,
-                                                      //   ),
-                                                      //   onPressed: () {},
-                                                      // ),
 
                                                       Container(
                                                         width: FrameSize.screenWidth/1.6,
-                                                        // color: Colors.red,
                                                         child: Column(
                                                           mainAxisAlignment:
                                                           MainAxisAlignment.center,
@@ -195,7 +172,8 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                 TextSpan(
-                                                                  text: " ${nutrition.food_name}",
+                                                                  text: " ${nutrition.food_name}".length > 20 ? '${" ${nutrition.food_name}".substring(0, 20)}...' : " ${nutrition.food_name}",
+
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
@@ -212,18 +190,15 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                 TextSpan(
-                                                                  text: " ${nutrition.amount_of_food}",
+                                                                  text: " ${nutrition.amount_of_food}".length > 15 ? '${" ${nutrition.amount_of_food}".substring(0, 15)}...' : " ${nutrition.amount_of_food}",
+
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),
-
                                                                 ),
                                                               ]),
                                                             ),
 
-
-
                                                             SizedBox(height: 5,),
-
 
                                                             RichText(
                                                               text: TextSpan(children: <TextSpan>[
@@ -235,36 +210,18 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                                   text: " ${nutrition.food_date}",
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),
-
                                                                 ),
 
                                                                 TextSpan(
                                                                   text: " / ${nutrition.food_time}",
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),
-
                                                                 ),
                                                               ]),
                                                             )
-
-
                                                           ],
                                                         ),
                                                       ),
-
-                                                      // Column(
-                                                      //   mainAxisAlignment:
-                                                      //   MainAxisAlignment.center,
-                                                      //   children: [
-                                                      //     Text("${nutrition.food_date}", style: TextStyle(
-                                                      //         color: AppColors.appThemeClr),),
-                                                      //     SizedBox(height: 5,),
-                                                      //
-                                                      //     Text("${nutrition.food_time}", style: TextStyle(
-                                                      //         color: AppColors.appThemeClr),),
-                                                      //
-                                                      //   ],
-                                                      // ),
 
                                                       IconButton(
                                                         icon: Icon(
@@ -272,8 +229,7 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                                           color: AppColors.appThemeClr,
                                                         ),
                                                         onPressed: () {
-                                                          AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);                         // Navigator.pushNamed(context, "/petdetail");
-
+                                                          AlertDialogFunctions.infoNutritionDetail(context, nutrition.food_name, nutrition.food_date, nutrition.food_time, nutrition.amount_of_food, nutrition.food_id);
                                                         },
                                                       ),
                                                     ],
@@ -286,32 +242,21 @@ class _NutritionsPageState extends State<NutritionsPage> {
                                       ),
                                     ): Container();
                                   }
-
-
-
                               );
 
                             }else{
                               return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
-
                             }
-
-
                           } else {
                             return BuildCircularIndicatorWidget();                          }
                         },
-
                       ),
-
-
                     ),
                   )
-
                 ],
               ),
             ),
           ),
-
         ));
   }
 }

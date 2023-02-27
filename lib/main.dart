@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,10 +6,9 @@ import 'package:get/get.dart';
 import 'package:hpets/core/languages/language.dart';
 import 'package:hpets/router.dart';
 import 'package:logger/logger.dart';
-
 import 'core/utils/config.dart';
 
-
+// not: logger fonk ->
 Logger logger = Logger(
   printer: PrettyPrinter(
       methodCount: 2,

@@ -37,7 +37,7 @@ class Languages extends Translations {
           'forgot_password': "Forgot Password ?",
           'dont_have_account': "Don't have an account ? ",
           'register': "Register!",
-          'have_you_forgotten_your_password': "Have you forgotten your password?",
+          'have_you_forgotten_your_password': "Forgotten your password ?",
           'dont_worry': "Don't worry, write the email with which you are registered and we will send you the steps you must follow to change your password.",
           'send': "Send",
           'lets_go': "Let's go!",
@@ -100,6 +100,8 @@ class Languages extends Translations {
           'enjoy_app': "Go to login and enjoy app !",
 
           'date': "Date:",
+          'loading': "Loading",
+
           'veterinary': "Veterinary:",
           'vaccine_detail': "Vaccine Detail",
           'time': "Time:",
@@ -296,6 +298,7 @@ class Languages extends Translations {
       'update': "Güncelle",
       'new_vaccine': "Yeni Aşı",
       'appointments': "Randevular",
+      'loading': "Yükleniyor",
       'address': "Adres:",
       'new_appointment': "Yeni Randevu",
       'pet_name': "Hayvan Adı:",

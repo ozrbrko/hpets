@@ -1,13 +1,9 @@
-import 'dart:collection';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/services/firebase_services.dart';
 import 'package:hpets/main.dart';
-
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
 import '../../core/responsive/frame_size.dart';
@@ -22,14 +18,9 @@ class AddNewAppointment extends StatefulWidget {
 
 class _AddNewAppointmentState extends State<AddNewAppointment> {
 
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-      Config.token);
-  var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child(
-      "appointments").child(Config.token);
-
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     logger.e(Config.languageValue);
   }
@@ -39,9 +30,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
   TextEditingController appointmentDateInputController = TextEditingController();
   TextEditingController appointmentTimeInputController = TextEditingController();
   TextEditingController appointmentAddressInputController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +55,10 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                       fontSize: 30,
                       fontFamily: themeFontBold,
                       color: AppColors.appThemeClr),),
-                  // Text("Fill in your details to get add.",style: TextStyle(fontSize: 16,fontFamily: themeFontSemiBold,color: AppColors.blackThemeClr),),
 
                   SizedBox(height: 25,),
 
-                  // hPetsTextFormField("Pet Name", petNameInputController,
-                  //     "Veterinary Info is required !", TextInputType.text, false,
-                  //     "false"),
+                  // not: Evcil Hayvan seçim dropdownı
 
                   DropdownButtonFormField2(
 
@@ -85,10 +71,7 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                             borderRadius: BorderRadius.all(Radius.circular(40.0))),
                         filled: true,
                         hintText: "Select Type",
-
-
-                        hintStyle: TextStyle(
-                            fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
+                        hintStyle: TextStyle(fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                     isExpanded: true,
                     hint:  Text(
                       'select_pet'.tr,
@@ -117,23 +100,13 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                       }
                     },
                     onChanged: (value) {
-                      // logger.i(value);
                       petNameInputController.text = value!;
-
-
                     },
                     onSaved: (value) {
                       selectedValue = value.toString();
-                      // logger.i(value);
                       petNameInputController.text = value!;
-
                     },
                   ),
-
-
-
-
-                  // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
                   SizedBox(height: 12,),
 
@@ -144,17 +117,13 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
 
                   SizedBox(height: 12,),
 
-                  // hPetsTextFormField("Veterinary Address", appointmentAddressInputController,
-                  //     "Veterinary Address is required !", TextInputType.text, false,
-                  //     "false"),
-
+                  // not: veteriner formfield
                   hPetsTextFormField("veterinary".tr, veterinaryInfoInputController,
                       "veterinary_required".tr, TextInputType.text, false,
                       "false"),
                   SizedBox(height: 12,),
-
+                  // not: adres formfield
                   ContentTextFormField(appointmentAddressInputController,"address_required".tr,"address".tr),
-
 
                   SizedBox(height: 40),
 
@@ -174,27 +143,17 @@ class _AddNewAppointmentState extends State<AddNewAppointment> {
                           Navigator.pop(context);
 
                           AppointmentService.addAppointment(veterinaryInfo, appointmentDate, appointmentTime, petName, veterinary_address);
-                          // addAppointment(veterinaryInfo, appointmentDate, appointmentTime, petName, veterinary_address);
-                          // return Navigator.pushNamed(context, '/bottomnav');
-
-                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ));
                         }
                         else {
                           print("Not Validated");
                         }
-
-
-                        // logger.i("Kaydet Butonu Tıklandı.");
-                      }))
-
+                          }))
                 ],
               ),
             ),
           ),
         ),
-
       ),
-
     );
   }
 }

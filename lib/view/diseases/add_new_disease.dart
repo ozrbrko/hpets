@@ -1,4 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
@@ -7,11 +6,9 @@ import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
 import '../../core/model/pets.dart';
 import '../../core/responsive/frame_size.dart';
-import '../../core/utils/config.dart';
 
 class AddNewDisease extends StatefulWidget {
   Pets? pet;
-
   AddNewDisease({this.pet});
 
   @override
@@ -19,9 +16,6 @@ class AddNewDisease extends StatefulWidget {
 }
 
 class _AddNewDiseaseState extends State<AddNewDisease> {
-
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-  var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
 
   TextEditingController  diseaseNameInputController = TextEditingController();
   TextEditingController  diseaseContentInputController = TextEditingController();
@@ -49,18 +43,16 @@ class _AddNewDiseaseState extends State<AddNewDisease> {
                   children: [
 
                     SizedBox(height: 20,),
+
                     Text("lets_add_new_disease".tr,style: TextStyle(fontSize: 30,fontFamily: themeFontBold,color: AppColors.appThemeClr),),
-                    // Text("Fill in your details to get add.",style: TextStyle(fontSize: 16,fontFamily: themeFontSemiBold,color: AppColors.blackThemeClr),),
 
                     SizedBox(height: 25,),
 
-
                     hPetsTextFormField("disease_name".tr, diseaseNameInputController, "disease_name_required".tr, TextInputType.text, false, "false"),
+
                     SizedBox(height: 12,),
 
                     hPetsTextFormField("content".tr, diseaseContentInputController, "content_required".tr, TextInputType.text, false, "false"),
-
-                    // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
                     SizedBox(height: 12,),
 
@@ -70,7 +62,6 @@ class _AddNewDiseaseState extends State<AddNewDisease> {
 
                     TimeTextFormField(context, diseaseTimeInputController),
 
-                    // hPetsTextFormField("Color", petColorInputController, "Color is required !", TextInputType.text, false, "false"),
                     SizedBox(height: 40),
 
 
@@ -95,7 +86,6 @@ class _AddNewDiseaseState extends State<AddNewDisease> {
                           {
                             print("Not Validated");
                           }
-
                         }))
                   ],
                 ),

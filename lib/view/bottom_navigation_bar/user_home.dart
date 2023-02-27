@@ -8,7 +8,7 @@ import 'package:hpets/core/constants/fonts.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/main.dart';
 import 'package:hpets/view/bottom_navigation_bar/pet_detail.dart';
-import '../../core/components/build_circular_indicator.dart';
+import '../../core/other/build_circular_indicator.dart';
 import '../../core/constants/colors.dart';
 import '../../core/model/pets.dart';
 import '../../core/utils/config.dart';
@@ -22,13 +22,10 @@ class UserHomePage extends StatefulWidget {
 
 class _UserHomePageState extends State<UserHomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // var refPets = FirebaseDatabase.instance.ref().child("pets_table");
   var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     logger.i("user id: ${Config.token} ve auth id: ${_auth.currentUser!.uid}");
     // addPet();
@@ -49,6 +46,7 @@ class _UserHomePageState extends State<UserHomePage> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
+                // not: Kullanıcı Bilgi Kartı ->
                 cardContainerDefault(FrameSize.screenHeight/5),
                 SizedBox(
                   height: 45,
@@ -62,6 +60,7 @@ class _UserHomePageState extends State<UserHomePage> {
                       style: TextStyle(
                           fontFamily: themeFontSemiBold, fontSize: 22),
                     ),
+                    // not: Evcil Hayvan Ekleme
                     GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, '/addnewpet');
@@ -74,6 +73,8 @@ class _UserHomePageState extends State<UserHomePage> {
                   ],
                 ),
                 Divider(),
+
+                    // not: Evcil Hayvan Listesi ->
 
                 SingleChildScrollView(
 
@@ -107,13 +108,12 @@ class _UserHomePageState extends State<UserHomePage> {
                                   if (!Config.petListConfig.contains(pet.pet_name)) {
                                     Config.petListConfig.add(pet.pet_name);
                                   }
-                                  // Config.petListConfig = petList;
+
+                                  // not: Evcil Hayvan Detay Butonu ->
 
                                   return GestureDetector(
                                     onTap: () {
-
                                       logger.i("{${petList[indeks].pet_name.toString()} tıklandı");
-                                      // Navigator.pushNamed(context, "/petdetail");
                                       Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
                                     },
                                     child: Column(
@@ -136,7 +136,7 @@ class _UserHomePageState extends State<UserHomePage> {
 
                                                   Center(
                                                     child: Container(
-                                                      // color: Colors.red,
+                                                      color: Colors.red,
                                                       width: FrameSize.screenWidth/1.9,
                                                       child: Column(
                                                         mainAxisAlignment:
@@ -145,10 +145,8 @@ class _UserHomePageState extends State<UserHomePage> {
 
                                                           Text(
                                                             overflow: TextOverflow.ellipsis,
-
                                                             pet.pet_name!,
-                                                            style: TextStyle(
-                                                                color: AppColors.appThemeClr),
+                                                            style: TextStyle(color: AppColors.appThemeClr),
                                                           ),
                                                         ],
                                                       ),
@@ -159,9 +157,9 @@ class _UserHomePageState extends State<UserHomePage> {
                                                       Icons.info_outline_rounded,
                                                       color: AppColors.appThemeClr,
                                                     ),
+
                                                     onPressed: () {
                                                       Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
-
                                                     },
                                                   ),
                                                 ],
@@ -169,7 +167,6 @@ class _UserHomePageState extends State<UserHomePage> {
                                             ),
                                           ),
                                         ),
-
                                       ],
                                     ),
                                   );
@@ -193,10 +190,5 @@ class _UserHomePageState extends State<UserHomePage> {
         ),
       ),
     );
-  }
-
-  Future<void> deletePet(String pet_name, String pet_id, String pet_age,
-      String pet_race, String pet_gender, String pet_type) async {
-    refPets.child("KEY").remove();
   }
 }

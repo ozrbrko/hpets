@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 import '../constants/colors.dart';
@@ -19,9 +20,7 @@ class BuildCircularIndicatorWidget extends StatelessWidget {
           const SizedBox(
             width: 16.0,
           ),
-          Text(
-            "Loading",
-            style: TextStyle(fontFamily: themeFontSemiBold, color: AppColors.greyThemeClr, fontSize: 16.0),
+          Text("loading".tr, style: TextStyle(fontFamily: themeFontSemiBold, color: AppColors.greyThemeClr, fontSize: 16.0),
           ),
         ],
       ),

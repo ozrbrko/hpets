@@ -18,7 +18,6 @@ class _GuidePageState extends State<GuidePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -44,6 +43,7 @@ class _GuidePageState extends State<GuidePage> {
                   height: 5,
                 ),
                 Expanded(
+                  // not: Rehber Evcil hayvan listesi
                   child: GridView.count(
                     crossAxisCount: 2,
                     children: List.generate(8, (index) {

@@ -19,14 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   final _storage = const FlutterSecureStorage();
 
-
   startTime() async {
     var _duration = new Duration(seconds: 2);
     return new Timer(_duration, navigationPage);
   }
 
   void navigationPage() async {
-
 
     String? token = await _storage.read(key: "remem_token");
 
@@ -64,9 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.center,
 
-
           children: [
-            // SizedBox(height: 180),
             Image.asset(Images.logo_hpets),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -74,7 +70,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 AnimatedTextKit(
                   animatedTexts: [
 
-                    TyperAnimatedText("Schhh... You Know Healthy pet.",textStyle: TextStyle(fontSize: 22,fontFamily: themeFontBold,color: AppColors.appThemeClr)),
+                    // TyperAnimatedText("Schhh... You Know Healthy pet.",textStyle: TextStyle(fontSize: 22,fontFamily: themeFontBold,color: AppColors.appThemeClr)),
+                    TyperAnimatedText("Smart. Beautiful. Healthy pets.",textStyle: TextStyle(fontSize: 22,fontFamily: themeFontBold,color: AppColors.appThemeClr)),
 
                   ],
                 )

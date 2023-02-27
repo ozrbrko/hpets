@@ -19,7 +19,6 @@ class GoogleSignHelper {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-
   Future<GoogleSignInAccount?> signIn() async {
     final user = await _googleSignIn.signIn();
     if(user!= null){
@@ -35,13 +34,9 @@ class GoogleSignHelper {
        final userData = await user!.authentication;
        // print(userData.accessToken);
        return userData;
-
      }
-
-
     return null!;
   }
-
 
   Future<GoogleSignInAccount?> signOut() async {
     final user = await _googleSignIn.signOut();
@@ -51,7 +46,6 @@ class GoogleSignHelper {
     }
     return null;
   }
-
 
   Future<User?> firebaseSignIn() async {
     // final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
@@ -66,5 +60,4 @@ class GoogleSignHelper {
     print(user!.displayName);
     return user;
   }
-
 }

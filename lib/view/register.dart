@@ -9,14 +9,12 @@ import '../core/constants/colors.dart';
 import '../core/constants/fonts.dart';
 import '../core/services/auth_service.dart';
 
-
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
-
 
 class _RegisterPageState extends State<RegisterPage> {
   TextEditingController nameInputController = TextEditingController();
@@ -27,13 +25,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = true;
 
-
   AuthService _authService = AuthService();
 
   void initState() {
     super.initState();
-    // Load data here
-    // ...
     setState(() {
       isLoading = false;
     });
@@ -75,6 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   SizedBox(height: 40),
 
+                  // not: register ->
                   SizedBox(
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
@@ -91,13 +87,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 _authService.register(mailInputController.text, passwordInputController.text, nameInputController.text, surnameInputController.text).then((value) {
 
                                   AlertDialogFunctions.infoAlert(context);
-                                  // return Navigator.pushNamed(context, '/login',);
-
 
                                 }).catchError((error) => {
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("This mail is already registered !"), ))
                                 }),
-
 
                               }
                             else
@@ -105,7 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 print("Not Validated"),
                               }
                           })),
-
+                  // not: zaten hesabım bar
 
                   Padding(
                     padding: const EdgeInsets.all(12.0),
@@ -128,14 +121,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
                           Navigator.pushNamed(context, '/login');
 
-
                         }),
                 ]),
             ),
                   ),
-
-
-
                 ],
               ),
             ),

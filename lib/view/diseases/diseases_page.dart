@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
 import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/model/diseases.dart';
-
-import '../../core/components/build_circular_indicator.dart';
 import '../../core/components/widgets/cards.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
 import '../../core/model/pets.dart';
+import '../../core/other/build_circular_indicator.dart';
 import '../../core/responsive/frame_size.dart';
 import '../../core/utils/alert_dialog.dart';
 import '../../core/utils/config.dart';
@@ -110,7 +109,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
                   SingleChildScrollView(
 
                     child: Container(
-                      height: FrameSize.screenHeight/1.75,
+                      height: FrameSize.screenHeight/2.5,
                       child: StreamBuilder<DatabaseEvent>(
                         stream: diseasePets.onValue,
                         builder: (context, event) {
@@ -130,7 +129,6 @@ class _DiseasesPageState extends State<DiseasesPage> {
                             if(diseaseList.length!=0){
                               return ListView.builder(
 
-                                physics: NeverScrollableScrollPhysics(),
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 itemCount: diseaseList.length,
@@ -181,8 +179,7 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                           width: FrameSize.screenWidth/1.6,
                                                           // color: Colors.red,
                                                           child: Column(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment.center,
+                                                            mainAxisAlignment: MainAxisAlignment.center,
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
                                                               RichText(
@@ -192,7 +189,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${disease.disease_title!}",
+                                                                    text: "${disease.disease_title!}".length > 20 ? '${"${disease.disease_title!}".substring(0, 20)}...' : "${disease.disease_title!}",
+
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
@@ -207,8 +205,11 @@ class _DiseasesPageState extends State<DiseasesPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${disease.disease_content!}",
-                                                                    style: TextStyle(
+
+                                                                    text: "${disease.disease_content!}".length > 24 ? '${"${disease.disease_content!}".substring(0, 24)}...' : "${disease.disease_content!}",
+                                                                    // text: "${disease.disease_content!}",
+                                                                    style: TextStyle(                                                                    overflow: TextOverflow.ellipsis,
+
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                   ),

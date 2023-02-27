@@ -1,6 +1,3 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
@@ -20,22 +17,6 @@ class AddNewPet extends StatefulWidget {
 
 class _AddNewPetState extends State<AddNewPet> {
 
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  var user =  FirebaseAuth.instance.currentUser;
-  final String? uid = Config.token;
-
-
-  final FirebaseDatabase database = FirebaseDatabase.instance;
-
-  DateTime? selectedDate;
-  @override
-  initState() {
-    super.initState();
-    selectedDate = DateTime.now();
-  }
-
   TextEditingController  petNameInputController = TextEditingController();
   TextEditingController  petTypeInputController = TextEditingController();
   TextEditingController  petGenderInputController = TextEditingController();
@@ -44,8 +25,6 @@ class _AddNewPetState extends State<AddNewPet> {
   TextEditingController  petColorInputController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  String? selectedValue;
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,24 +52,25 @@ class _AddNewPetState extends State<AddNewPet> {
                   SizedBox(height: 15,),
 
 
-                  hPetsTextFormField("name".tr, petNameInputController, "name_required".tr, TextInputType.text, false, "false"),
+                  hPetsTextFormFieldPetName("name".tr, petNameInputController, "name_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
 
+                  // not: Evcil Hayvan seçim dropdown ->
                   DropdownFormFieldPet(petTypeInputController),
 
                   SizedBox(height: 12,),
 
+                  // not: Cinsiyet seçim dropdown ->
                   DropdownFormFieldGender(petGenderInputController),
 
-
-                  // hPetsTextFormField("Gender", petGenderInputController, "required", TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
                   hPetsTextFormField("race".tr, petRaceInputController, "race_required".tr, TextInputType.text, false, "false"),
                   SizedBox(height: 12,),
-                  hPetsTextFormField("age".tr, petAgeInputController, "age_required".tr, TextInputType.number, false, "false"),
+                  hPetsTextFormFieldPetAge("age".tr, petAgeInputController, "age_required".tr, TextInputType.number, false, "false"),
 
                   SizedBox(height: 40),
 
+                  // not : Kaydet button ->
                   SizedBox(
                       width: FrameSize.screenWidth,
                       height: FrameSize.screenHeight / 14,
@@ -106,11 +86,8 @@ class _AddNewPetState extends State<AddNewPet> {
                           var petType = petTypeInputController.text;
 
                           PetService.addPet(petName, Config.generateRandomId().toString(), petAge, petRace, petGender, petType, Config.token);
-                          // addPet(petName,Config.generateRandomId().toString(), petAge, petRace, petGender, petType,Config.token);
 
                           return Navigator.pushNamed(context, '/bottomnav');
-
-                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("E-mail or password is wrong !"), ));
                         }
                         else
                         {
@@ -118,7 +95,6 @@ class _AddNewPetState extends State<AddNewPet> {
                         }
                         logger.i("Kaydet Butonu Tıklandı.");
                       }))
-
                 ],
               ),
             ),

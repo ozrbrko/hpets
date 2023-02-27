@@ -1,16 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hpets/core/components/widgets/widgets.dart';
-import 'package:hpets/core/extension/string_extension.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
-
 import '../../core/components/widgets/cards.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
-import '../../core/constants/images.dart';
-import '../../core/utils/config.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -20,7 +15,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +34,22 @@ class _ProfilePageState extends State<ProfilePage> {
         ));
   }
 
-  //Sekmeler
+  // not: Sekmeler ->
 
   Widget Tabs() {
     return Column(
       children: [
         cardContainerDefault(FrameSize.screenHeight/5),
-
         SizedBox(
           height: 70,
         ),
+        // not: Şifreyi değiştir ->
         InkWell(
           onTap: (){
             AlertDialogFunctions.changePassword(context);
           },
           child: Container(
-            color: Colors.white,
+            color: AppColors.whiteThemeClr,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -74,14 +68,14 @@ class _ProfilePageState extends State<ProfilePage> {
           height: 35,
         ),
 
+        // not: Sık Sorulan Sorular ->
 
         InkWell(
           onTap: (){
             Navigator.pushNamed(context, '/askedquestions');
-
           },
           child: Container(
-            color: Colors.white,
+            color: AppColors.whiteThemeClr,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -101,6 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
           height: 35,
         ),
 
+        // not: Görüş ve öneriler ->
 
         InkWell(
 
@@ -108,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
             AlertDialogFunctions.opinionSuggestion(context);
           },
           child: Container(
-            color: Colors.white,
+            color: AppColors.whiteThemeClr,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -117,7 +112,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: AppColors.appThemeClr)),
                 Expanded(flex: 3,
                     child: Text(
-
                       "opinions_and_suggestions".tr, style: TextStyle(
                         fontSize: 16, fontFamily: themeFontRegular),)),
                 Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios, size: 18,)),
@@ -125,12 +119,12 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-
         Divider(),
         SizedBox(
           height: 35,
         ),
 
+        // not: Dil Ayarları ->
 
         InkWell(
 
@@ -138,7 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
             AlertDialogFunctions.languageSettings(context);
           },
           child: Container(
-            color: Colors.white,
+            color: AppColors.whiteThemeClr,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -154,21 +148,18 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
 
-
-
-
         Divider(),
         SizedBox(
           height: 35,
         ),
 
-
+        // not: Çıkış Yap ->
         InkWell(
           onTap: () {
             AlertDialogFunctions.exitApp(context);
           },
           child: Container(
-            color: Colors.white,
+            color: AppColors.whiteThemeClr,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -183,16 +174,8 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-
         Divider(),
-
       ]
     );
-
-
   }
-
-
 }
-
-

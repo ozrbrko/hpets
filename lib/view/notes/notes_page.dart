@@ -8,7 +8,7 @@ import 'package:hpets/core/model/pets.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import 'package:hpets/core/utils/alert_dialog.dart';
 import 'package:hpets/view/notes/add_new_note.dart';
-import '../../core/components/build_circular_indicator.dart';
+import '../../core/other/build_circular_indicator.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/fonts.dart';
 import '../../core/model/notes.dart';
@@ -25,12 +25,7 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-  @override
-  void initState() {
-    //TODO: implement initState
-    super.initState();
-  }
-  var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
+
   var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("notes");
 
 
@@ -55,6 +50,7 @@ class _NotesPageState extends State<NotesPage> {
                 ),
                 ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
+                    // not: Evcil hayvan bilgi kartı ->
                     child: cardContainerDetail(
                         FrameSize.screenHeight,
                         FrameSize.screenWidth,
@@ -82,11 +78,11 @@ class _NotesPageState extends State<NotesPage> {
                           style: TextStyle(
                               fontFamily: themeFontSemiBold,
                               fontSize: 22,color: AppColors.blackThemeClr),
-
                         ),
                       ]),
                     ),
 
+                    // not: Yeni not ekleme ->
                     GestureDetector(
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewNote(pet: widget.pet)));
@@ -99,6 +95,7 @@ class _NotesPageState extends State<NotesPage> {
                   ],
                 ),
                 Divider(),
+                // not: Notlar liste ->
                 SingleChildScrollView(
 
                   child: Container(
@@ -129,7 +126,6 @@ class _NotesPageState extends State<NotesPage> {
                               itemBuilder: (context, indeks) {
                                 var note = noteList[indeks];
 
-
                                 return
                                   note.pet_id==widget.pet!.pet_id!?
 
@@ -141,12 +137,7 @@ class _NotesPageState extends State<NotesPage> {
                                       logger.e(widget.pet!.pet_id!);
                                       logger.e(note.note_id);
 
-
                                       AlertDialogFunctions.infoNoteDetail(context,note.note_title,note.note_content,indeks,note.note_id);
-
-
-                                      // Navigator.pushNamed(context, "/petdetail");
-                                      // Navigator.push(context, MaterialPageRoute(builder: (context) => PetDetailPage(pet:pet)));
                                     },
                                     child: Column(
                                       children: [
@@ -157,8 +148,6 @@ class _NotesPageState extends State<NotesPage> {
                                             ),
                                             child:
 
-                                            // note.pet_id==widget.pet!.pet_id!?
-
                                             Container(
                                               height: 74,
                                               width: FrameSize.screenWidth,
@@ -168,9 +157,6 @@ class _NotesPageState extends State<NotesPage> {
                                                   mainAxisAlignment:
                                                   MainAxisAlignment.spaceBetween,
                                                   children: [
-                                                    // Image.asset(pet.pet_type=="Dog"? "assets/images/guide_image_1.png" : pet.pet_type=="Cat"? "assets/images/guide_image_0.png" : pet.pet_type=="Fish"? "assets/images/guide_image_2.png" :pet.pet_type=="Rabbit"? "assets/images/guide_image_3.png": pet.pet_type=="Bird"? "assets/images/guide_image_4.png": pet.pet_type=="Turtle"? "assets/images/guide_image_5.png": pet.pet_type=="Hamster"? "assets/images/guide_image_6.png": pet.pet_type=="Horse"? "assets/images/guide_image_7.png": ""),
-
-
                                                     Center(
                                                       child: Container(
                                                         width: FrameSize.screenWidth/1.6,
@@ -188,7 +174,8 @@ class _NotesPageState extends State<NotesPage> {
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                 TextSpan(
-                                                                  text: " ${note.note_title!}",
+                                                                  text: " ${note.note_title!}".length > 25 ? '${" ${note.note_title!}".substring(0, 25)}...' : " ${note.note_title!}",
+
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
@@ -196,9 +183,7 @@ class _NotesPageState extends State<NotesPage> {
                                                               ]),
                                                             ),
 
-
                                                             SizedBox(height: 5,),
-
 
                                                             RichText(
                                                               text: TextSpan(children: <TextSpan>[
@@ -207,17 +192,14 @@ class _NotesPageState extends State<NotesPage> {
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                 TextSpan(
-                                                                  text: " ${note.note_content!}",
+                                                                  text: " ${note.note_content!}".length > 18 ? '${" ${note.note_content!}".substring(0, 18)}...' : " ${note.note_content!}",
+
                                                                   style: TextStyle(
                                                                       color: AppColors.appThemeClr,fontFamily: themeFontBold),
 
                                                                 ),
                                                               ]),
                                                             ),
-
-
-
-
                                                           ],
                                                         ),
                                                       ),
@@ -229,7 +211,6 @@ class _NotesPageState extends State<NotesPage> {
                                                       ),
                                                       onPressed: () {
                                                         AlertDialogFunctions.infoNoteDetail(context,note.note_title,note.note_content,indeks,note.note_id);
-
                                                       },
                                                     ),
                                                   ],
@@ -238,7 +219,6 @@ class _NotesPageState extends State<NotesPage> {
                                             )
                                           // :Container()
                                         ),
-
                                       ],
                                     ),
                                   ): Container();
@@ -247,7 +227,6 @@ class _NotesPageState extends State<NotesPage> {
 
                           }else{
                             return  Center(child: Text("there_is_no".tr,style: TextStyle(fontSize: 17,fontFamily: themeFontLight),));
-
                           }
                         } else {
                           return BuildCircularIndicatorWidget();                        }
@@ -255,7 +234,6 @@ class _NotesPageState extends State<NotesPage> {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -263,10 +241,4 @@ class _NotesPageState extends State<NotesPage> {
       ),
     );
   }
-
-
-  Future<void> deleteNote(String pet_id,int indeks) async {
-    notePets.child(pet_id).remove();
-  }
-
 }

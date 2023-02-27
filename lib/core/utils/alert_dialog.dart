@@ -1,9 +1,7 @@
 import 'dart:collection';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -21,71 +19,40 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 
 TextEditingController mailInputController = TextEditingController();
 TextEditingController suggestionInputController = TextEditingController();
-
 TextEditingController currentPasswordInputController = TextEditingController();
 TextEditingController newPasswordInputController = TextEditingController();
-TextEditingController restartNewPasswordInputController =
-TextEditingController();
 TextEditingController vaccineNameInputController = TextEditingController();
 TextEditingController veterinaryInfoInputController = TextEditingController();
 TextEditingController vaccineDateInputController = TextEditingController();
 TextEditingController vaccineTimeInputController = TextEditingController();
-
 TextEditingController diseaseNameInputController = TextEditingController();
 TextEditingController diseaseContentInputController = TextEditingController();
 TextEditingController diseaseDateInputController = TextEditingController();
 TextEditingController diseaseTimeInputController = TextEditingController();
-
 TextEditingController foodNameInputController = TextEditingController();
 TextEditingController amountFoodInputController = TextEditingController();
 TextEditingController foodDateInputController = TextEditingController();
 TextEditingController foodTimeInputController = TextEditingController();
-
 TextEditingController noteTitleInputController = TextEditingController();
 TextEditingController noteContentInputController = TextEditingController();
-
-TextEditingController veterinaryInfoAppInputController =
-TextEditingController();
+TextEditingController veterinaryInfoAppInputController = TextEditingController();
 TextEditingController petNameInputController = TextEditingController();
 TextEditingController appointmentDateInputController = TextEditingController();
 TextEditingController appointmentTimeInputController = TextEditingController();
-TextEditingController appointmentAddressInputController =
-TextEditingController();
-
-
+TextEditingController appointmentAddressInputController = TextEditingController();
 TextEditingController  editPetNameInputController = TextEditingController();
 TextEditingController  editPetTypeInputController = TextEditingController();
 TextEditingController  editPetGenderInputController = TextEditingController();
 TextEditingController  editPetRaceInputController = TextEditingController();
 TextEditingController  editPetAgeInputController = TextEditingController();
 
-var refPets =
-FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
-var notePets = FirebaseDatabase.instance
-    .ref()
-    .child("pets_table")
-    .child(Config.token)
-    .child(Config.petKey)
-    .child("notes");
-
-var vaccinesPets = FirebaseDatabase.instance
-    .ref()
-    .child("pets_table")
-    .child(Config.token)
-    .child(Config.petKey)
-    .child("vaccines");
+var refPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token);
+var notePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("notes");
+var vaccinesPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("vaccines");
 var diseasePets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("diseases");
-var nutritionPets = FirebaseDatabase.instance
-    .ref()
-    .child("pets_table")
-    .child(Config.token)
-    .child(Config.petKey)
-    .child("nutritions");
-var appointmentPets = FirebaseDatabase.instance
-    .ref()
-    .child("pets_table")
-    .child("appointments")
-    .child(Config.token);
+var nutritionPets = FirebaseDatabase.instance.ref().child("pets_table").child(Config.token).child(Config.petKey).child("nutritions");
+var appointmentPets = FirebaseDatabase.instance.ref().child("pets_table").child("appointments").child(Config.token);
+
 final _formKey = GlobalKey<FormState>();
 
 class AlertDialogFunctions {
@@ -129,13 +96,6 @@ class AlertDialogFunctions {
                           endIndent: 0,
                           indent: 0,
                         ),
-                        // const Divider(
-                        //   height: 15,
-                        //   thickness: 0.5,
-                        //   indent: 0,
-                        //   endIndent: 0,
-                        //   color: appThemeClr,
-                        // ),
                         SizedBox(
                           height: 15,
                         ),
@@ -155,12 +115,7 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "no".tr,
-                                      AppColors.appThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("no".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () => {
                                         Navigator.pop(context),
                                       })),
@@ -172,33 +127,18 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "yes".tr,
-                                      AppColors.redThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
+                                  child: hPetsElevatedButton("yes".tr, AppColors.redThemeClr, AppColors.whiteThemeClr, 40,
                                       themeFontSemiBold,
                                           () async => {
-                                        await storage.delete(
-                                            key: "remem_token"),
-                                        Navigator.of(context)
-                                            .pushReplacementNamed('/login'),
-
+                                        await storage.delete(key: "remem_token"),
+                                        Navigator.of(context).pushReplacementNamed('/login'),
 
                                        await GoogleSignHelper.instance.signOut().then((value) {
 
                                     logger.e("döndü ${value}");
-
                                     logger.i("token ${Config.token}");
 
                                   }),
-
-
-
-
-
-
-
                                       })),
                             ),
                           ],
@@ -214,7 +154,6 @@ class AlertDialogFunctions {
   }
 
   static Object deletePet(BuildContext context) {
-    const storage = FlutterSecureStorage();
 
     mailInputController.clear();
     return showDialog(
@@ -253,13 +192,7 @@ class AlertDialogFunctions {
                           endIndent: 0,
                           indent: 0,
                         ),
-                        // const Divider(
-                        //   height: 15,
-                        //   thickness: 0.5,
-                        //   indent: 0,
-                        //   endIndent: 0,
-                        //   color: appThemeClr,
-                        // ),
+
                         SizedBox(
                           height: 15,
                         ),
@@ -279,12 +212,7 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "no".tr,
-                                      AppColors.appThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("no".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () => {
                                         Navigator.pop(context),
                                       })),
@@ -296,18 +224,12 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "yes".tr,
-                                      AppColors.redThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("yes".tr, AppColors.redThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () async => {
                                         logger.i(Config.petKey),
                                         refPets.child(Config.petKey).remove(),
 
-                                        Navigator.pushNamed(
-                                            context, '/bottomnav'),
+                                        Navigator.pushNamed(context, '/bottomnav'),
                                       })),
                             ),
                           ],
@@ -346,6 +268,7 @@ class AlertDialogFunctions {
                           children: [
                             Text(
                               'have_you_forgotten_your_password'.tr,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontFamily: themeFontBold, fontSize: 19),
                             ),
@@ -372,13 +295,7 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 35,
                         ),
-                        hPetsTextFormField(
-                            "email".tr,
-                            mailInputController,
-                            "email_required".tr,
-                            TextInputType.text,
-                            false,
-                            "mail"),
+                        hPetsTextFormField("email".tr, mailInputController, "email_required".tr, TextInputType.text, false, "mail"),
                         SizedBox(
                           height: 25,
                         ),
@@ -388,12 +305,7 @@ class AlertDialogFunctions {
                             SizedBox(
                                 width: FrameSize.screenWidth,
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "send".tr,
-                                    AppColors.appThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("send".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
                                       if (_formKey.currentState!.validate())
                                         {
@@ -441,8 +353,7 @@ class AlertDialogFunctions {
                           children: [
                             Text(
                               "change_password".tr,
-                              style: TextStyle(
-                                  fontFamily: themeFontBold, fontSize: 19),
+                              style: TextStyle(fontFamily: themeFontBold, fontSize: 19),
                             ),
                             InkWell(
                                 onTap: () {
@@ -456,13 +367,7 @@ class AlertDialogFunctions {
                           endIndent: 0,
                           indent: 0,
                         ),
-                        // const Divider(
-                        //   height: 15,
-                        //   thickness: 0.5,
-                        //   indent: 0,
-                        //   endIndent: 0,
-                        //   color: appThemeClr,
-                        // ),
+
                         SizedBox(
                           height: 15,
                         ),
@@ -474,13 +379,7 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 35,
                         ),
-                        hPetsTextFormField(
-                            "email".tr,
-                            mailInputController,
-                            "email_required".tr,
-                            TextInputType.text,
-                            false,
-                            "mail"),
+                        hPetsTextFormField("email".tr, mailInputController, "email_required".tr, TextInputType.text, false, "mail"),
                         SizedBox(
                           height: 25,
                         ),
@@ -490,18 +389,12 @@ class AlertDialogFunctions {
                             SizedBox(
                                 width: FrameSize.screenWidth,
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "send".tr,
-                                    AppColors.appThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("send".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
                                       if (_formKey.currentState!.validate())
                                         {
                                           print("Validated"),
-                                          Config.resetPassword(
-                                              context, mailInputController)
+                                          Config.resetPassword(context, mailInputController)
                                         }
                                       else
                                         {
@@ -559,11 +452,7 @@ class AlertDialogFunctions {
                             SizedBox(
                                 width: FrameSize.screenWidth,
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "login".tr,
-                                    AppColors.appThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
+                                child: hPetsElevatedButton("login".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40,
                                     themeFontSemiBold,
                                         () => {
                                       Navigator.pushNamed(
@@ -627,8 +516,7 @@ class AlertDialogFunctions {
                         ),
                         Text(
                           "let_us_know".tr,
-                          style: TextStyle(
-                              fontSize: 14, fontFamily: themeFontRegular),
+                          style: TextStyle(fontSize: 14, fontFamily: themeFontRegular),
                         ),
                         SizedBox(
                           height: 35,
@@ -644,14 +532,8 @@ class AlertDialogFunctions {
                             SizedBox(
                                 width: FrameSize.screenWidth,
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "send".tr,
-                                    AppColors.appThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("send".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
-
 
                                       if(_formKey.currentState!.validate()){
                                         SuggestionService.addSuggestion(suggestionInputController.text,  Config.toUtf8(
@@ -659,14 +541,8 @@ class AlertDialogFunctions {
                                         ),),
 
                                         Navigator.pop(context),
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                          content: Text("it_was_send".tr),
-
-
-                                        )),
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("it_was_send".tr),)),
                                       } else print("not validated"),
-
 
                                     })),
                           ],
@@ -713,7 +589,6 @@ class AlertDialogFunctions {
                                 },
                                 child: Icon(Icons.close)
                             ),
-
                           ],
                         ),
                         Divider(
@@ -725,8 +600,7 @@ class AlertDialogFunctions {
                         ),
                         Text(
                           "you_can_change_language".tr,
-                          style: TextStyle(
-                              fontSize: 14, fontFamily: themeFontRegular),
+                          style: TextStyle(fontSize: 14, fontFamily: themeFontRegular),
                         ),
                         SizedBox(
                           height: 35,
@@ -789,17 +663,11 @@ class AlertDialogFunctions {
                             SizedBox(
                                 width: FrameSize.screenWidth,
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "update".tr,
-                                    AppColors.appThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("update".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
                                       if (Config.languageValue == "TR")
                                         {
-                                          Get.updateLocale(
-                                              Locale("tr", "TR")),
+                                          Get.updateLocale(Locale("tr", "TR")),
 
                                           Config.dropdownGenderList = Config.genderItemsTr,
                                           Config.dropdownPetList = Config.petItemsTr
@@ -815,8 +683,7 @@ class AlertDialogFunctions {
 
                                         },
                                       Navigator.pop(context),
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                         content: Text("change_success".tr),
                                       )),
                                     })),
@@ -857,8 +724,7 @@ class AlertDialogFunctions {
                           children: [
                             Text(
                               "note_detail".tr,
-                              style: TextStyle(
-                                  fontFamily: themeFontBold, fontSize: 19),
+                              style: TextStyle(fontFamily: themeFontBold, fontSize: 19),
                             ),
                             InkWell(
                                 onTap: () {
@@ -871,18 +737,11 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 15,
                         ),
-                        hPetsTextFormField(
-                            "title".tr,
-                            noteTitleInputController,
-                            "title_required".tr,
-                            TextInputType.text,
-                            false,
-                            "else"),
+                        hPetsTextFormField("title".tr, noteTitleInputController, "title_required".tr, TextInputType.text, false, "else"),
                         SizedBox(
                           height: 11,
                         ),
-                        ContentTextFormField(noteContentInputController,
-                            "content_required".tr, "content".tr),
+                        ContentTextFormField(noteContentInputController, "content_required".tr, "content".tr),
                         SizedBox(
                           height: 25,
                         ),
@@ -893,12 +752,7 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "delete".tr,
-                                    AppColors.redThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("delete".tr, AppColors.redThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
                                       if (_formKey.currentState!.validate())
                                         {
@@ -920,23 +774,12 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "update".tr,
-                                      AppColors.appThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("update".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () => {
-                                        if (_formKey.currentState!
-                                            .validate())
+                                        if (_formKey.currentState!.validate())
                                           {
                                             print("Validated"),
-                                            updateNote(
-                                                noteTitleInputController
-                                                    .text,
-                                                noteContentInputController
-                                                    .text,
-                                                note_id!),
+                                            updateNote(noteTitleInputController.text, noteContentInputController.text, note_id!),
                                             Navigator.pop(context),
                                           }
                                         else
@@ -1004,26 +847,12 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 15,
                         ),
-                        hPetsTextFormField(
-                            "vaccine_name".tr,
-                            vaccineNameInputController,
-                            "Vaccine Name is required !",
-                            TextInputType.text,
-                            false,
-                            "false"),
+                        hPetsTextFormField("vaccine_name".tr, vaccineNameInputController, "Vaccine Name is required !", TextInputType.text, false, "false"),
                         SizedBox(
                           height: 12,
                         ),
 
-                        hPetsTextFormField(
-                            "veterinary".tr,
-                            veterinaryInfoInputController,
-                            "Veterinary Info is required !",
-                            TextInputType.text,
-                            false,
-                            "false"),
-
-                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
+                        hPetsTextFormField("veterinary".tr, veterinaryInfoInputController, "Veterinary Info is required !", TextInputType.text, false, "false"),
 
                         SizedBox(
                           height: 12,
@@ -1047,22 +876,12 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "delete".tr,
-                                    AppColors.redThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("delete".tr, AppColors.redThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
                                       if (_formKey.currentState!.validate())
                                         {
                                           print("Validated"),
-                                          vaccinesPets
-                                              .child(vaccine_id!)
-                                              .remove(),
-                                          vaccinesPets
-                                              .child(vaccine_id!)
-                                              .remove(),
+                                          vaccinesPets.child(vaccine_id!).remove(),
                                           Navigator.pop(context),
                                         }
                                       else
@@ -1079,35 +898,17 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "update".tr,
-                                      AppColors.appThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("update".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () => {
                                         if (_formKey.currentState!
                                             .validate())
                                           {
                                             print("Validated"),
-                                            vaccine_name =
-                                                vaccineNameInputController
-                                                    .text,
-                                            vaccine_date =
-                                                vaccineDateInputController
-                                                    .text,
-                                            vaccine_time =
-                                                vaccineTimeInputController
-                                                    .text,
-                                            veterinary_info =
-                                                veterinaryInfoInputController
-                                                    .text,
-                                            updateVaccine(
-                                                vaccine_name!,
-                                                veterinary_info!,
-                                                vaccine_date!,
-                                                vaccine_time!,
-                                                vaccine_id!),
+                                            vaccine_name = vaccineNameInputController.text,
+                                            vaccine_date = vaccineDateInputController.text,
+                                            vaccine_time = vaccineTimeInputController.text,
+                                            veterinary_info = veterinaryInfoInputController.text,
+                                            updateVaccine(vaccine_name!, veterinary_info!, vaccine_date!, vaccine_time!, vaccine_id!),
                                             Navigator.pop(context),
                                           }
                                         else
@@ -1175,26 +976,12 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 15,
                         ),
-                        hPetsTextFormField(
-                            "disease_name".tr,
-                            diseaseNameInputController,
-                            "disease_name_required".tr,
-                            TextInputType.text,
-                            false,
-                            "false"),
+                        hPetsTextFormField("disease_name".tr, diseaseNameInputController, "disease_name_required".tr, TextInputType.text, false, "false"),
                         SizedBox(
                           height: 12,
                         ),
 
-                        hPetsTextFormField(
-                            "content".tr,
-                            diseaseContentInputController,
-                            "content_required".tr,
-                            TextInputType.text,
-                            false,
-                            "false"),
-
-                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
+                        hPetsTextFormField("content".tr, diseaseContentInputController, "content_required".tr, TextInputType.text, false, "false"),
 
                         SizedBox(
                           height: 12,
@@ -1256,24 +1043,11 @@ class AlertDialogFunctions {
                                             .validate())
                                           {
                                             print("Validated"),
-                                            disease_title =
-                                                diseaseNameInputController
-                                                    .text,
-                                            disease_date =
-                                                diseaseDateInputController
-                                                    .text,
-                                            disease_time =
-                                                diseaseTimeInputController
-                                                    .text,
-                                            disease_content =
-                                                diseaseContentInputController
-                                                    .text,
-                                            updateDisease(
-                                                disease_title!,
-                                                disease_content!,
-                                                disease_date!,
-                                                disease_time!,
-                                                disease_id!),
+                                            disease_title = diseaseNameInputController.text,
+                                            disease_date = diseaseDateInputController.text,
+                                            disease_time = diseaseTimeInputController.text,
+                                            disease_content = diseaseContentInputController.text,
+                                            updateDisease(disease_title!, disease_content!, disease_date!, disease_time!, disease_id!),
                                             Navigator.pop(context),
                                           }
                                         else
@@ -1379,18 +1153,12 @@ class AlertDialogFunctions {
                             ),
                           ))
                               .toList(),
-                          // validator: (value) {
-                          //   if (value == null) {
-                          //     return '     Please select pet !';
-                          //   }
-                          // },
+
                           onChanged: (value) {
-                            // logger.i(value);
                             petNameInputController.text = value!;
                           },
                           onSaved: (value) {
                             selectedValue = value.toString();
-                            // logger.i(value);
                             petNameInputController.text = value!;
                           },
                         ),
@@ -1398,8 +1166,6 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 12,
                         ),
-
-                        DateTextFormField(context, appointmentDateInputController),
 
                         SizedBox(
                           height: 12,
@@ -1407,19 +1173,12 @@ class AlertDialogFunctions {
 
                         TimeTextFormField(context, appointmentTimeInputController),
 
-                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
 
                         SizedBox(
                           height: 12,
                         ),
 
-                        hPetsTextFormField(
-                            "veterinary".tr,
-                            veterinaryInfoAppInputController,
-                            "veterinary_required".tr,
-                            TextInputType.text,
-                            false,
-                            "false"),
+                        hPetsTextFormField("veterinary".tr, veterinaryInfoAppInputController, "veterinary_required".tr, TextInputType.text, false, "false"),
 
                         SizedBox(
                           height: 12,
@@ -1438,12 +1197,7 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "delete".tr,
-                                    AppColors.redThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("delete".tr, AppColors.redThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
                                       if (_formKey.currentState!.validate())
                                         {
@@ -1467,38 +1221,18 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "update".tr,
-                                      AppColors.appThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("update".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () => {
                                         if (_formKey.currentState!
                                             .validate())
                                           {
                                             print("Validated"),
-                                            veterinaryInfo =
-                                                veterinaryInfoAppInputController
-                                                    .text,
-                                            petName =
-                                                petNameInputController.text,
-                                            appointmentDate =
-                                                appointmentDateInputController
-                                                    .text,
-                                            appointmentTime =
-                                                appointmentTimeInputController
-                                                    .text,
-                                            veterinary_address =
-                                                appointmentAddressInputController
-                                                    .text,
-                                            updateAppointment(
-                                                veterinaryInfo,
-                                                petName,
-                                                appointmentDate,
-                                                appointmentTime,
-                                                veterinary_address,
-                                                appointment_id),
+                                            veterinaryInfo = veterinaryInfoAppInputController.text,
+                                            petName = petNameInputController.text,
+                                            appointmentDate = appointmentDateInputController.text,
+                                            appointmentTime = appointmentTimeInputController.text,
+                                            veterinary_address = appointmentAddressInputController.text,
+                                            updateAppointment(veterinaryInfo, petName, appointmentDate, appointmentTime, veterinary_address, appointment_id),
                                             Navigator.pop(context),
                                           }
                                         else
@@ -1518,8 +1252,6 @@ class AlertDialogFunctions {
           );
         });
   }
-
-
 
   static Future infoPetEdit(
       BuildContext context,
@@ -1569,7 +1301,7 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 15,
                         ),
-                        hPetsTextFormField("name".tr, editPetNameInputController, "name_required".tr, TextInputType.text, false, "false"),
+                        hPetsTextFormFieldPetName("name".tr, editPetNameInputController, "name_required".tr, TextInputType.text, false, "false"),
 
                         SizedBox(
                           height: 12,
@@ -1586,8 +1318,6 @@ class AlertDialogFunctions {
                                   borderRadius: BorderRadius.all(Radius.circular(40.0))),
                               filled: true,
                               hintText: "select_pet",
-
-
                               hintStyle: TextStyle(
                                   fontFamily: themeFontLight, color: AppColors.greyThemeClr, fontSize: 14.0)),
                           isExpanded: true,
@@ -1620,7 +1350,6 @@ class AlertDialogFunctions {
                           onChanged: (value) {
                             logger.i(value);
                             editPetTypeInputController.text = value!;
-
 
                           },
                           onSaved: (value) {
@@ -1690,8 +1419,6 @@ class AlertDialogFunctions {
                           },
                         ),
 
-                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
-
                         SizedBox(
                           height: 12,
                         ),
@@ -1702,7 +1429,7 @@ class AlertDialogFunctions {
                           height: 12,
                         ),
 
-                        hPetsTextFormField("age".tr, editPetAgeInputController, "age_required".tr, TextInputType.number, false, "false"),
+                        hPetsTextFormFieldPetAge("age".tr, editPetAgeInputController, "age_required".tr, TextInputType.number, false, "false"),
 
 
                         SizedBox(
@@ -1719,12 +1446,7 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "update".tr,
-                                      AppColors.appThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("update".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () => {
                                         if (_formKey.currentState!
                                             .validate())
@@ -1737,8 +1459,6 @@ class AlertDialogFunctions {
                                             petAge = editPetAgeInputController.text,
 
                                             updatePet(petName!, petAge!, petRace!, petGender!, petType!),
-
-
                                             Navigator.pushNamed(
                                                 context, '/bottomnav'),                                          }
                                         else
@@ -1758,7 +1478,6 @@ class AlertDialogFunctions {
           );
         });
   }
-
 
   static Future infoNutritionDetail(
       BuildContext context,
@@ -1807,26 +1526,12 @@ class AlertDialogFunctions {
                         SizedBox(
                           height: 15,
                         ),
-                        hPetsTextFormField(
-                            "food_name".tr,
-                            foodNameInputController,
-                            "food_name_required".tr,
-                            TextInputType.text,
-                            false,
-                            "false"),
+                        hPetsTextFormField("food_name".tr, foodNameInputController, "food_name_required".tr, TextInputType.text, false, "false"),
                         SizedBox(
                           height: 12,
                         ),
 
-                        hPetsTextFormField(
-                            "amount_of_food".tr,
-                            amountFoodInputController,
-                            "amount_of_food_required".tr,
-                            TextInputType.text,
-                            false,
-                            "false"),
-
-                        // hPetsTextFormField("Type", petTypeInputController, "required", TextInputType.text, false, "false"),
+                        hPetsTextFormField("amount_of_food".tr, amountFoodInputController, "amount_of_food_required".tr, TextInputType.text, false, "false"),
 
                         SizedBox(
                           height: 12,
@@ -1850,19 +1555,12 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                 height: FrameSize.screenHeight / 14,
-                                child: hPetsElevatedButton(
-                                    "delete".tr,
-                                    AppColors.redThemeClr,
-                                    AppColors.whiteThemeClr,
-                                    40,
-                                    themeFontSemiBold,
+                                child: hPetsElevatedButton("delete".tr, AppColors.redThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                         () => {
                                       if (_formKey.currentState!.validate())
                                         {
                                           print("Validated"),
-                                          nutritionPets
-                                              .child(food_id!)
-                                              .remove(),
+                                          nutritionPets.child(food_id!).remove(),
                                           Navigator.pop(context),
                                         }
                                       else
@@ -1879,12 +1577,7 @@ class AlertDialogFunctions {
                               flex: 1,
                               child: SizedBox(
                                   height: FrameSize.screenHeight / 14,
-                                  child: hPetsElevatedButton(
-                                      "update".tr,
-                                      AppColors.appThemeClr,
-                                      AppColors.whiteThemeClr,
-                                      40,
-                                      themeFontSemiBold,
+                                  child: hPetsElevatedButton("update".tr, AppColors.appThemeClr, AppColors.whiteThemeClr, 40, themeFontSemiBold,
                                           () => {
                                         if (_formKey.currentState!
                                             .validate())
@@ -1915,8 +1608,7 @@ class AlertDialogFunctions {
         });
   }
 
-  static Future<void> updateNote(
-      String note_title, String note_content, String note_id) async {
+  static Future<void> updateNote(String note_title, String note_content, String note_id) async {
     var info = HashMap<String, dynamic>();
     info["note_title"] = note_title.basHarfleriBuyut();
     info["note_content"] = note_content;
@@ -1962,10 +1654,6 @@ class AlertDialogFunctions {
   }
 
   static Future<void> updatePet(String pet_name, String pet_age, String pet_race, String pet_gender, String pet_type) async {
-    // await FirebaseFirestore.instance
-    //     .collection('Pets')
-    //     .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid);
-
 
     var info = HashMap<String,dynamic>();
     info["pet_name"] = pet_name;
@@ -1975,11 +1663,8 @@ class AlertDialogFunctions {
     info["pet_type"] = pet_type;
     info["pet_key"] = "";
 
-    // logger.e(_auth.currentUser!.uid);
     refPets.child(Config.petKey).update(info);
-
   }
-
 
   static Future<void> updateNutrition(String foodName, String amonutFood,
       String foodTime, String foodDate, String food_id) async {
@@ -2006,6 +1691,5 @@ class AlertDialogFunctions {
     logger.i(vaccine_date);
     logger.i(vaccine_id);
     vaccinesPets.child(vaccine_id).update(infoVacc);
-    // allVaccinesPets.child(vaccine_id).update(infoVacc);
   }
 }
