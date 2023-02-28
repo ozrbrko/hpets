@@ -27,7 +27,7 @@ class GoogleSignHelper {
     }
     return null;
   }
-
+// not: GoogleSignIn fonk ->
   Future<GoogleSignInAuthentication> googleAuthenticate() async {
      if(await _googleSignIn.isSignedIn()){
        final user =  _googleSignIn.currentUser;

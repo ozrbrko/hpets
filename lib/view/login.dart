@@ -102,6 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                                             }
                                         })),
                             SizedBox(height: 10),
+                            // not: google ile giriş butonu ->
 
                             SizedBox(
                               width: FrameSize.screenWidth,

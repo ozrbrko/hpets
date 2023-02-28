@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:hpets/core/responsive/frame_size.dart';
 import '../core/constants/colors.dart';
 import '../core/constants/fonts.dart';
@@ -71,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   animatedTexts: [
 
                     // TyperAnimatedText("Schhh... You Know Healthy pet.",textStyle: TextStyle(fontSize: 22,fontFamily: themeFontBold,color: AppColors.appThemeClr)),
-                    TyperAnimatedText("Smart. Beautiful. Healthy pets.",textStyle: TextStyle(fontSize: 22,fontFamily: themeFontBold,color: AppColors.appThemeClr)),
+                    TyperAnimatedText("splash_text".tr,textStyle: TextStyle(fontSize: 22,fontFamily: themeFontBold,color: AppColors.appThemeClr)),
 
                   ],
                 )

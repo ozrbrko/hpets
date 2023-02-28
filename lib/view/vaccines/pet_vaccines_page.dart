@@ -174,7 +174,7 @@ class _VaccinesPageState extends State<VaccinesPage> {
                                                                       style: TextStyle(
                                                                           color: AppColors.appThemeClr,fontFamily: themeFontRegular)),
                                                                   TextSpan(
-                                                                    text: " ${vaccine.vaccine_name!}".length > 22 ? '${" ${vaccine.vaccine_name!}".substring(0, 22)}...' : " ${vaccine.vaccine_name!}",
+                                                                    text: " ${vaccine.vaccine_name!}".length > 21 ? '${" ${vaccine.vaccine_name!}".substring(0, 21)}...' : " ${vaccine.vaccine_name!}",
 
                                                                     style: TextStyle(
                                                                         color: AppColors.appThemeClr,fontFamily: themeFontBold),

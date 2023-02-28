@@ -170,6 +170,7 @@ class Languages extends Translations {
           'sss_6':"How to update or delete added pet detail information ?",
           'sss_7':"Where to find the pet guide ?",
           'not_empty': "This field cannot be empty !",
+          'splash_text': "Smart. Beautiful. Healthy pets.",
 
 
           'sss_1_detail':"hPETS is a mobile application that can be used jointly by pet owners and veterinarians. Pet owners can save important information of their pets thanks to this application. (Illness, feeding time, disease symptoms, vaccination schedule, emotional changes).",
@@ -286,7 +287,7 @@ class Languages extends Translations {
       'vaccine_name': "Aşı Adı:",
       'disease_name': "Hastalık Adı:",
       'content': "Açıklama:",
-
+      'splash_text': "Akıllı. Güzel. Sağlıklı evcil hayvanlar.",
       'date': "Tarih:",
       'veterinary': "Veteriner:",
       'vaccine_detail': "Aşı Detay",
