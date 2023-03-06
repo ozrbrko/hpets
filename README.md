@@ -1,4 +1,4 @@
-# hpets
+# hPETS
 
 ^ hPETS evcil hayvan sahiplerinin ve veterinerlerin ortak kullanabileceği bir mobil uygulamadır. Evcil hayvan sahipleri bu uygulama sayesinde evcil hayvanlarının aşı bilgisi, hastalık bilgisi, beslenme bilgisi gibi önemli bilgilerini kaydedebilir.
 
