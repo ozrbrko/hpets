@@ -17,3 +17,5 @@
 * Clean architecture 
 * Getx 
 * Router Structure
+
+Uygulamam Google Play Store'da yayındadır: https://play.google.com/store/apps/details?id=com.hpets.hpets2&gl=TR
